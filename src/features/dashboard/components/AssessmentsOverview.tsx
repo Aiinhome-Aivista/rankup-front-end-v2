@@ -1,16 +1,6 @@
 import { Eye, Edit2, Share2 } from "lucide-react";
 
-// --- Types ---
-type AssessmentStatus = "Ongoing" | "Draft" | "Completed";
-type AssessmentAction = "view" | "edit" | "share";
-
-interface Assessment {
-  title: string;
-  class: string;
-  status: AssessmentStatus;
-  attempts: string;
-  action: AssessmentAction;
-}
+import type { Assessment, AssessmentStatus } from "../types/assessments";
 
 // --- Data ---
 const assessments: Assessment[] = [

@@ -7,11 +7,7 @@ import {
   Tooltip,
 } from "recharts";
 
-// --- Types ---
-interface AverageData {
-  name: string;
-  value: number;
-}
+import type { AverageData } from "../types/weeklyClassAverage";
 
 // --- Data ---
 const data: AverageData[] = [

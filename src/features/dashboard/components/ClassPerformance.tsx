@@ -8,12 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 
-// --- Types ---
-interface PerformanceData {
-  name: string;
-  value: number;
-  active?: boolean;
-}
+import type { PerformanceData } from "../types/classPerformance";
 
 // --- Data ---
 const data: PerformanceData[] = [
@@ -45,7 +40,7 @@ const ClassPerformance = () => {
             />
             {/* Domain fixed to 0-100 for percentage-like visuals */}
             <YAxis hide domain={[0, 100]} />
-            
+
             <Tooltip
               contentStyle={{
                 borderRadius: "12px",
@@ -54,7 +49,7 @@ const ClassPerformance = () => {
               }}
               cursor={{ fill: "transparent" }}
             />
-            
+
             <Bar dataKey="value" radius={[20, 20, 20, 20]}>
               {data.map((entry, index) => (
                 <Cell

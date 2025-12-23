@@ -1,17 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// --- Types ---
-interface CustomIconProps {
-  className?: string;
-  size?: number;
-}
-
-interface ClassSession {
-  id: string;
-  time: string;
-  subject: string;
-  active: boolean;
-}
+import type { CustomIconProps, ClassSession } from "../types/upcomingClasses";
 
 // --- Icons (Custom SVGs preserved for exact design) ---
 const SunIcon = ({ className, size = 16 }: CustomIconProps) => (
@@ -72,16 +61,14 @@ const UpcomingClasses = () => {
         {classes.map((cls, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center gap-2 transition-all duration-300 ${
-              cls.active ? "scale-110" : "opacity-60 scale-90"
-            }`}
+            className={`flex flex-col items-center gap-2 transition-all duration-300 ${cls.active ? "scale-110" : "opacity-60 scale-90"
+              }`}
           >
             <div
-              className={`flex h-12 w-12 flex-col items-center justify-center rounded-2xl backdrop-blur-sm ${
-                cls.active
+              className={`flex h-12 w-12 flex-col items-center justify-center rounded-2xl backdrop-blur-sm ${cls.active
                   ? "border-2 border-white/30 bg-white/20 shadow-lg"
                   : "border border-white/10 bg-white/5"
-              }`}
+                }`}
             >
               <span className="text-base font-bold">{cls.id}</span>
               <span className="text-[8px] font-medium">{cls.time}</span>

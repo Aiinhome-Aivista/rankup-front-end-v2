@@ -1,18 +1,6 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-// --- Types ---
-interface RadialProgressProps {
-  value: number;
-  label: string;
-  color: string;
-  remainingColor: string;
-}
-
-interface ChartData {
-  name: string;
-  value: number;
-  [key: string]: any;
-}
+import type { RadialProgressProps, ChartData } from "../types/strengthsWeaknesses";
 
 // --- Helper Component ---
 const RadialProgress = ({
@@ -66,7 +54,7 @@ const StrengthsWeaknesses = () => {
           color="#D9D9D9"
           remainingColor="#D9D9D980"
         />
-        
+
         {/* Medium - Light Blue */}
         <RadialProgress
           value={70}
@@ -74,7 +62,7 @@ const StrengthsWeaknesses = () => {
           color="#A1AEF2"
           remainingColor="#A1AEF226"
         />
-        
+
         {/* High - Dark Blue */}
         <RadialProgress
           value={85}

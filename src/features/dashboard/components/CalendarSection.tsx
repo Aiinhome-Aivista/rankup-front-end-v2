@@ -1,10 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// --- Types ---
-interface CalendarDate {
-  day: number;
-  type: "selected-blue" | "active-red" | ""; // Restrict to known style types
-}
+import type { CalendarDate } from "../types/calendar";
 
 // --- Data ---
 // December 2025 Layout (Approximate based on previous code)
@@ -68,9 +64,8 @@ const CalendarSection = () => {
         {days.map((d, i) => (
           <div
             key={i}
-            className={`text-xs font-semibold ${
-              i === 6 ? "text-red-400" : "text-[#A2AEF2]"
-            }`}
+            className={`text-xs font-semibold ${i === 6 ? "text-red-400" : "text-[#A2AEF2]"
+              }`}
           >
             {d}
           </div>
@@ -82,18 +77,15 @@ const CalendarSection = () => {
             <div
               className={`
                 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-xs font-medium transition-colors
-                ${
-                  date.type === "selected-blue"
-                    ? "bg-[#514BF2] text-white shadow-md"
-                    : ""
+                ${date.type === "selected-blue"
+                  ? "bg-[#514BF2] text-white shadow-md"
+                  : ""
                 }
-                ${
-                  date.type === "active-red"
-                    ? "bg-red-50 text-red-500"
-                    : ""
+                ${date.type === "active-red"
+                  ? "bg-red-50 text-red-500"
+                  : ""
                 }
-                ${
-                  !date.type ? "text-[#A2AEF2] hover:bg-gray-50" : ""
+                ${!date.type ? "text-[#A2AEF2] hover:bg-gray-50" : ""
                 }
               `}
             >

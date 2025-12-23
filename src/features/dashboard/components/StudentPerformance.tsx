@@ -1,3 +1,12 @@
+import type { StudentPerformanceStats } from "../types/studentPerformance";
+
+const stats: StudentPerformanceStats = {
+  averageScore: "76%",
+  period: "This Week",
+  strengths: "Algebra, Light",
+  weaknesses: "Fractions",
+};
+
 const StudentPerformance = () => {
   return (
     <div className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -13,9 +22,9 @@ const StudentPerformance = () => {
 
       {/* Big Score Stats */}
       <div>
-        <div className="text-4xl font-bold text-[#514BF2]">76%</div>
+        <div className="text-4xl font-bold text-[#514BF2]">{stats.averageScore}</div>
         <div className="text-xs font-medium text-[#514BF2]">Average Score</div>
-        <div className="text-[10px] text-gray-400">This Week</div>
+        <div className="text-[10px] text-gray-400">{stats.period}</div>
       </div>
 
       {/* Details List */}
@@ -24,13 +33,13 @@ const StudentPerformance = () => {
           <span className="mb-1 block text-sm font-semibold text-[#514BF2]">
             Strength
           </span>
-          <p className="text-sm text-gray-500">Algebra, Light</p>
+          <p className="text-sm text-gray-500">{stats.strengths}</p>
         </div>
         <div>
           <span className="mb-1 block text-sm font-semibold text-[#514BF2]">
             Weak Areas
           </span>
-          <p className="text-sm text-gray-500">Fractions</p>
+          <p className="text-sm text-gray-500">{stats.weaknesses}</p>
         </div>
       </div>
     </div>

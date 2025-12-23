@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/features/auth/hooks/useAuth"; // To get the real user name
 
+import type { GreetingStats } from "../types/greeting";
+
 // Asset Imports (Ensure these exist in src/assets)
 import yogaBg from "@/assets/yoga-bg.svg";
 import yoga from "@/assets/yoga.svg";
@@ -14,7 +16,7 @@ const GreetingSection = () => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -39,11 +41,16 @@ const GreetingSection = () => {
     return "Good Evening";
   };
 
+  const stats: GreetingStats = {
+    classes: 3,
+    reviews: 12
+  };
+
   return (
     <div className="flex items-end justify-between">
-      {/* --- Left: Greeting --- */}
+      {/* ... (left side remains same) */}
       <div className="flex items-center">
-        
+
         {/* Illustration Container */}
         <div className="relative flex h-32 w-32 items-center justify-center">
           {/* Background Cloud */}
@@ -87,11 +94,11 @@ const GreetingSection = () => {
         {/* Mini Stats (Classes/Review) */}
         <div className="flex gap-8">
           <div className="items-between flex flex-col gap-1 rounded-2xl bg-[#514CF105] px-4 py-1 text-center">
-            <p className="text-4xl font-bold text-[#514BF2]">03</p>
+            <p className="text-4xl font-bold text-[#514BF2]">{stats.classes.toString().padStart(2, '0')}</p>
             <p className="text-sm font-medium text-[#514BF2]">Classes</p>
           </div>
           <div className="items-between flex flex-col gap-1 rounded-2xl bg-[#514CF105] px-4 py-1 text-center">
-            <p className="text-4xl font-bold text-[#514BF2]">12</p>
+            <p className="text-4xl font-bold text-[#514BF2]">{stats.reviews.toString().padStart(2, '0')}</p>
             <p className="text-sm font-medium text-[#514BF2]">Review</p>
           </div>
         </div>

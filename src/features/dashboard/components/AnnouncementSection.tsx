@@ -1,17 +1,5 @@
 import { ArrowRight } from "lucide-react";
-
-// --- Types ---
-interface Announcement {
-  title: string;
-  desc: string;
-  date: string;
-  color: string;
-  icon: string;
-}
-
-interface AnnouncementCardProps {
-  item: Announcement;
-}
+import type { Announcement, AnnouncementCardProps } from "../types/announcement";
 
 // --- Data ---
 const announcements: Announcement[] = [
@@ -50,7 +38,7 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
         >
           {item.icon}
         </div>
-        
+
         {/* Decorative Circle Background */}
         <div
           className={`absolute -right-3 -top-3 h-14 w-14 rounded-full opacity-10 ${item.color}`}
