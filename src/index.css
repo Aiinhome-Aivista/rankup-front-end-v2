@@ -6,16 +6,170 @@
 }
 
 :root {
+  /* Typography */
   font-family: "Nunito" !important;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Colors & Scheme */
   color-scheme: light dark;
   color: rgb(0, 0, 0);
   background-color: #ffffff;
 
+  /* Transitions */
+  --transition-default: 200ms;
+
+  /* Rendering */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   1. Scrollbar Hiding
+   ========================================= */
+/* Hide Scrollbar - Webkit */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Hide Scrollbar - Firefox/IE/Edge */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* =========================================
+   2. Animations
+   ========================================= */
+/* Wave Animation */
+@keyframes wave {
+  0% {
+    transform: translateY(0) rotate(180deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(180deg);
+  }
+}
+
+.animate-wave-slow {
+  animation: wave 8s ease-in-out infinite;
+}
+.animate-wave-medium {
+  animation: wave 6s ease-in-out infinite;
+}
+.animate-wave-fast {
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Oscillate Animations (Used in MiddleSection) */
+@keyframes oscillate {
+  0% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes oscillate-reverse {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+/* Breathe Animation (Used in MiddleSection) */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* =========================================
+   3. Component Overrides
+   ========================================= */
+
+/* --- Custom Quill Editor Styling --- */
+.custom-quill-editor .p-editor-toolbar {
+  border: none !important;
+  background-color: #e0e7ff !important;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.custom-quill-editor .p-editor-content {
+  border: none !important;
+  background-color: #f0f2ff !important;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+/* Hide default Quill borders */
+.custom-quill-editor .ql-toolbar.ql-snow,
+.custom-quill-editor .ql-container.ql-snow {
+  border: none !important;
+}
+
+/* Icon Colors */
+.custom-quill-editor .ql-formats button svg .ql-stroke {
+  stroke: #514cf1 !important;
+}
+
+.custom-quill-editor .ql-formats button svg .ql-fill {
+  fill: #514cf1 !important;
+}
+
+/* Placeholder Color */
+.custom-quill-editor .ql-editor.ql-blank::before {
+  color: #514cf1 !important;
+  opacity: 0.6;
+  font-style: normal !important;
+}
+
+.custom-quill-editor {
+  border: 1px solid #514cf11a !important;
+  border-radius: 0.5rem !important;
+}
+
+/* --- PrimeReact Overrides --- */
+.p-button {
+  border: none !important;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 0.8rem;
 }
