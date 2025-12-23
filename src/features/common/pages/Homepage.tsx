@@ -30,7 +30,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="flex h-full w-full flex-col">
+    <div className="relative flex h-full w-full flex-col">
       {/* Note: TopSection, MiddleSection, and Footer are imported but not rendered 
         in this specific file in your previous code (they might be inside ParallaxLanding).
         I have kept the imports as per your request.

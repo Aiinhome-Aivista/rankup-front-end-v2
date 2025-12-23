@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext"; // Adjust path if needed
+import { initiateLogin, verifyLogin } from "../api/authService";
 
 // --- Asset Imports ---
 import vector2 from "@/assets/Vector-2-login.svg";
@@ -10,23 +11,6 @@ import vector5 from "@/assets/Vector-5-login.svg";
 import logo from "@/assets/icons/Aiinhome _ RU.svg";
 import mainLogo from "@/assets/R-logo.svg";
 import rankupLogo from "@/assets/Rank Up Academy.svg";
-
-// --- API Placeholders (Uncomment import below when ready) ---
-// import { initiateLoginApi, verifyLoginApi } from "../../../../connection";
-
-// Temporary Mock for TypeScript compilation (Remove this when real API is ready)
-const initiateLoginApi = async (data: any) => {
-  console.log("Mock Initiate Login:", data);
-  return { isSuccess: true, message: "OTP Sent" };
-};
-const verifyLoginApi = async (data: any) => {
-  console.log("Mock Verify Login:", data);
-  return {
-    isSuccess: true,
-    data: { token: "mock-token", user: { role: "teacher" } },
-    message: "Login Successful",
-  };
-};
 
 const Login = () => {
   // Ensure AuthContext is typed in your Context file, otherwise cast as any for now
@@ -66,18 +50,20 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const res = await initiateLoginApi({ email, password });
+      const res = await initiateLogin({ email, password });
       console.log("Login response:", res);
 
       if (res.isSuccess) {
         setIsOtpSent(true);
-        setSuccessMsg("OTP sent successfully! Please check your email inbox.");
+        setSuccessMsg(res.message || "OTP sent successfully! Please check your email inbox.");
       } else {
         setErrorMsg(res.message || "Login failed");
       }
     } catch (err: any) {
       console.error("Login error:", err);
-      setErrorMsg(err.message || "An unexpected error occurred.");
+      // Construct a user-friendly error message
+      const message = err.message || "An unexpected error occurred.";
+      setErrorMsg(message);
     } finally {
       setIsLoading(false);
     }
@@ -85,8 +71,10 @@ const Login = () => {
 
   const handleVerify = async () => {
     setIsLoading(true);
+    setErrorMsg(""); // Clear previous errors
+    
     try {
-      const res = await verifyLoginApi({ email, otp });
+      const res = await verifyLogin({ email, otp });
       console.log("Verify response:", res);
 
       if (res.isSuccess) {
@@ -116,7 +104,8 @@ const Login = () => {
       }
     } catch (err: any) {
       console.error("Verification error:", err);
-      setErrorMsg(err.message || "An unexpected verification error occurred.");
+      const message = err.message || "An unexpected verification error occurred.";
+      setErrorMsg(message);
     } finally {
       setIsLoading(false);
     }

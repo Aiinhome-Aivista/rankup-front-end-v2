@@ -35,7 +35,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="fixed left-0 top-0 z-50 w-full pointer-events-none">
+    <div className="fixed left-0 top-0 z-[100] w-full pointer-events-none">
       <nav
         className={`
           pointer-events-auto
@@ -47,7 +47,7 @@ const Navbar = () => {
           ${isFeaturesOpen ? "max-h-[400px]" : "max-h-[65px]"}
           ${isVisible ? "top-0 opacity-100" : "-top-32 opacity-0"}
           w-[calc(100%-2rem)] max-w-5xl
-          z-50
+          z-[100]
         `}
         onMouseLeave={() => setIsFeaturesOpen(false)}
       >
