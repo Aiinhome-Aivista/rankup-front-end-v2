@@ -8,8 +8,10 @@ import AssessmentsOverview from "../components/AssessmentsOverview";
 import ClassPerformance from "../components/ClassPerformance";
 import CalendarSection from "../components/CalendarSection";
 import AnnouncementSection from "../components/AnnouncementSection";
+import { useTheme } from "@rankup/shared-ui";
 
 const TeacherDashboard = () => {
+  const{theme} = useTheme();
   return (
     <div className="flex h-screen flex-col">
       {/* Header logic is handled by parent (AppLayout), keeping this clean */}
@@ -45,7 +47,8 @@ const TeacherDashboard = () => {
               {/* Left Column (Sidebar-ish) */}
               <div className="flex flex-col gap-6 lg:col-span-3">
                 <StudentPerformance />
-                <div className="flex-1 rounded-3xl border border-gray-100 bg-white p-1 shadow-sm">
+                <div className="flex-1 rounded-3xl p-1 border"
+                style={{color:theme.colors.border.default}}>
                   <CalendarSection />
                 </div>
               </div>
@@ -61,7 +64,8 @@ const TeacherDashboard = () => {
                   </div>
                 </div>
 
-                <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+                <div className="rounded-3xl border p-6"
+               style={{color:theme.colors.border.default, backgroundColor:theme.colors.bg.card}} >
                   <AnnouncementSection />
                 </div>
               </div>

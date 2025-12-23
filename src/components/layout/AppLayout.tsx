@@ -4,10 +4,15 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Navbar from "./Navbar";
+import { color } from "framer-motion";
+import {useTheme} from "@rankup/shared-ui";
+
 
 const AppLayout = () => {
   const { isLoggedIn } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const{theme}=useTheme();
+
 
   // ------------------------------------------------------------------
   // CASE 1: PUBLIC USER (Not Logged In)
@@ -15,7 +20,8 @@ const AppLayout = () => {
   // ------------------------------------------------------------------
   if (!isLoggedIn) {
     return (
-      <div className="flex min-h-screen flex-col bg-white">
+      <div className="flex min-h-screen flex-col"
+      style={{color:theme.colors.bg.default}}>
         {/* Public Navigation */}
         <Navbar />
         
@@ -32,7 +38,8 @@ const AppLayout = () => {
   // Shows: Sidebar (Left) + Header (Top) + Page Content
   // ------------------------------------------------------------------
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-100">
+    <div className="flex h-screen overflow-hidden"
+      style={{color:theme.colors.bg.default}}>
       {/* Sidebar - Controlled by state for mobile responsiveness */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
