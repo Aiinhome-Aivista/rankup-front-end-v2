@@ -1,7 +1,7 @@
-import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '@/features/auth/hooks/useAuth'; // Assuming you have this hook
-import AppLayout from '@/components/layout/AppLayout'; // Adjusted import path
+import { Suspense, lazy } from "react";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "@/features/auth/hooks/useAuth"; // Assuming you have this hook
+import AppLayout from "@/components/layout/AppLayout"; // Adjusted import path
 
 // ----------------------------------------------------------------------
 // 1. LAZY LOADING (Code Splitting)
@@ -9,16 +9,22 @@ import AppLayout from '@/components/layout/AppLayout'; // Adjusted import path
 // We lazy load pages so the user doesn't download the entire app at once.
 
 // Common Pages
-const Homepage = lazy(() => import('@/features/common/pages/Homepage'));
-const Login = lazy(() => import('@/features/auth/pages/Login'));
-const Registration = lazy(() => import('@/features/auth/pages/Registration'));
+const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
+const Login = lazy(() => import("@/features/auth/pages/Login"));
+const Registration = lazy(() => import("@/features/auth/pages/Registration"));
 
 // Teacher Pages
-const TeacherDashboard = lazy(() => import('@/features/dashboard/pages/TeacherDashboard'));
-const CreateAssessment = lazy(() => import('@/features/assessment/pages/CreateAssessment'));
+const TeacherDashboard = lazy(
+  () => import("@/features/dashboard/pages/TeacherDashboard")
+);
+const CreateAssessment = lazy(
+  () => import("@/features/assessment/pages/CreateAssesment")
+);
 
 // Student Pages
-const SelfAssessment = lazy(() => import('@/features/assessment/pages/SelfAssessment'));
+const SelfAssessment = lazy(
+  () => import("@/features/assessment/pages/SelfAssessment")
+);
 
 // ----------------------------------------------------------------------
 // 2. LOADING COMPONENT
@@ -45,7 +51,11 @@ const PublicRoute = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const role = user?.role || "teacher";
 
-  return !isLoggedIn ? <Outlet /> : <Navigate to={`/${role}/dashboard`} replace />;
+  return !isLoggedIn ? (
+    <Outlet />
+  ) : (
+    <Navigate to={`/${role}/dashboard`} replace />
+  );
 };
 
 // ----------------------------------------------------------------------
@@ -56,10 +66,8 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        
         {/* --- PUBLIC ROUTES --- */}
         <Route element={<PublicRoute />}>
-          
           {/* Layout for Public Pages (Homepage) */}
           <Route element={<AppLayout />}>
             <Route path="/" element={<Homepage />} />
@@ -70,18 +78,18 @@ const AppRoutes = () => {
           <Route path="register" element={<Registration />} />
         </Route>
 
-
         {/* --- PROTECTED ROUTES --- */}
         <Route element={<PrivateRoute />}>
-          
           {/* NESTED LAYOUT: Applies AppLayout to all routes inside */}
           <Route element={<AppLayout />}>
-            
             {/* Teacher Feature Routes */}
             <Route path="teacher">
               <Route path="dashboard" element={<TeacherDashboard />} />
               {/* Dynamic Route Capability Example: /teacher/assessment/:id */}
-              <Route path="dashboard/create-assessment" element={<CreateAssessment />} />
+              <Route
+                path="dashboard/create-assessment"
+                element={<CreateAssessment />}
+              />
             </Route>
 
             {/* Student Feature Routes */}
@@ -91,13 +99,11 @@ const AppRoutes = () => {
 
             {/* Dynamic Route Placeholder (Phase 3 Requirement) */}
             {/* <Route path="course/:courseId" element={<CourseDetail />} /> */}
-
           </Route>
         </Route>
 
         {/* --- 404 CATCH-ALL --- */}
         <Route path="*" element={<Navigate to="/" replace />} />
-        
       </Routes>
     </Suspense>
   );
