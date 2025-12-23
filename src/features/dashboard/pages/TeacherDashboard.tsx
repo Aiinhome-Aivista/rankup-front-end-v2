@@ -10,6 +10,7 @@ import CalendarSection from "../components/CalendarSection";
 import AnnouncementSection from "../components/AnnouncementSection";
 import { useTheme } from "@rankup/shared-ui";
 
+
 const TeacherDashboard = () => {
   const{theme} = useTheme();
   return (
@@ -47,8 +48,7 @@ const TeacherDashboard = () => {
               {/* Left Column (Sidebar-ish) */}
               <div className="flex flex-col gap-6 lg:col-span-3">
                 <StudentPerformance />
-                <div className="flex-1 rounded-3xl p-1 border"
-                style={{color:theme.colors.border.default}}>
+                <div className="flex-1 rounded-3xl p-1">
                   <CalendarSection />
                 </div>
               </div>
