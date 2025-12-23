@@ -11,6 +11,7 @@ interface RadialProgressProps {
 interface ChartData {
   name: string;
   value: number;
+  [key: string]: any;
 }
 
 // --- Helper Component ---
@@ -38,8 +39,9 @@ const RadialProgress = ({
               endAngle={-270}
               dataKey="value"
               stroke="none"
+              cornerRadius={8}
             >
-              <Cell key="completed" fill={color} cornerRadius={8} />
+              <Cell key="completed" fill={color} />
               <Cell key="remaining" fill={remainingColor} />
             </Pie>
           </PieChart>
