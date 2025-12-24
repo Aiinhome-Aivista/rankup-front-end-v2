@@ -6,11 +6,12 @@ import type {
   InitiateLoginResponse, 
   VerifyLoginPayload,
   VerifyLoginResponse,
-} from "../types/Login";
+} from "../types/login";
 import type {RegisterInstitutePayload,
-  RegisterInstituteResponse} from "../types/InstituteRegistration";
+  RegisterInstituteResponse} from "../types/instituteRegistration";
 import type {  RegisterIndividualPayload,
-  RegisterIndividualResponse} from "../types/IndividualRegistration";
+  RegisterIndividualResponse} from "../types/individualRegistration";
+
 
 
 

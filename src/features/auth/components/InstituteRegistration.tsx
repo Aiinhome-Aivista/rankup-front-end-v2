@@ -15,7 +15,7 @@ import type {
   FormData,
   FormErrors,
   Option,
-} from "../types/InstituteRegistration";
+} from "../types/instituteRegistration";
 
 const InstituteRegistration = () => {
   const navigate = useNavigate();

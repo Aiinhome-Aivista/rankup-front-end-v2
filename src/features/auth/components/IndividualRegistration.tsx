@@ -14,7 +14,7 @@ import type {
   FormData,
   FormErrors,
   Option,
-} from "../types/IndividualRegistration";
+} from "../types/individualRegistration";
 
 const IndividualRegistration = () => {
   const navigate = useNavigate();
