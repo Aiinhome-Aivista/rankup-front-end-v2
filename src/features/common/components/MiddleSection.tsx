@@ -7,15 +7,10 @@ import TrustedSection from "./TrustedSection";
 // --- Assets ---
 import strategyImage from "@/assets/strategy.svg";
 
-// --- Types ---
-interface MiddleSectionProps {
-  fadeContent?: boolean;
-}
-
-interface VisibleSubSectionsState {
-  aiAssistance: boolean;
-  trusted: boolean;
-}
+import type {
+  MiddleSectionProps,
+  VisibleSubSectionsState,
+} from "../types/MiddleSection";
 
 const MiddleSection = ({ fadeContent = false }: MiddleSectionProps) => {
   // 1. Refs
@@ -42,7 +37,7 @@ const MiddleSection = ({ fadeContent = false }: MiddleSectionProps) => {
           // Type assertion to access dataset safely
           const target = entry.target as HTMLElement;
           const sectionName = target.dataset.section as keyof VisibleSubSectionsState;
-          
+
           if (sectionName) {
             setVisibleSubSections((prev) => ({ ...prev, [sectionName]: true }));
           }
@@ -113,21 +108,21 @@ const MiddleSection = ({ fadeContent = false }: MiddleSectionProps) => {
           {/* Right Background Effect */}
           <div className="-mr-80 absolute right-0 top-1/2 flex h-[420px] w-[420px] -translate-y-1/2 translate-x-1/4 items-center justify-center md:h-[690px] md:w-[690px] md:translate-x-0">
             {/* Concentric Circles */}
-            
+
             {/* Largest Circle */}
             <div className="animate-[breathe_4s_ease-in-out_infinite] absolute h-full w-full rounded-full bg-gradient-to-br from-[#A1AEF2] to-[#514CF1] opacity-40"></div>
 
             {/* Middle Circle */}
             <div className="animate-[breathe_6s_ease-in-out_infinite] absolute h-[75%] w-[75%] rounded-full bg-gradient-to-br from-[#A1AEF2] to-[#514CF1] opacity-40 drop-shadow-2xl"></div>
-            
+
             {/* Inner Circle */}
             <div className="animate-[breathe_5s_ease-in-out_infinite] absolute flex h-[50%] w-[50%] items-center justify-center rounded-full bg-gradient-to-br from-[#A1AEF2] to-[#514CF1] opacity-60 drop-shadow-2xl">
               {/* Center Gradient Core */}
               <div className="animate-[breathe_7s_ease-in-out_infinite] h-[60%] w-[60%] rounded-full bg-gradient-to-br from-[#A1AEF2] to-[#514CF1] opacity-80 shadow-2xl"></div>
             </div>
-            
+
             {/* Floating Icons */}
-            
+
             {/* Icon 1 (Google) Orbit Container */}
             <div className="animate-[oscillate_25s_ease-in-out_infinite] absolute h-full w-full">
               <div className="animate-[oscillate-reverse_25s_ease-in-out_infinite] absolute right-[60%] top-[25%] transform rounded-xl border border-white/20 bg-white/30 p-4 shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-110">
@@ -154,7 +149,7 @@ const MiddleSection = ({ fadeContent = false }: MiddleSectionProps) => {
                 </svg>
               </div>
             </div>
-            
+
             {/* Icon 2 (Microsoft) Orbit Container */}
             <div className="animate-[oscillate-reverse_30s_ease-in-out_infinite] absolute h-full w-full">
               <div className="animate-[oscillate_30s_ease-in-out_infinite] absolute bottom-[20%] left-[20%] transform rounded-xl border border-white/20 bg-white/30 p-4 shadow-lg backdrop-blur-md transition-transform duration-400 hover:scale-110">

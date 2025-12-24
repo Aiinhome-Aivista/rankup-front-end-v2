@@ -2,26 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { GraduationCap, Globe, Book, Trees } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 
-// --- Types ---
-interface DraggableCardsSectionProps {
-  fadeContent?: boolean;
-}
-
-interface Position {
-  x: number;
-  y: number;
-}
-
-interface Dimensions {
-  width: number;
-  height: number;
-}
-
-interface StatItem {
-  icon: React.ReactNode;
-  value: string;
-  label: string;
-}
+import type {
+  Dimensions,
+  DraggableCardsSectionProps,
+  Position,
+  StatItem,
+} from "../types/DraggableCardsSection";
 
 const DraggableCardsSection = ({ fadeContent = false }: DraggableCardsSectionProps) => {
   const initialPositions: Position[] = [
@@ -33,7 +19,7 @@ const DraggableCardsSection = ({ fadeContent = false }: DraggableCardsSectionPro
 
   const [cardPositions, setCardPositions] = useState<Position[]>(initialPositions);
   const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0 });
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const magnetRef = useRef<number | null>(null); // Track which card index is magnetically attached
 
@@ -96,7 +82,7 @@ const DraggableCardsSection = ({ fadeContent = false }: DraggableCardsSectionPro
     }
 
     setCardPositions((prev) => {
-      return prev.map((pos, index) => {
+      return prev.map((_, index) => {
         // Priority 1: Magnetic Pull (Ghost Hand)
         if (index === activeMagnet) {
           // 1:1 movement with mouse
@@ -191,8 +177,8 @@ const DraggableCardsSection = ({ fadeContent = false }: DraggableCardsSectionPro
 
       if (isThirdSegment) {
         // "Orange Image" Style (Card 3 -> Card 4): Straighter, diagonal drop
-        cp1y = curr.y + (next.y - curr.y) * 0.1; 
-        cp2y = curr.y + (next.y - curr.y) * 0.9; 
+        cp1y = curr.y + (next.y - curr.y) * 0.1;
+        cp2y = curr.y + (next.y - curr.y) * 0.9;
       } else if (isLastSegment) {
         // "Blue Image" Style (Card 4 -> Edge): Deep Dip
         cp1y += dimensions.height * 0.15;
@@ -276,11 +262,10 @@ const DraggableCardsSection = ({ fadeContent = false }: DraggableCardsSectionPro
             className={`absolute z-10 flex h-[140px] w-[140px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-start justify-center 
             rounded-[24px] border-4 border-white bg-[#A1AEF2B2] p-4 text-left text-[#514CF1] 
             shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-[15px]
-            ${
-              magnetRef.current === index
+            ${magnetRef.current === index
                 ? "scale-105 shadow-[0_12px_48px_rgba(0,0,0,0.2)] "
                 : ""
-            }
+              }
           `}
           >
             <div className="mb-2 opacity-90">{stat.icon}</div>

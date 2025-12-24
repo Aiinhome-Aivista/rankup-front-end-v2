@@ -1,4 +1,4 @@
-import { useState, useEffect, type ReactNode, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import { Star, FastForward } from "@mui/icons-material";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import { motion, type Variants } from "framer-motion";
@@ -6,24 +6,11 @@ import { motion, type Variants } from "framer-motion";
 // --- Assets ---
 import aboutOurTeamSvg from "@/assets/about-our-team.svg";
 
-// --- Types ---
-interface Testimonial {
-  id: number;
-  name: string;
-  role: string;
-  quote: string;
-  videoColor: string;
-}
-
-interface VideoSlide {
-  id: number;
-  color: string;
-  content: ReactNode;
-}
-
-interface TrustedSectionProps {
-  fadeContent?: boolean;
-}
+import type {
+  Testimonial,
+  TrustedSectionProps,
+  VideoSlide,
+} from "../types/TrustedSection";
 
 // --- Data ---
 const testimonials: Testimonial[] = [
@@ -182,9 +169,8 @@ const TrustedSection = ({ fadeContent = false }: TrustedSectionProps) => {
                   } else if (isNext) {
                     // Stack to the right
                     style = {
-                      transform: `translateX(${dist * 15}%) scale(${
-                        1 - dist * 0.1
-                      })`,
+                      transform: `translateX(${dist * 15}%) scale(${1 - dist * 0.1
+                        })`,
                       zIndex: 20 - dist,
                       opacity: 1 - dist * 0.2,
                     };
@@ -202,9 +188,8 @@ const TrustedSection = ({ fadeContent = false }: TrustedSectionProps) => {
                   return (
                     <div
                       key={slide.id}
-                      className={`${className} ${slide.color} ${
-                        style.opacity === 0 ? "pointer-events-none" : ""
-                      }`}
+                      className={`${className} ${slide.color} ${style.opacity === 0 ? "pointer-events-none" : ""
+                        }`}
                       style={style}
                     >
                       {slide.content}
@@ -234,9 +219,8 @@ const TrustedSection = ({ fadeContent = false }: TrustedSectionProps) => {
             {testimonials.map((_, index) => (
               <div
                 key={index}
-                className={`h-3 rounded-full bg-[#1C1B1F] transition-all duration-300 ${
-                  index === currentIndex ? "w-8" : "w-3"
-                }`}
+                className={`h-3 rounded-full bg-[#1C1B1F] transition-all duration-300 ${index === currentIndex ? "w-8" : "w-3"
+                  }`}
               ></div>
             ))}
           </div>

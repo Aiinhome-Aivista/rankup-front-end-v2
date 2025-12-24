@@ -3,29 +3,11 @@ import { Dropdown, type DropdownChangeEvent } from "primereact/dropdown";
 import { Editor, type EditorTextChangeEvent } from "primereact/editor";
 import DescriptionIcon from "@mui/icons-material/Description";
 
-// --- Types ---
-interface ClassOption {
-  name: string;
-  code: string;
-}
-
-interface SubjectOption {
-  name: string;
-  code: string;
-}
-
-interface AssessmentInformationProps {
-  title: string;
-  setTitle: (value: string) => void;
-  selectedClass: ClassOption | null;
-  setSelectedClass: (value: ClassOption | null) => void;
-  selectedSubject: SubjectOption | null;
-  setSelectedSubject: (value: SubjectOption | null) => void;
-  instructions: string;
-  setInstructions: (value: string) => void;
-  classes: ClassOption[];
-  subjects: SubjectOption[];
-}
+import type {
+  AssessmentInformationProps,
+  ClassOption,
+  SubjectOption,
+} from "../types/AssessmentInformation";
 
 const AssessmentInformation = ({
   title,

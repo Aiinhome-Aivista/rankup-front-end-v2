@@ -3,19 +3,10 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import PublicIcon from "@mui/icons-material/Public";
 import StarIcon from "@mui/icons-material/Star";
-import type { SvgIconComponent } from "@mui/icons-material";
+import type { SubjectData } from "../types/ScoreCard";
 
 // --- Assets ---
 import face2 from "@/assets/icons/face_2.svg";
-
-// --- Types ---
-interface SubjectData {
-  id: number;
-  name: string;
-  Icon: SvgIconComponent;
-  blueScore: number;
-  redScore: number;
-}
 
 // --- Data ---
 const subjects: SubjectData[] = [

@@ -7,15 +7,7 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import StarIcon from "@mui/icons-material/Star";
 import BoltIcon from "@mui/icons-material/Bolt";
 
-// --- Types ---
-interface QuestionWorkspaceProps {
-  aiTopic: string;
-  setAiTopic: (value: string) => void;
-  difficulty: number;
-  setDifficulty: (value: number) => void;
-  numQuestions: number;
-  setNumQuestions: (value: number) => void;
-}
+import type { QuestionWorkspaceProps } from "../types/QuestionWorkspace";
 
 const QuestionWorkspace = ({
   aiTopic,
@@ -105,11 +97,10 @@ const QuestionWorkspace = ({
                   <button
                     key={num}
                     onClick={() => setNumQuestions(num)}
-                    className={`flex-1 cursor-pointer rounded-full border py-2 text-sm ${
-                      numQuestions === num
+                    className={`flex-1 cursor-pointer rounded-full border py-2 text-sm ${numQuestions === num
                         ? "border-[#514CF1] bg-[#514CF1] text-white"
                         : "border-gray-200 bg-white text-gray-500 hover:border-[#514CF1]"
-                    }`}
+                      }`}
                   >
                     {num}
                   </button>

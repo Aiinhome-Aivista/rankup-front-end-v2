@@ -6,10 +6,7 @@ import blackLogo from "@/assets/icons/black-logo-main.svg";
 import rankUpAcademy from "@/assets/icons/Rank Up Academy.svg";
 import footerImg from "@/assets/icons/footer-img.svg";
 
-// --- Types ---
-interface FooterProps {
-  fadeContent?: boolean;
-}
+import type { FooterProps } from "../types/Footer";
 
 const Footer = ({ fadeContent = false }: FooterProps) => {
   // Animation variants for content fade-in

@@ -11,31 +11,11 @@ import { useToast } from "@/shared/context/ToastContext";
 import { registerInstitute } from "../api/authService";
 
 // --- Types ---
-interface FormData {
-  instituteName: string;
-  instituteWebsite: string;
-  institutePhone: string;
-  adminFullName: string;
-  adminEmail: string;
-  adminPhone: string;
-  adminPassword: string;
-}
-
-interface FormErrors {
-  instituteName?: string;
-  instituteWebsite?: string;
-  instituteType?: string;
-  institutePhone?: string;
-  adminFullName?: string;
-  adminEmail?: string;
-  adminPhone?: string;
-  adminPassword?: string;
-}
-
-interface Option {
-  label: string;
-  value: string;
-}
+import type {
+  FormData,
+  FormErrors,
+  Option,
+} from "../types/InstituteRegistration";
 
 const InstituteRegistration = () => {
   const navigate = useNavigate();
@@ -185,9 +165,8 @@ const InstituteRegistration = () => {
           value={formData.instituteName}
           onChange={handleChange}
           placeholder="Institute Name"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.instituteName ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.instituteName ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.instituteName && (
           <p className="ml-1 mt-1 text-xs text-red-300">
@@ -203,9 +182,8 @@ const InstituteRegistration = () => {
           value={formData.instituteWebsite}
           onChange={handleChange}
           placeholder="Institute Website"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.instituteWebsite ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.instituteWebsite ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.instituteWebsite && (
           <p className="ml-1 mt-1 text-xs text-red-300">
@@ -225,9 +203,8 @@ const InstituteRegistration = () => {
           options={instituteTypes}
           optionLabel="label"
           placeholder="Institute Type"
-          className={`w-full text-left ${
-            errors.instituteType ? "rounded-xl border border-red-500" : ""
-          }`}
+          className={`w-full text-left ${errors.instituteType ? "rounded-xl border border-red-500" : ""
+            }`}
           pt={{
             root: {
               className:
@@ -266,9 +243,8 @@ const InstituteRegistration = () => {
             value={formData.institutePhone}
             onChange={handlePhoneChange}
             placeholder="Institute Phone"
-            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.institutePhone ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.institutePhone ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
         </div>
         {errors.institutePhone && (
@@ -329,9 +305,8 @@ const InstituteRegistration = () => {
           value={formData.adminFullName}
           onChange={handleChange}
           placeholder="Admin Full Name"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.adminFullName ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.adminFullName ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.adminFullName && (
           <p className="ml-1 mt-1 text-xs text-red-300">
@@ -347,9 +322,8 @@ const InstituteRegistration = () => {
           value={formData.adminEmail}
           onChange={handleChange}
           placeholder="Admin Email"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.adminEmail ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.adminEmail ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.adminEmail && (
           <p className="ml-1 mt-1 text-xs text-red-300">{errors.adminEmail}</p>
@@ -367,9 +341,8 @@ const InstituteRegistration = () => {
             value={formData.adminPhone}
             onChange={handlePhoneChange}
             placeholder="Admin Phone"
-            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.adminPhone ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.adminPhone ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
         </div>
         {errors.adminPhone && (
@@ -385,9 +358,8 @@ const InstituteRegistration = () => {
             value={formData.adminPassword}
             onChange={handleChange}
             placeholder="Admin Password"
-            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.adminPassword ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.adminPassword ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
           <button
             type="button"

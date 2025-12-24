@@ -5,15 +5,7 @@ import {
 import { Slider, type SliderChangeEvent } from "primereact/slider";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-// --- Types ---
-interface TestSettingsProps {
-  randomize: boolean;
-  setRandomize: (value: boolean) => void;
-  antiCheat: boolean;
-  setAntiCheat: (value: boolean) => void;
-  attempts: number;
-  setAttempts: (value: number) => void;
-}
+import type { TestSettingsProps } from "../types/TestSettings";
 
 const TestSettings = ({
   randomize,

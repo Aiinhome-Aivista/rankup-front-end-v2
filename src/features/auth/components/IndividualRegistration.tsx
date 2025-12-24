@@ -10,28 +10,11 @@ import { useToast } from "@/shared/context/ToastContext";
 import { registerIndividual } from "../api/authService";
 
 // --- Types ---
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  password: string;
-  confirmPassword: string;
-}
-
-interface FormErrors {
-  fullName?: string;
-  email?: string;
-  phone?: string;
-  role?: string;
-  gender?: string;
-  password?: string;
-  confirmPassword?: string;
-}
-
-interface Option {
-  label: string;
-  value: string;
-}
+import type {
+  FormData,
+  FormErrors,
+  Option,
+} from "../types/IndividualRegistration";
 
 const IndividualRegistration = () => {
   const navigate = useNavigate();
@@ -168,9 +151,8 @@ const IndividualRegistration = () => {
           value={formData.fullName}
           onChange={handleChange}
           placeholder="Full Name"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.fullName ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.fullName ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.fullName && (
           <p className="ml-1 mt-1 text-xs text-red-300">{errors.fullName}</p>
@@ -184,9 +166,8 @@ const IndividualRegistration = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email Address"
-          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-            errors.email ? "border-red-500!" : "border-[#D9D9D9]!"
-          }`}
+          className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.email ? "border-red-500!" : "border-[#D9D9D9]!"
+            }`}
         />
         {errors.email && (
           <p className="ml-1 mt-1 text-xs text-red-300">{errors.email}</p>
@@ -204,9 +185,8 @@ const IndividualRegistration = () => {
             value={formData.phone}
             onChange={handlePhoneChange}
             placeholder="Phone Number"
-            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.phone ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent py-3 pl-14 pr-5 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.phone ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
         </div>
         {errors.phone && (
@@ -227,9 +207,8 @@ const IndividualRegistration = () => {
           options={roles}
           optionLabel="label"
           placeholder="Select your role"
-          className={`w-full text-left ${
-            errors.role ? "rounded-xl border border-red-500" : ""
-          }`}
+          className={`w-full text-left ${errors.role ? "rounded-xl border border-red-500" : ""
+            }`}
           pt={{
             root: {
               className:
@@ -268,9 +247,8 @@ const IndividualRegistration = () => {
           options={genders}
           optionLabel="label"
           placeholder="Select your gender"
-          className={`w-full text-left ${
-            errors.gender ? "rounded-xl border border-red-500" : ""
-          }`}
+          className={`w-full text-left ${errors.gender ? "rounded-xl border border-red-500" : ""
+            }`}
           pt={{
             root: {
               className:
@@ -304,9 +282,8 @@ const IndividualRegistration = () => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Password"
-            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.password ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.password ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
           <button
             type="button"
@@ -329,9 +306,8 @@ const IndividualRegistration = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
             placeholder="Confirm Password"
-            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${
-              errors.confirmPassword ? "border-red-500!" : "border-[#D9D9D9]!"
-            }`}
+            className={`w-full rounded-xl! border! bg-transparent px-5 py-3 text-white! outline-none transition-all duration-300 placeholder-white! focus:border-white/50! focus:bg-white/10! ${errors.confirmPassword ? "border-red-500!" : "border-[#D9D9D9]!"
+              }`}
           />
           <button
             type="button"

@@ -10,25 +10,11 @@ import EditDocumentIcon from "@mui/icons-material/EditDocument";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CloseIcon from "@mui/icons-material/Close";
 
-// --- Types ---
-interface Subject {
-  name: string;
-  code: string;
-}
-
-interface Topic {
-  name: string;
-  code: string;
-}
-
-interface TopicsMaterialsProps {
-  selectedSubject: Subject | null;
-  setSelectedSubject: (subject: Subject | null) => void;
-  selectedTopics: Topic[];
-  setSelectedTopics: (topics: Topic[]) => void;
-  subjects: Subject[];
-  topics: Topic[];
-}
+import type {
+  Subject,
+  Topic,
+  TopicsMaterialsProps,
+} from "../types/TopicsMaterials";
 
 const TopicsMaterials = ({
   selectedSubject,

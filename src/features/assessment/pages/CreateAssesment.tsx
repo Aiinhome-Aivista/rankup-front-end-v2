@@ -14,16 +14,10 @@ import ScheduleDuration from "../components/ScheduleDuration";
 import TestSettings from "../components/TestSettings";
 import NeedInspiration from "../components/NeedInspiration";
 
-// --- Types ---
-export interface ClassOption {
-  name: string;
-  code: string;
-}
-
-export interface SubjectOption {
-  name: string;
-  code: string;
-}
+import type {
+  ClassOption,
+  SubjectOption,
+} from "../types/CreateAssesment";
 
 const CreateAssesment = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);

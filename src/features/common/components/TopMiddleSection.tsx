@@ -1,4 +1,4 @@
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect } from "react";
 import {
   Psychology,
   Security,
@@ -11,17 +11,10 @@ import { motion, type Variants } from "framer-motion";
 // --- Assets ---
 import studying from "@/assets/read-book-img.svg";
 
-// --- Types ---
-interface TopMiddleSectionProps {
-  fadeContent?: boolean;
-}
-
-interface CarouselItem {
-  id: number;
-  text: string;
-  icon: ReactNode;
-  description: string;
-}
+import type {
+  CarouselItem,
+  TopMiddleSectionProps,
+} from "../types/TopMiddleSection";
 
 const TopMiddleSection = ({ fadeContent = false }: TopMiddleSectionProps) => {
   const items: CarouselItem[] = [
@@ -144,18 +137,16 @@ const TopMiddleSection = ({ fadeContent = false }: TopMiddleSectionProps) => {
                 key={item.id}
                 className={`
                   absolute flex w-full max-w-4xl cursor-pointer items-start rounded-2xl border p-6 text-left transition-all duration-700 ease-in-out
-                  ${
-                    isActive
-                      ? "z-30 scale-100 border-[#6366F1] bg-[#E0E7FF] opacity-100 shadow-xl"
-                      : isNeighbor
+                  ${isActive
+                    ? "z-30 scale-100 border-[#6366F1] bg-[#E0E7FF] opacity-100 shadow-xl"
+                    : isNeighbor
                       ? "z-20 scale-95 border-[0.5px] border-[#6366F1] bg-[#E0E7FF] opacity-80 blur-[2px]"
                       : "z-10 scale-90 border-transparent bg-[#E0E7FF] opacity-30 blur-[2px]"
                   }
                 `}
                 style={{
-                  transform: `translateY(${offset * 150}px) scale(${
-                    1 - Math.abs(offset) * 0.05
-                  })`,
+                  transform: `translateY(${offset * 150}px) scale(${1 - Math.abs(offset) * 0.05
+                    })`,
                 }}
                 onClick={() => setActiveIndex(index)}
               >
@@ -172,16 +163,14 @@ const TopMiddleSection = ({ fadeContent = false }: TopMiddleSectionProps) => {
                 {/* Content */}
                 <div className="flex-1">
                   <h3
-                    className={`mb-2 text-xl font-bold ${
-                      isActive ? "text-[#4338ca]" : "text-gray-400"
-                    }`}
+                    className={`mb-2 text-xl font-bold ${isActive ? "text-[#4338ca]" : "text-gray-400"
+                      }`}
                   >
                     {item.text}
                   </h3>
                   <p
-                    className={`text-sm leading-relaxed transition-colors duration-300 ${
-                      isActive ? "text-[#4338ca]" : "text-gray-300"
-                    }`}
+                    className={`text-sm leading-relaxed transition-colors duration-300 ${isActive ? "text-[#4338ca]" : "text-gray-300"
+                      }`}
                   >
                     {item.description}
                   </p>

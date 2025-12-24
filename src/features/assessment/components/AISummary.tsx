@@ -1,24 +1,7 @@
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { ProgressBar } from "primereact/progressbar";
 
-// --- Types ---
-interface Subject {
-  name: string;
-  code?: string;
-}
-
-interface Topic {
-  name: string;
-  code?: string;
-}
-
-interface AISummaryProps {
-  subject: Subject | null;
-  topics: Topic[];
-  difficulty: string;
-  numQuestions: number;
-  duration: string;
-}
+import type { AISummaryProps } from "../types/AISummary";
 
 const AISummary = ({
   subject,
@@ -58,10 +41,10 @@ const AISummary = ({
           <div className="font-medium">
             {topics && topics.length > 0
               ? topics.slice(0, 2).map((t, i) => (
-                  <div key={i} className="truncate">
-                    {t.name} {Math.floor(100 / topics.length)}%
-                  </div>
-                ))
+                <div key={i} className="truncate">
+                  {t.name} {Math.floor(100 / topics.length)}%
+                </div>
+              ))
               : "-"}
             {topics && topics.length > 2 && (
               <div className="text-xs opacity-70">

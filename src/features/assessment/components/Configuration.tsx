@@ -5,27 +5,10 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { type SvgIconComponent } from "@mui/icons-material";
-
-// --- Types ---
-interface ConfigurationProps {
-  difficulty: string;
-  setDifficulty: (value: string) => void;
-  assessmentTypes: string[];
-  setAssessmentTypes: (value: string[]) => void;
-  numQuestions: number;
-  setNumQuestions: (value: number) => void;
-  timeLimit: string;
-  setTimeLimit: (value: string) => void;
-  timeOptions: string[];
-}
-
-interface DifficultyOption {
-  name: string;
-  desc: string;
-  value: string;
-  icon: SvgIconComponent;
-}
+import type {
+  ConfigurationProps,
+  DifficultyOption,
+} from "../types/Configuration";
 
 const Configuration = ({
   difficulty,
@@ -94,17 +77,15 @@ const Configuration = ({
                   onClick={() => setDifficulty(item.value)}
                   className={`
                                 cursor-pointer flex flex-col items-center justify-center p-3 rounded-xl border transition-all text-center
-                                ${
-                                  isSelected
-                                    ? "border-[#514CF1] text-[#514CF1] bg-[#514CF10D]"
-                                    : "bg-[#514CF10D] border-[#514CF11A] text-[#514CF1] hover:border-[#514CF180]"
-                                }
+                                ${isSelected
+                      ? "border-[#514CF1] text-[#514CF1] bg-[#514CF10D]"
+                      : "bg-[#514CF10D] border-[#514CF11A] text-[#514CF1] hover:border-[#514CF180]"
+                    }
                             `}
                 >
                   <Icon
-                    className={`mb-2 ${
-                      isSelected ? "text-[#514CF1]" : "text-[#514CF1]"
-                    }`}
+                    className={`mb-2 ${isSelected ? "text-[#514CF1]" : "text-[#514CF1]"
+                      }`}
                   />
                   <span className="text-xs font-bold">{item.name}</span>
                   <span className="mt-1 text-[10px] opacity-70">

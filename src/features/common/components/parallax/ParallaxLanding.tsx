@@ -11,14 +11,7 @@ import fun from "@/assets/having-fun.svg";
 import codingImage from "@/assets/coding-a-website.svg";
 import studying from "@/assets/student-studying.svg";
 
-// --- Types ---
-// Define the shape of our visibility state to prevent string indexing errors
-interface VisibleSectionsState {
-  draggable: boolean;
-  topMiddle: boolean;
-  middle: boolean;
-  footer: boolean;
-}
+import type { VisibleSectionsState } from "../../types/ParallaxLanding";
 
 export default function ParallaxLanding() {
   // 1. Refs Typed for specific HTML elements
@@ -62,7 +55,7 @@ export default function ParallaxLanding() {
           // Type assertion to access dataset safely
           const target = entry.target as HTMLElement;
           const sectionName = target.dataset.section as keyof VisibleSectionsState;
-          
+
           if (sectionName) {
             setVisibleSections((prev) => ({ ...prev, [sectionName]: true }));
           }
@@ -99,7 +92,7 @@ export default function ParallaxLanding() {
             className="h-auto w-full drop-shadow-lg"
           />
         </div>
-        
+
         {/* WAVES */}
         <motion.div
           style={{ y: layer1 }}
@@ -110,7 +103,7 @@ export default function ParallaxLanding() {
           style={{ y: layer2 }}
           className="absolute inset-0 z-20 bg-[url('/Parallax/Layer02.svg')] bg-bottom bg-no-repeat"
         />
-        
+
         <div className="z-5 absolute left-[2%] top-[30vh] w-40 opacity-90 transition-transform duration-500 hover:scale-105 md:left-10 md:w-64">
           <img
             src={codingImage}
@@ -118,7 +111,7 @@ export default function ParallaxLanding() {
             className="h-auto w-full drop-shadow-lg"
           />
         </div>
-        
+
         <div className="z-40 absolute inset-x-0 top-[30vh] flex flex-col items-center text-center">
           <h1 className="text-5xl font-bold text-indigo-600 md:text-6xl">
             Next Generation Assessment <br /> Platform For Every School
@@ -127,7 +120,7 @@ export default function ParallaxLanding() {
             Empower educators, engage students, and improve learning outcomes
           </p>
         </div>
-        
+
         <div className="z-25 absolute right-[2%] top-[25%] w-48 opacity-90 transition-transform duration-500 hover:scale-105 md:right-10 md:w-72">
           <img
             src={fun}

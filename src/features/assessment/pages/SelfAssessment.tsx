@@ -3,16 +3,7 @@ import TopicsMaterials from "../components/TopicsMaterials";
 import Configuration from "../components/Configuration";
 import AISummary from "../components/AISummary";
 
-// --- Types ---
-export interface Subject {
-  name: string;
-  code: string;
-}
-
-export interface Topic {
-  name: string;
-  code: string;
-}
+import type { Subject, Topic } from "../types/SelfAssessment";
 
 const SelfAssesment = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -86,11 +77,10 @@ const SelfAssesment = () => {
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`border-b-2 px-4 py-2 transition-colors duration-200 ${
-                    activeIndex === index
+                  className={`border-b-2 px-4 py-2 transition-colors duration-200 ${activeIndex === index
                       ? "border-[#514CF1] font-bold text-[#514CF1]"
                       : "border-transparent font-bold text-[#514CF180] hover:text-[#514CF1]"
-                  }`}
+                    }`}
                 >
                   {tab}
                 </button>
