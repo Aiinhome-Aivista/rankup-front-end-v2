@@ -3,14 +3,16 @@ import { API_ENDPOINTS } from "@/config/endpoints";
 
 import type {
   InitiateLoginPayload,
-  InitiateLoginResponse,
-  RegisterIndividualPayload,
-  RegisterIndividualResponse,
-  RegisterInstitutePayload,
-  RegisterInstituteResponse,
+  InitiateLoginResponse, 
   VerifyLoginPayload,
   VerifyLoginResponse,
-} from "../types/authTypes";
+} from "../types/Login";
+import type {RegisterInstitutePayload,
+  RegisterInstituteResponse} from "../types/InstituteRegistration";
+import type {  RegisterIndividualPayload,
+  RegisterIndividualResponse} from "../types/IndividualRegistration";
+
+
 
 export const initiateLogin = async (data: InitiateLoginPayload): Promise<InitiateLoginResponse> => {
   const response = await axiosApi<InitiateLoginResponse>(API_ENDPOINTS.AUTH.INITIATE_LOGIN, {

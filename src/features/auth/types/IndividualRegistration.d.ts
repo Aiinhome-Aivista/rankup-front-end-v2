@@ -20,3 +20,25 @@ export interface Option {
     label: string;
     value: string;
 }
+export interface RegisterIndividualPayload {
+    full_name: string;
+    email: string;
+    password: string;
+    phone_number: string;
+    role: string;
+    gender: string;
+}
+
+export interface RegisterIndividualResponse {
+    isSuccess: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+        user: {
+            id: number;
+            email: string;
+            role: string;
+        };
+        token: string;
+    };
+}
