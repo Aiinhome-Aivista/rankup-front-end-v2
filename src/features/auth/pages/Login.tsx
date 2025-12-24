@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext"; // Adjust path if needed
+import { AuthContext } from "../context/AuthContext";
 import { initiateLogin, verifyLogin } from "../api/authService";
-
-// --- Asset Imports ---
 import vector2 from "@/assets/Vector-2-login.svg";
 import vector3 from "@/assets/Vector-3-login.svg";
 import vector4 from "@/assets/Vector-4-login.svg";
@@ -13,7 +11,6 @@ import mainLogo from "@/assets/R-logo.svg";
 import rankupLogo from "@/assets/Rank Up Academy.svg";
 
 const Login = () => {
-  // Ensure AuthContext is typed in your Context file, otherwise cast as any for now
   const { setToken } = useContext(AuthContext) as any;
   const navigate = useNavigate();
 
@@ -55,7 +52,9 @@ const Login = () => {
 
       if (res.isSuccess) {
         setIsOtpSent(true);
-        setSuccessMsg(res.message || "OTP sent successfully! Please check your email inbox.");
+        setSuccessMsg(
+          res.message || "OTP sent successfully! Please check your email inbox."
+        );
       } else {
         setErrorMsg(res.message || "Login failed");
       }
@@ -72,7 +71,7 @@ const Login = () => {
   const handleVerify = async () => {
     setIsLoading(true);
     setErrorMsg(""); // Clear previous errors
-    
+
     try {
       const res = await verifyLogin({ email, otp });
       console.log("Verify response:", res);
@@ -104,7 +103,8 @@ const Login = () => {
       }
     } catch (err: any) {
       console.error("Verification error:", err);
-      const message = err.message || "An unexpected verification error occurred.";
+      const message =
+        err.message || "An unexpected verification error occurred.";
       setErrorMsg(message);
     } finally {
       setIsLoading(false);

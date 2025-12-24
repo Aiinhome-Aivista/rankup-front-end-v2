@@ -1,12 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "@/features/auth/hooks/useAuth"; // Assuming you have this hook
-import AppLayout from "@/components/layout/AppLayout"; // Adjusted import path
-
-// ----------------------------------------------------------------------
-// 1. LAZY LOADING (Code Splitting)
-// ----------------------------------------------------------------------
-// We lazy load pages so the user doesn't download the entire app at once.
+import { useAuth } from "@/features/auth/hooks/useAuth";
+import AppLayout from "@/components/layout/AppLayout";
 
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
@@ -26,9 +21,7 @@ const SelfAssessment = lazy(
   () => import("@/features/assessment/pages/SelfAssessment")
 );
 
-// ----------------------------------------------------------------------
-// 2. LOADING COMPONENT
-// ----------------------------------------------------------------------
+//LOADING COMPONENT
 // A simple spinner to show while the chunk is loading
 const PageLoader = () => (
   <div className="flex h-screen w-full items-center justify-center">
@@ -36,12 +29,9 @@ const PageLoader = () => (
   </div>
 );
 
-// ----------------------------------------------------------------------
-// 3. ROUTE GUARDS (Reused your logic)
-// ----------------------------------------------------------------------
-
+//ROUTE GUARDS
 const PrivateRoute = () => {
-  const { isLoggedIn } = useAuth(); // Use the hook instead of raw Context
+  const { isLoggedIn } = useAuth();
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
@@ -58,29 +48,22 @@ const PublicRoute = () => {
   );
 };
 
-// ----------------------------------------------------------------------
-// 4. MAIN ROUTER
-// ----------------------------------------------------------------------
-
+//MAIN ROUTER
 const AppRoutes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
         {/* --- PUBLIC ROUTES --- */}
         <Route element={<PublicRoute />}>
-          {/* Layout for Public Pages (Homepage) */}
           <Route element={<AppLayout />}>
             <Route path="/" element={<Homepage />} />
           </Route>
-
-          {/* Auth Pages (No AppLayout usually, or minimal layout) */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registration />} />
         </Route>
 
         {/* --- PROTECTED ROUTES --- */}
         <Route element={<PrivateRoute />}>
-          {/* NESTED LAYOUT: Applies AppLayout to all routes inside */}
           <Route element={<AppLayout />}>
             {/* Teacher Feature Routes */}
             <Route path="teacher">

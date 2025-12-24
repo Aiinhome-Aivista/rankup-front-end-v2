@@ -8,15 +8,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 // --- Context & Service Imports ---
 // Update these paths to match your actual project structure
 import { useToast } from "@/shared/context/ToastContext";
-// import apiService from "@/service/apiService";
-// import { POST_APIS } from "@/connection";
-
-// --- Mocking External Services for Compilation (Remove these when real services are connected) ---
-const POST_APIS = { instituteRegister: "mock-url-institute" };
-const apiService = async (url: string, options: any) => {
-  console.log("Mock API Call:", url, options);
-  return { isSuccess: true, message: "Mock Success" };
-};
+import { registerInstitute } from "../api/authService";
 
 // --- Types ---
 interface FormData {
@@ -149,8 +141,8 @@ const InstituteRegistration = () => {
         const payload = {
           instituteName: formData.instituteName,
           website: formData.instituteWebsite,
-          instituteType: selectedInstituteType,
-          studentRange: `${instituteStudents}`, // Sending slider value as range string for now
+          instituteType: selectedInstituteType!,
+          studentRange: `${instituteStudents}`,
           institutePhone: formData.institutePhone,
           adminName: formData.adminFullName,
           adminEmail: formData.adminEmail,
@@ -158,10 +150,7 @@ const InstituteRegistration = () => {
           adminPassword: formData.adminPassword,
         };
 
-        const response = await apiService(POST_APIS.instituteRegister, {
-          method: "POST",
-          body: payload,
-        });
+        const response = await registerInstitute(payload);
 
         if (response.isSuccess) {
           showToast(
