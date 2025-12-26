@@ -108,6 +108,7 @@
   }
 }
 
+
 /* Breathe Animation (Used in MiddleSection) */
 @keyframes breathe {
   0%,
@@ -118,6 +119,10 @@
     transform: scale(1.02);
   }
 }
+
+
+
+
 
 /* =========================================
    3. Component Overrides
