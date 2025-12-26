@@ -17,20 +17,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     setSidebarOpen(!sidebarOpen);
   };
 
-
-
   return (
     <>
       {/* Container for both sidebars - slides together based on sidebarOpen prop */}
       <div
-        className={`fixed left-0 top-0 h-screen z-40 transition-transform duration-300 ease-in-out flex ${
+        className={`fixed left-0 top-0 h-screen z-100 transition-transform duration-300 ease-in-out flex ${
           sidebarOpen ? "translate-x-0" : "-translate-x-80"
         }`}
       >
         {/* Main Expanded Sidebar */}
         <div className="w-80 h-full bg-[#514CF133] backdrop-blur-2xl">
           <div className="h-full flex flex-col">
-            
             {/* User Profile Section */}
             <div className="flex items-center gap-3 p-5">
               <div className="w-10 h-10 rounded-full flex items-center justify-center">
@@ -48,7 +45,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
             {/* Navigation Grid */}
             <div className="flex flex-col gap-4 flex-1 p-6">
-              
               {/* First Row - 2 cards */}
               <div className="grid grid-cols-2 gap-4">
                 {mainNavItems.slice(0, 2).map((item) => (
@@ -118,7 +114,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         {/* Collapsed Sidebar - Attached to right edge of expanded sidebar */}
         <div className="absolute -right-9 top-1/2 -translate-y-1/2 w-9">
           <div className="bg-[#514CF133] backdrop-blur-2xl rounded-r-[2rem] shadow-lg py-4">
-            
             {/* Toggle Trigger (Keep invisible area clickable for toggle if needed) */}
             <button
               onClick={toggleSidebar}

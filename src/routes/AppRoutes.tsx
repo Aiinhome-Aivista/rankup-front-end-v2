@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import AppLayout from "@/components/layout/AppLayout";
+import PageLoader from "@/components/feedback/PageLoader";
 
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
@@ -17,16 +18,11 @@ const CreateAssessment = lazy(
 );
 
 // Student Pages
+const StudentDashboard = lazy(
+  () => import("@/features/dashboard/pages/StudentDashboard")
+);
 const SelfAssessment = lazy(
   () => import("@/features/assessment/pages/SelfAssessment")
-);
-
-//LOADING COMPONENT
-// A simple spinner to show while the chunk is loading
-const PageLoader = () => (
-  <div className="flex h-screen w-full items-center justify-center">
-    <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
-  </div>
 );
 
 //ROUTE GUARDS
@@ -39,7 +35,7 @@ const PublicRoute = () => {
   const { isLoggedIn } = useAuth();
   // Safe access to localStorage with a fallback
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const role = user?.role || "teacher";
+  const role = (user?.role || "teacher").toLowerCase();
 
   return !isLoggedIn ? (
     <Outlet />
@@ -77,6 +73,7 @@ const AppRoutes = () => {
 
             {/* Student Feature Routes */}
             <Route path="student">
+              <Route path="dashboard" element={<StudentDashboard />} />
               <Route path="self-assessment" element={<SelfAssessment />} />
             </Route>
 

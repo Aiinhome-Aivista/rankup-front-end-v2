@@ -23,11 +23,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-white px-4 py-3 shadow-sm md:px-8">
-      
+    <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-white px-4 py-3 md:px-8">
       {/* --- LEFT SECTION: Hamburger (Mobile) + Logo --- */}
       <div className="flex items-center gap-4">
-        
         {/* Hamburger Menu (Visible on Mobile Only) */}
         <button
           aria-controls="sidebar"
@@ -61,7 +59,6 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
       {/* --- RIGHT SECTION: Actions --- */}
       <div className="flex items-center gap-4 md:gap-6">
-        
         {/* Create Assessment Button */}
         <button
           onClick={() => navigate("/teacher/dashboard/create-assessment")}
