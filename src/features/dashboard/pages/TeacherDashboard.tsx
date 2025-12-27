@@ -64,8 +64,8 @@ const TeacherDashboard = () => {
                   </div>
                 </div>
 
-                <div className="rounded-3xl border p-6"
-               style={{color:theme.colors.border.default, backgroundColor:theme.colors.bg.card}} >
+                <div className="rounded-3xl p-6"
+               >
                   <AnnouncementSection />
                 </div>
               </div>

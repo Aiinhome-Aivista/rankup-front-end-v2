@@ -4,6 +4,7 @@ export interface Announcement {
     date: string;
     color: string;
     icon: string;
+    ctaText?: string;
 }
 
 export interface AnnouncementCardProps {

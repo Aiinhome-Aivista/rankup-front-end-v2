@@ -1,4 +1,7 @@
 import type { StudentPerformanceStats } from "../types/studentPerformance";
+import { Face, useTheme} from "@rankup/shared-ui";
+
+
 
 const stats: StudentPerformanceStats = {
   averageScore: "76%",
@@ -8,39 +11,44 @@ const stats: StudentPerformanceStats = {
 };
 
 const StudentPerformance = () => {
+  const { theme } = useTheme();
   return (
-    <div className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+    <div className="flex flex-col rounded-3xl p-6"
+      style={{ backgroundColor: theme.colors.bg.card }}>
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#514BF2] text-white">
-          <span className="text-sm">🤖</span>
+        <div className="flex">
+          <Face
+            width={23}
+            height={23}
+            
+          />
         </div>
-        <h3 className="text-sm font-semibold text-[#514BF2]">
+        <h3 className="text-sm font-bold"
+        style={{ color: theme.colors.text.default }}>
           Student Performance
         </h3>
       </div>
 
       {/* Big Score Stats */}
-      <div>
-        <div className="text-4xl font-bold text-[#514BF2]">{stats.averageScore}</div>
-        <div className="text-xs font-medium text-[#514BF2]">Average Score</div>
-        <div className="text-[10px] text-gray-400">{stats.period}</div>
+      <div style={{ color: theme.colors.text.default }}>
+        <div className="text-xl font-light mt-3">{stats.averageScore}</div>
+        <div className="text-sm font-bold">Average Score</div>
+        <div className="text-xs">{stats.period}</div>
       </div>
 
       {/* Details List */}
-      <div className="space-y-4">
-        <div>
-          <span className="mb-1 block text-sm font-semibold text-[#514BF2]">
-            Strength
-          </span>
-          <p className="text-sm text-gray-500">{stats.strengths}</p>
-        </div>
-        <div>
-          <span className="mb-1 block text-sm font-semibold text-[#514BF2]">
-            Weak Areas
-          </span>
-          <p className="text-sm text-gray-500">{stats.weaknesses}</p>
-        </div>
+      <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-x-8 gap-y-6"
+      style={{ color: theme.colors.text.default }}>
+        <span className="text-sm font-bold">
+          Strength
+        </span>
+        <p className="text-xl font-light">{stats.strengths}</p>
+        <span className="text-sm font-bold"
+        >
+          Weak Areas
+        </span>
+        <p className="text-xl font-light">{stats.weaknesses}</p>
       </div>
     </div>
   );
