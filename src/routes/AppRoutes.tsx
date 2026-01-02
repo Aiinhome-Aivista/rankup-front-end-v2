@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import AppLayout from "@/components/layout/AppLayout";
 import PageLoader from "@/components/feedback/PageLoader";
+import ReviewAssessment from "@/features/assessment/pages/ReviewAssesment";
 
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
@@ -68,6 +69,10 @@ const AppRoutes = () => {
               <Route
                 path="dashboard/create-assessment"
                 element={<CreateAssessment />}
+              />
+              <Route
+                path="dashboard/review-assessment"
+                element={<ReviewAssessment/>}
               />
             </Route>
 
