@@ -3,7 +3,7 @@ export interface Announcement {
     desc: string;
     date: string;
     color: string;
-    icon: string;
+    icon: React.ReactNode;
     ctaText?: string;
 }
 
