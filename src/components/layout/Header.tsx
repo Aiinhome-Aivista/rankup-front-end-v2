@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Plus, Bell, ChevronRight, User, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-import RVector from "@/assets/R-Vector.svg"; // Ensure this image is in src/assets
+import Button from "@/components/ui/Button";
+import Logo from "@/components/ui/Logo";
+import IconButton from "@/components/ui/IconButton";
 
 // Define the props required by AppLayout
 interface HeaderProps {
@@ -17,6 +19,39 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   const [isNotificationsExpanded, setIsNotificationsExpanded] = useState(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
 
+  // Get user role from storage
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const role = (user?.role || "").toLowerCase();
+
+  const getButtonConfig = () => {
+    switch (role) {
+      case "teacher":
+        return {
+          text: "Create Assessment",
+          path: "/teacher/dashboard/create-assessment",
+        };
+      case "student":
+        return {
+          text: "Self Assessment",
+          path: "/student/self-assessment",
+        };
+      case "parent":
+        return {
+          text: "View Progress",
+          path: "/parent/dashboard",
+        };
+      case "institution":
+        return {
+          text: "Manage Campus",
+          path: "/institution/dashboard",
+        };
+      default:
+        return null;
+    }
+  };
+
+  const buttonConfig = getButtonConfig();
+
   const handleLogout = () => {
     logout(); // The hook handles localStorage clearing & navigation
     navigate("/login");
@@ -27,49 +62,38 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
       {/* --- LEFT SECTION: Hamburger (Mobile) + Logo --- */}
       <div className="flex items-center gap-4">
         {/* Hamburger Menu (Visible on Mobile Only) */}
-        <button
+        {/* Hamburger Menu (Visible on Mobile Only) */}
+        <IconButton
+          icon={<Menu className="h-5 w-5 text-gray-600" />}
           aria-controls="sidebar"
           onClick={(e) => {
             e.stopPropagation();
             setSidebarOpen(!sidebarOpen);
           }}
-          className="block lg:hidden rounded-sm border border-gray-200 bg-white p-1.5 shadow-sm"
-        >
-          <Menu className="h-5 w-5 text-gray-600" />
-        </button>
+          className="block lg:hidden"
+        />
 
         {/* Your Logo & Title */}
-        <div className="flex items-center gap-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full">
-            <img
-              src={RVector}
-              alt="Rank Up Logo"
-              className="h-full w-full object-contain"
-            />
-          </div>
-          {/* Hide text on very small screens if needed */}
-          <h1
-            className="hidden text-2xl font-medium text-gray-800 sm:block"
-            style={{ fontFamily: '"Patrick Hand", cursive' }}
-          >
-            Rank Up Academy
-          </h1>
-        </div>
+        <Logo />
       </div>
 
       {/* --- RIGHT SECTION: Actions --- */}
       <div className="flex items-center gap-4 md:gap-6">
-        {/* Create Assessment Button */}
-        <button
-          onClick={() => navigate("/teacher/dashboard/create-assessment")}
-          className="hidden md:flex items-center gap-2 rounded-full bg-[#514CF1] px-4 py-2 font-semibold text-white ring-4 ring-[#D9D9D9] transition-colors hover:bg-[#403BC0]"
-        >
-          <Plus
-            size={20}
-            className="rounded-full border border-white font-semibold"
-          />
-          <span className="text-sm font-medium">Create Assessment</span>
-        </button>
+        {/* Dynamic Action Button */}
+        {buttonConfig && (
+          <Button
+            onClick={() => navigate(buttonConfig.path)}
+            className="hidden md:inline-flex"
+            leftIcon={
+              <Plus
+                size={20}
+                className="rounded-full border border-white font-semibold"
+              />
+            }
+          >
+            {buttonConfig.text}
+          </Button>
+        )}
 
         {/* Notifications */}
         <div
@@ -104,9 +128,8 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
           <ChevronRight
             size={18}
-            className={`text-gray-500 transition-transform duration-300 ${
-              isNotificationsExpanded ? "rotate-180" : ""
-            }`}
+            className={`text-gray-500 transition-transform duration-300 ${isNotificationsExpanded ? "rotate-180" : ""
+              }`}
           />
         </div>
 
