@@ -121,7 +121,7 @@ function ReviewAssesment() {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden pl-8">
+    <div className="flex flex-col h-screen overflow-hidden pl-8 pr-4">
       {/* Header */}
       <ReviewHeader
         onSearch={() => { }}

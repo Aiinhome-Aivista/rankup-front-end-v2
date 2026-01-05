@@ -216,10 +216,10 @@ const IndividualRegistration = () => {
           pt={{
             root: {
               className:
-                "!bg-white/5 !border !border-white/20 !rounded-xl overflow-hidden",
+                "!bg-white/5 !border !border-white/20 !rounded-xl",
             },
             input: {
-              className: "!text-white p-3 !placeholder-gray-200 font-sans",
+              className: "!text-white  !placeholder-gray-200 font-sans",
             },
             trigger: {
               className: "!text-white/70 w-12 flex items-center justify-center",
@@ -229,7 +229,7 @@ const IndividualRegistration = () => {
                 "!bg-white/90 backdrop-blur-xl border border-white/20 rounded-lg shadow-xl",
             },
             item: {
-              className: "hover:bg-indigo-50 text-gray-800 p-2 text-sm",
+              className: "hover:bg-indigo-50 text-gray-800  text-sm",
             },
           }}
         />
@@ -257,7 +257,7 @@ const IndividualRegistration = () => {
           pt={{
             root: {
               className:
-                "!bg-white/5 !border !border-white/20 !rounded-xl overflow-hidden",
+                "!bg-white/5 !border !border-white/20 !rounded-xl",
             },
             input: {
               className: "!text-white p-3 !placeholder-gray-200 font-sans",
@@ -334,7 +334,7 @@ const IndividualRegistration = () => {
       <button
         onClick={handleSubmit}
         disabled={isLoading}
-        className="mt-4 w-full transform cursor-pointer rounded-xl bg-white/80 py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-4 w-full transform cursor-pointer rounded-xl bg-[#FBFBFB80] py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isLoading ? "Creating Account..." : "Create Account"}
       </button>

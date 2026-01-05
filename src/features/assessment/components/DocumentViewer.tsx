@@ -57,7 +57,7 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ submission, className }
                     }}
                 >
                     {/* Placeholder content mimicking the screenshot */}
-                    <div className="p-16 text-gray-800 text-xs leading-relaxed">
+                    <div className="p-16 text-gray-800 text-xs leading-relaxed shadow-2xl shadow-[#0000000D] drop-shadow-2xl">
                         <h1 className="text-2xl font-bold mb-6 text-center text-black">The Causes of the Industrial Revolution</h1>
 
                         <p className="mb-4 text-justify">

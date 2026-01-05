@@ -6,17 +6,6 @@ import equalizer from "@/assets/icons/equalizer.svg";
 import webhook from "@/assets/icons/webhook.svg";
 import eyeTracking from "@/assets/icons/eye_tracking.svg";
 import hotelClass from "@/assets/icons/hotel_class.svg";
-import {
-  LayoutDashboard,
-  ClipboardList,
-  Table,
-  User,
-  BarChart2,
-  FilePlus,
-  UserPlus,
-  Library,
-  Star,
-} from "lucide-react";
 
 export interface FeatureItem {
   id: string;
@@ -27,7 +16,7 @@ export interface FeatureItem {
 
 export interface NavItem {
   id: string;
-  icon: React.ElementType;
+  icon: string;
   label?: string;
 }
 
@@ -83,21 +72,21 @@ export const features: FeatureItem[] = [
 ];
 
 export const mainNavItems: NavItem[] = [
-  { id: "dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { id: "assessment", icon: ClipboardList, label: "Assessment" },
-  { id: "classes", icon: Table, label: "Classes" },
-  { id: "student", icon: User, label: "Student" },
-  { id: "analytics", icon: BarChart2, label: "Analytics" },
+  { id: "dashboard", icon: "bento", label: "Dashboard" },
+  { id: "assessment", icon: "assignment", label: "Assessment" },
+  { id: "classes", icon: "table_restaurant", label: "Classes" },
+  { id: "student", icon: "face", label: "Student" },
+  { id: "analytics", icon: "area_chart", label: "Analytics" },
 ];
 
 export const collapsedNavItems: NavItem[] = [
-  { id: "student", icon: User },
-  { id: "classes", icon: Table },
-  { id: "dashboard", icon: LayoutDashboard },
-  { id: "addnotes", icon: FilePlus },
-  { id: "assessment", icon: ClipboardList },
-  { id: "persons", icon: UserPlus },
-  { id: "analytics", icon: BarChart2 },
-  { id: "library", icon: Library },
-  { id: "favorites", icon: Star },
+  { id: "student", icon: "face" },
+  { id: "classes", icon: "table_restaurant" },
+  { id: "dashboard", icon: "bento" },
+  { id: "addnotes", icon: "note_add" },
+  { id: "assessment", icon: "assignment" },
+  { id: "persons", icon: "person_add" },
+  { id: "analytics", icon: "area_chart" },
+  { id: "library", icon: "library_add" },
+  { id: "favorites", icon: "star" },
 ];

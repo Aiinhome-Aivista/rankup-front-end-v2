@@ -379,7 +379,7 @@ const InstituteRegistration = () => {
       <button
         onClick={handleSubmit}
         disabled={isLoading}
-        className="mt-4 w-full transform cursor-pointer rounded-xl bg-white/80 py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-4 w-full transform cursor-pointer rounded-xl bg-[#FBFBFB80] py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isLoading ? "Registering Institute..." : "Register Institute"}
       </button>
