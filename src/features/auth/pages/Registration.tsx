@@ -47,7 +47,7 @@ const Registration = () => {
 
       {/* Registration Card */}
       <div className="absolute left-1/2 top-1/2 z-10 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 px-4 py-8 lg:max-w-xl">
-        <div className="rounded-3xl border border-white bg-white/10 p-8 shadow-2xl backdrop-blur-lg">
+        <div className="rounded-3xl border-3 border-[#FFFFFF40] bg-white/10 p-8 shadow-2xl backdrop-blur-lg">
           <div className="flex flex-col items-center text-center text-white">
             <h1 className="mb-2 text-3xl font-bold">Register</h1>
             <p className="mb-6 font-light opacity-90 md:text-base text-sm">
