@@ -25,6 +25,9 @@ const StudentDashboard = lazy(
 const SelfAssessment = lazy(
   () => import("@/features/assessment/pages/SelfAssessment")
 );
+const AttendingAssesment = lazy(
+  () => import("@/features/assessment/pages/AttendingAssesment")
+);
 
 //ROUTE GUARDS
 const PrivateRoute = () => {
@@ -85,6 +88,12 @@ const AppRoutes = () => {
             {/* Dynamic Route Placeholder (Phase 3 Requirement) */}
             {/* <Route path="course/:courseId" element={<CourseDetail />} /> */}
           </Route>
+            
+          {/* Assessment Route (Full Screen) */}
+          <Route
+            path="student/attend-assessment/:id"
+            element={<AttendingAssesment />}
+          />
         </Route>
 
         {/* --- 404 CATCH-ALL --- */}
