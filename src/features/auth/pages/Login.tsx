@@ -136,7 +136,7 @@ const Login = () => {
 
       {/* Login Card */}
       <div className="absolute left-1/2 top-1/2 z-10 min-h-[500px] w-full max-w-md -translate-x-1/2 -translate-y-1/2 px-4 lg:max-w-md xl:max-w-lg 2xl:max-w-xl">
-        <div className="flex flex-col justify-center rounded-3xl border border-white bg-white/10 p-8 shadow-2xl backdrop-blur-lg md:p-10">
+        <div className="flex flex-col justify-center rounded-4xl border-3 border-[#FFFFFF40] bg-white/10 p-8 shadow-2xl backdrop-blur-lg md:p-10">
           <div className="flex flex-col items-center text-center text-white">
             {/* Logo */}
             <div className="mb-4">
@@ -146,7 +146,7 @@ const Login = () => {
             <div className="mb-2">
               <img src={rankupLogo} alt="Rank Up Logo" />
             </div>
-            <p className="mb-8 font-light opacity-90 md:text-base text-sm">
+            <p className="mb-8 font-medium opacity-90 md:text-base text-sm">
               Customize Every View. Empower Every Decision.
             </p>
 
@@ -189,7 +189,7 @@ const Login = () => {
                 onClick={() => handleLogin()}
                 type="button"
                 disabled={isLoading}
-                className={`mt-2 flex w-full cursor-pointer transform items-center justify-center gap-2 rounded-xl bg-white/80 py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:bg-white hover:shadow-xl ${
+                className={`mt-2 flex w-full cursor-pointer transform items-center justify-center gap-2 rounded-xl bg-[#FBFBFB80] py-3 font-semibold text-indigo-900 shadow-lg transition-all duration-300 hover:bg-white hover:shadow-xl ${
                   isLoading ? "cursor-not-allowed opacity-70" : ""
                 }`}
               >

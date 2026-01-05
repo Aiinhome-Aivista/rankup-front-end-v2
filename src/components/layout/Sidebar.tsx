@@ -106,8 +106,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 ))}
               </div>
             </div>
+            {/* logout */}
              <div className="p-6 mt-auto border-t border-white">
-              <button className="w-12 h-12 flex items-center justify-center rounded-2xl border border-[#A5A0FF] bg-[#CDCBFF]/40 text-[#514CF1] hover:bg-[#CDCBFF]/60 transition-colors shadow-sm cursor-pointer">
+              <button className="w-12 h-12 flex items-center justify-center rounded-2xl text-white hover:bg-[#D9D9D9] border border-[#514CF1] transition-colors shadow-sm cursor-pointer bg-[#514CF133]">
                 <span className="material-symbols-outlined text-[24px]">logout</span>
               </button>
             </div>
@@ -119,10 +120,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <div className="absolute -right-9 top-1/2 -translate-y-1/2 w-9">
           <div className="bg-[#514CF133] backdrop-blur-2xl rounded-r-4xl shadow-lg py-4">
             {/* Toggle Trigger (Keep invisible area clickable for toggle if needed) */}
-            {/* <button
+            <button
               onClick={toggleSidebar}
-              className="flex items-center justify-center w-full mb-2 h-8"
-            /> */}
+              className="flex items-center justify-center w-full mb-2 h-8 cursor-pointer"
+            />
 
             {/* Navigation Icons (Vertical Strip) */}
             <div className="flex flex-col gap-1.5">
@@ -142,7 +143,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
                   {/* ICON */}
                   <span
-                    className={`material-symbols-outlined text-[20px] relative z-10 transition-colors ${activeItem === item.id
+                    className={`material-symbols-outlined text-[20px] relative z-10 transition-colors cursor-pointer ${activeItem === item.id
                       ? "text-[#5046E5]"
                       : "text-[#7C7CFF] group-hover:text-[#5046E5]"
                       }`}
