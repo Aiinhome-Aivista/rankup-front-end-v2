@@ -24,12 +24,12 @@ const GradingPanel: React.FC<GradingPanelProps> = ({
                     <div className="w-5 h-5 bg-blue-600 rounded text-white flex items-center justify-center">
                         <Check className="w-3 h-3" />
                     </div>
-                    <h3 className="font-semibold text-gray-800">Grading</h3>
+                    <h3 className="font-semibold text-[#514CF1]">Grading</h3>
                 </div>
 
                 <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
                     <div className="flex justify-between items-center mb-1">
-                        <span className="text-xs text-gray-500 uppercase font-bold">Active Rubric</span>
+                        <span className="text-xs text-[#514CF1] uppercase font-bold">Active Rubric</span>
                     </div>
                     <div className="flex justify-between items-center bg-white p-2 rounded border border-gray-200 cursor-pointer">
                         <span className="text-sm font-medium text-gray-700">{rubric.name}</span>
@@ -51,8 +51,8 @@ const GradingPanel: React.FC<GradingPanelProps> = ({
                     <div key={criteria.id} className="border-b border-gray-100 pb-6 last:border-0">
                         <div className="flex justify-between items-start mb-2">
                             <div>
-                                <h4 className="text-sm font-bold text-blue-700">{criteria.title}</h4>
-                                <p className="text-xs text-gray-500">{criteria.description}</p>
+                                <h4 className="text-sm font-bold text-[#514CF1]">{criteria.title}</h4>
+                                <p className="text-xs text-[#514CF1]">{criteria.description}</p>
                             </div>
                             <span className="text-xs font-bold bg-blue-50 text-blue-700 px-2 py-1 rounded">
                                 {gradingState.criteriaScores[criteria.id] || 0}/{criteria.maxScore}
@@ -68,7 +68,7 @@ const GradingPanel: React.FC<GradingPanelProps> = ({
                                         onClick={() => onScoreUpdate(criteria.id, level.maxScore)} // Simple selection sets to max of range for now
                                         className={`p-2 rounded border text-center cursor-pointer transition-all ${isSelected
                                             ? 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-105'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300'
+                                            : 'bg-white text-[#514CF1] border-gray-200 hover:border-blue-300'
                                             }`}
                                     >
                                         <div className="text-xs font-bold mb-1">{level.minScore}-{level.maxScore}</div>
@@ -78,16 +78,16 @@ const GradingPanel: React.FC<GradingPanelProps> = ({
                             })}
                         </div>
 
-                        <button className="flex items-center gap-1 mt-3 text-xs text-blue-600 font-medium hover:text-blue-700">
+                        <button className="flex items-center gap-1 mt-3 text-xs text-[#514CF1] font-medium hover:text-blue-700">
                             <Plus className="w-3 h-3" /> Add Criteria Comment
                         </button>
                     </div>
                 ))}
 
                 <div className="pt-2">
-                    <h4 className="text-sm font-bold text-blue-700 mb-2">Overall Feedback</h4>
+                    <h4 className="text-sm font-bold text-[#514CF1] mb-2">Overall Feedback</h4>
                     <textarea
-                        className="w-full text-sm p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[100px]"
+                        className="w-full text-sm p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500  min-h-25 !placeholder-[#514CF1] outline-none"
                         placeholder="Enter overall feedback for the student..."
                         value={gradingState.overallFeedback}
                         onChange={(e) => onOverallFeedbackUpdate(e.target.value)}
@@ -104,10 +104,10 @@ const GradingPanel: React.FC<GradingPanelProps> = ({
                     Publish Grade
                 </button>
                 <div className="grid grid-cols-2 gap-2">
-                    <button className="py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                    <button className="py-2 bg-white border border-gray-300 text-[#514CF1] rounded-lg text-sm font-medium hover:bg-gray-50">
                         Save Draft
                     </button>
-                    <button className="py-2 bg-purple-50 border border-purple-200 text-purple-700 rounded-lg text-sm font-medium hover:bg-purple-100">
+                    <button className="py-2 bg-purple-50 border border-purple-200 text-[#514CF1] rounded-lg text-sm font-medium hover:bg-purple-100">
                         Request Revision
                     </button>
                 </div>
