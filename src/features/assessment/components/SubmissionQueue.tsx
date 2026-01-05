@@ -4,7 +4,7 @@ import type { SubmissionQueueProps } from '../types/SubmissionQueue';
 
 const SubmissionQueue: React.FC<SubmissionQueueProps> = ({ submissions, activeSubmissionId, onSelectSubmission, className }) => {
     return (
-        <div className={`flex flex-col rounded-xl h-full bg-[#514CF105] border border-[#514CF10D] ${className}`}>
+        <div className={`flex flex-col rounded-2xl h-full bg-[#514CF105] border border-[#514CF10D] ${className}`}>
             <div className="p-4 border-b border-gray-100 flex items-center gap-2">
                 {/* <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
                     <span className="font-bold text-sm">queue</span>
@@ -20,7 +20,7 @@ const SubmissionQueue: React.FC<SubmissionQueueProps> = ({ submissions, activeSu
                         <div
                             key={sub.id}
                             onClick={() => onSelectSubmission(sub.id)}
-                            className={`p-4 border-b border-gray-50 cursor-pointer transition-colors hover:bg-gray-50 flex items-start gap-3 ${isActive ? 'bg-blue-50 border-l-4 border-l-blue-500' : 'border-l-4 border-l-transparent'
+                            className={`p-4 border-b border-gray-50 cursor-pointer transition-colors hover:bg-gray-50 flex items-start gap-3 ${isActive ? 'bg-[#514CF105] border-l-3 border-l-[#514CF1]' : 'border-l-3 border-l-transparent'
                                 }`}
                         >
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${isActive ? 'bg-blue-200 text-blue-700' : 'bg-gray-100 text-gray-500'

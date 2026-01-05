@@ -3,7 +3,6 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import AppLayout from "@/components/layout/AppLayout";
 import PageLoader from "@/components/feedback/PageLoader";
-import ReviewAssessment from "@/features/assessment/pages/ReviewAssesment";
 
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
@@ -16,6 +15,9 @@ const TeacherDashboard = lazy(
 );
 const CreateAssessment = lazy(
   () => import("@/features/assessment/pages/CreateAssesment")
+);
+const ReviewAssessment = lazy(
+  () => import("@/features/assessment/pages/ReviewAssesment")
 );
 
 // Student Pages

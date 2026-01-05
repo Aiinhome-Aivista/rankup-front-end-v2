@@ -81,7 +81,7 @@ const Registration = () => {
             </div>
 
             {/* Forms */}
-            <div className="custom-scrollbar max-h-[50vh] w-90 space-y-4 overflow-y-auto">
+            <div className="custom-scrollbar max-h-[50vh] w-90 space-y-4 overflow-y-auto px-1">
               {activeTab === "individual" ? (
                 <IndividualRegistration />
               ) : (

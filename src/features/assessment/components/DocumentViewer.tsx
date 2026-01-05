@@ -16,8 +16,8 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ submission, className }
     return (
         <div className={`flex flex-col  ${className}`}>
             <div className="h-12 bg-white flex items-center justify-between px-4">
-                <div className="text-sm font-medium text-blue-600 truncate max-w-75">
-                    Submitted File: <span className="text-gray-900">{submission.studentName}_MidTerm_Essay.pdf</span>
+                <div className="text-sm font-medium text-[#514CF1] truncate max-w-75">
+                    Submitted File: <span className="text-[#514CF1]">{submission.studentName}_MidTerm_Essay.pdf</span>
                 </div>
 
                 <div className="flex items-center gap-2">
