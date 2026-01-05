@@ -111,7 +111,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </div>
         </div>
 
-        {/* Collapsed Sidebar - Attached to right edge of expanded sidebar */}
+        {/* Collapsed Sidebar - Attached  to right edge of expanded sidebar */}
         <div className="absolute -right-9 top-1/2 -translate-y-1/2 w-9">
           <div className="bg-[#514CF133] backdrop-blur-2xl rounded-r-[2rem] shadow-lg py-4">
             {/* Toggle Trigger (Keep invisible area clickable for toggle if needed) */}
