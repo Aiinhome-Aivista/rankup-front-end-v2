@@ -79,7 +79,7 @@ const AssessmentsOverview = () => {
                   <button className="rounded-lg p-1.5 transition-colors hover:bg-[#F3F4FF] cursor-pointer"
                   >
                     {item.action === "view" && <Eye size={16} onClick={() => navigate("/teacher/dashboard/review-assessment")} />}
-                    {item.action === "edit" && <Edit2 size={16} />}
+                    {item.action === "edit" && <Edit2 size={16} onClick={() => navigate("/student/attend-assessment/id")} />}
                     {item.action === "share" && <Share2 size={16} />}
                   </button>
                 </td>
