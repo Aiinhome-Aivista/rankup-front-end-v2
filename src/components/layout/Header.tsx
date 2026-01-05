@@ -53,7 +53,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   const buttonConfig = getButtonConfig();
 
   const handleLogout = () => {
-    logout(); // The hook handles localStorage clearing & navigation
+    logout();
     navigate("/login");
   };
 
@@ -128,8 +128,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
           <ChevronRight
             size={18}
-            className={`text-gray-500 transition-transform duration-300 ${isNotificationsExpanded ? "rotate-180" : ""
-              }`}
+            className={`text-gray-500 transition-transform duration-300 ${
+              isNotificationsExpanded ? "rotate-180" : ""
+            }`}
           />
         </div>
 
