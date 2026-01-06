@@ -38,7 +38,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
       case "parent":
         return {
           text: "Add Child",
-          path: "/parent/dashboard",
+          path: "/parent/dashboard/add-child",
         };
       case "institution":
         return {
@@ -83,7 +83,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
         {buttonConfig && (
           <Button
             onClick={() => navigate(buttonConfig.path)}
-            className="hidden md:inline-flex"
+            className="hidden md:inline-flex cursor-pointer"
             leftIcon={
               <Plus
                 size={20}

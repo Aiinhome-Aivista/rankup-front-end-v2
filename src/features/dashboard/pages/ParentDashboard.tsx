@@ -17,8 +17,8 @@ const ParentDashboard = () => {
     <div className="flex h-screen flex-col">
       {/* Header logic is handled by parent (AppLayout) */}
 
-      <div className="flex-1 overflow-y-auto pl-6 pr-6 pt-6 pb-6 lg:pl-10 lg:pr-10">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-8">
+      <div className="flex-1 overflow-y-auto pl-6 pr-6 pb-6 lg:pl-10 lg:pr-10">
+        <div className="mx-auto flex max-w-400 flex-col gap-8">
 
           {/* 1. Greeting & Welcome */}
           <GreetingSection />

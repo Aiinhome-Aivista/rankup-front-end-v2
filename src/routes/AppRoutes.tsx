@@ -37,6 +37,11 @@ const ParentDashboard = lazy(
   () => import("@/features/dashboard/pages/ParentDashboard")
 );
 
+const AddChild = lazy(
+  () => import("@/features/addchild/pages/AddChild")
+);
+
+
 
 //ROUTE GUARDS
 const PrivateRoute = () => {
@@ -97,7 +102,9 @@ const AppRoutes = () => {
             {/* Parent Feature Routes */}
             <Route path="parent">
               <Route path="dashboard" element={<ParentDashboard />} />
+              <Route path="dashboard/add-child" element={<AddChild />} />
             </Route>
+
 
             {/* Dynamic Route Placeholder (Phase 3 Requirement) */}
             {/* <Route path="course/:courseId" element={<CourseDetail />} /> */}
