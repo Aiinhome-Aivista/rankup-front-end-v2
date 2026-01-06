@@ -1,12 +1,12 @@
-
 import { useTheme } from "@rankup/shared-ui";
 import { ArrowRight, AlertTriangle, CheckCircle } from "lucide-react";
 import Child1 from "../../../assets/Child1.svg";
 import Child2 from "../../../assets/Child2.svg";
+import type { Child } from "../types/manageChildren";
 
 
 // Mock Data
-const childrenData = [
+const childrenData: Child[] = [
   {
     id: 1,
     name: "Emma Trepsoria",
@@ -56,7 +56,7 @@ const ManageChildren = () => {
         </h3>
       </div>
       <div className="flex flex-col gap-6 max-h-200 overflow-y-auto pr-2 scrollbar-hide">
-        {childrenData.map((child) => (
+        {childrenData.map((child: Child) => (
           <div
             key={child.id}
             className="rounded-3xl p-6 relative overflow-hidden shrink-0"

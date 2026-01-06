@@ -4,7 +4,9 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import GroupsIcon from '@mui/icons-material/Groups';
 import ArticleIcon from '@mui/icons-material/Article';
 
-const updatesData = [
+import type { UpdateItem } from "../types/updates";
+
+const updatesData: UpdateItem[] = [
     {
         id: 1,
         title: "School Play Tickets",
@@ -43,7 +45,7 @@ const Updates = () => {
                 className="rounded-3xl p-6 flex-1 flex flex-col gap-6"
                 style={{ backgroundColor: theme.colors.bg.card }}
             >
-                {updatesData.map((item) => (
+                {updatesData.map((item: UpdateItem) => (
                     <div key={item.id} className="flex gap-4">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${item.iconBg}`}>
                             {item.icon}

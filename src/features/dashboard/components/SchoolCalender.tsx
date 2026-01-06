@@ -1,7 +1,9 @@
 import React from "react";
 import { useTheme } from "@rankup/shared-ui";
 
-const calendarEvents = [
+import type { SchoolCalendarEvent } from "../types/schoolCalender";
+
+const calendarEvents: SchoolCalendarEvent[] = [
     {
         day: "24",
         month: "Jan",
@@ -33,7 +35,7 @@ const SchoolCalender = () => {
                 className="rounded-3xl p-6 flex-1 flex flex-col gap-6"
                 style={{ backgroundColor: theme.colors.bg.card }}
             >
-                {calendarEvents.map((event, idx) => (
+                {calendarEvents.map((event: SchoolCalendarEvent, idx) => (
                     <div key={idx} className="flex gap-4 items-start">
                         <div className="flex flex-col items-center  justify-center rounded-full bg-[#514CF10D] h-10 w-10">
                             <span className="text-lg font-bold text-[#514BF2] leading-none">{event.day}</span>

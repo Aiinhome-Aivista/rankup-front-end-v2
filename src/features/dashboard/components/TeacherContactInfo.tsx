@@ -3,7 +3,9 @@ import { Mail } from "lucide-react";
 import Teacher1 from "../../../assets/Teacher1.svg";
 import Teacher2 from "../../../assets/Teacher2.svg";
 
-const teachers = [
+import type { TeacherContact } from "../types/teacherContactInfo";
+
+const teachers: TeacherContact[] = [
     {
         name: "Dr. Ravi Krhishnamurthi",
         role: "Mathematics | 10th Grade",
@@ -29,7 +31,7 @@ const TeacherContactInfo = () => {
                 Teacher Contact Information
             </h3>
             <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-                {teachers.map((teacher, idx) => (
+                {teachers.map((teacher: TeacherContact, idx) => (
                     <div
                         key={idx}
                         className="min-w-75 flex-1 rounded-3xl p-4 flex items-center gap-4 relative"
