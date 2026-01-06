@@ -5,6 +5,8 @@ import {
   TabPanel,
   type TabViewTabChangeEvent,
 } from "primereact/tabview";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 // --- Child Components ---
 // Ensure these exist in features/assessment/components/ui/
@@ -21,6 +23,8 @@ import type {
 
 const CreateAssesment = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const navigate = useNavigate();
+
 
   // --- Form State ---
   const [title, setTitle] = useState<string>("");
@@ -59,13 +63,21 @@ const CreateAssesment = () => {
 
   const header = (
     <div className="mb-8 flex items-center justify-between">
-      <div>
-        <h1 className="text-2xl font-bold text-[#514CF1]">
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => navigate("student/dashboard")}
+          className="rounded-full hover:bg-[#514CF10D] transition-colors curaor-pointer"
+        >
+          <ArrowLeft className="h-6 w-6 text-[#514CF1] cursor-pointer" />
+        </button>
+     <div>
+         <h1 className="text-xl font-bold text-[#514CF1]">
           Create New Assessment
         </h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="text-sm text-[#A1AEF2]">
           Configure details, build questions, and publish your test.
         </p>
+     </div>
       </div>
       <div className="flex gap-3">
         <Button

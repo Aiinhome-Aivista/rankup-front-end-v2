@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import TopicsMaterials from "../components/TopicsMaterials";
 import Configuration from "../components/Configuration";
 import AISummary from "../components/AISummary";
@@ -7,6 +9,7 @@ import type { Subject, Topic } from "../types/SelfAssessment";
 
 const SelfAssesment = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const navigate = useNavigate();
 
   // --- State ---
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
@@ -46,12 +49,20 @@ const SelfAssesment = () => {
 
   const header = (
     <div className="mb-8 mt-5 flex items-center justify-between">
-      <div>
-        <h1 className="text-xl font-bold text-[#514CF1]">Self-Assessment</h1>
-        <p className="mt-1 text-sm text-[#A1AEF2]">
-          Configure your personalized AI study session. Select your topics and
-          difficulty to target your weak points effectively.
-        </p>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => navigate("student/dashboard")}
+          className="rounded-full hover:bg-[#514CF10D] transition-colors curaor-pointer"
+        >
+          <ArrowLeft className="h-6 w-6 text-[#514CF1] cursor-pointer" />
+        </button>
+        <div>
+          <h1 className="text-xl font-bold text-[#514CF1]">Self-Assessment</h1>
+          <p className="mt-1 text-sm text-[#A1AEF2]">
+            Configure your personalized AI study session. Select your topics and
+            difficulty to target your weak points effectively.
+          </p>
+        </div>
       </div>
       <div className="flex gap-3">
         <button className="rounded-full border border-[#514CF105] bg-[#514CF10D] px-4 py-2 text-sm font-bold text-[#514CF1] hover:bg-[#514CF105]">
@@ -78,8 +89,8 @@ const SelfAssesment = () => {
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`border-b-2 px-4 py-2 transition-colors duration-200 ${activeIndex === index
-                      ? "border-[#514CF1] font-bold text-[#514CF1]"
-                      : "border-transparent font-bold text-[#514CF180] hover:text-[#514CF1]"
+                    ? "border-[#514CF1] font-bold text-[#514CF1]"
+                    : "border-transparent font-bold text-[#514CF180] hover:text-[#514CF1]"
                     }`}
                 >
                   {tab}
