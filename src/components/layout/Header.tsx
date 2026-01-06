@@ -37,7 +37,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
         };
       case "parent":
         return {
-          text: "View Progress",
+          text: "Add Child",
           path: "/parent/dashboard",
         };
       case "institution":

@@ -40,7 +40,7 @@ const IndividualRegistration = () => {
   const roles: Option[] = [
     { label: "Student", value: "Student" },
     { label: "Teacher", value: "Teacher" },
-    { label: "Other", value: "Other" },
+    { label: "Parent", value: "Parent" },
   ];
 
   const genders: Option[] = [

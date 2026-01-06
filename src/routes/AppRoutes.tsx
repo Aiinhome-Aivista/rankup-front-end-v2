@@ -4,6 +4,7 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 import AppLayout from "@/components/layout/AppLayout";
 import PageLoader from "@/components/feedback/PageLoader";
 
+
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
 const Login = lazy(() => import("@/features/auth/pages/Login"));
@@ -30,6 +31,12 @@ const SelfAssessment = lazy(
 const AttendingAssesment = lazy(
   () => import("@/features/assessment/pages/AttendingAssesment")
 );
+
+// parent pages
+const ParentDashboard = lazy(
+  () => import("@/features/dashboard/pages/ParentDashboard")
+);
+
 
 //ROUTE GUARDS
 const PrivateRoute = () => {
@@ -77,7 +84,7 @@ const AppRoutes = () => {
               />
               <Route
                 path="dashboard/review-assessment"
-                element={<ReviewAssessment/>}
+                element={<ReviewAssessment />}
               />
             </Route>
 
@@ -87,16 +94,22 @@ const AppRoutes = () => {
               <Route path="self-assessment" element={<SelfAssessment />} />
             </Route>
 
+            {/* Parent Feature Routes */}
+            <Route path="parent">
+              <Route path="dashboard" element={<ParentDashboard />} />
+            </Route>
+
             {/* Dynamic Route Placeholder (Phase 3 Requirement) */}
             {/* <Route path="course/:courseId" element={<CourseDetail />} /> */}
           </Route>
-            
+
           {/* Assessment Route (Full Screen) */}
           <Route
             path="student/attend-assessment/:id"
             element={<AttendingAssesment />}
           />
         </Route>
+
 
         {/* --- 404 CATCH-ALL --- */}
         <Route path="*" element={<Navigate to="/" replace />} />
