@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
-import { Calendar, Info } from 'lucide-react';
+import { Calendar as CalendarIcon, Info } from 'lucide-react';
 import type { ChildFormData } from '../types/assessmentInformation';
+import { Calendar } from '@rankup/shared-ui';
 
 const AssessmentInformation = () => {
+    // Get current date in YYYY-MM-DD format
+    const checkCurrentDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    };
+
     const [formData, setFormData] = useState<ChildFormData>({
         fullName: '',
-        studentId: '',
-        enrolmentDate: '',
+        studentEmail: '',
+        password: '',
+        confirmPassword: '',
+        enrolmentDate: checkCurrentDate(),
         dateOfBirth: '',
         gender: '',
         classGrade: '',
@@ -15,6 +27,76 @@ const AssessmentInformation = () => {
         emergencyContactName: '',
         emergencyContactNumber: ''
     });
+
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [activeCalendar, setActiveCalendar] = useState<'enrolmentDate' | 'dateOfBirth' | null>(null);
+
+    const handleDateSelect = (date: Date, field: 'enrolmentDate' | 'dateOfBirth') => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        setFormData(prev => ({
+            ...prev,
+            [field]: formattedDate
+        }));
+        setActiveCalendar(null);
+    };
+
+    const validate = () => {
+        const newErrors: Record<string, string> = {};
+
+        // Full Name validation
+        if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
+
+        // Email validation
+        if (!formData.studentEmail) {
+            newErrors.studentEmail = 'Student Email is required';
+        } else if (!/\S+@\S+\.\S/.test(formData.studentEmail)) {
+            newErrors.studentEmail = 'Invalid email format';
+        }
+
+        // Date validation
+        if (!formData.enrolmentDate) newErrors.enrolmentDate = 'Enrolment Date is required';
+        if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Date of Birth is required';
+
+        // Dropdowns validation
+        if (!formData.gender) newErrors.gender = 'Gender is required';
+        if (!formData.classGrade) newErrors.classGrade = 'Class/Grade is required';
+
+        // Emergency Contact validation
+        if (!formData.emergencyContactName.trim()) newErrors.emergencyContactName = 'Contact Name is required';
+        if (!formData.emergencyContactNumber.trim()) {
+            newErrors.emergencyContactNumber = 'Contact Number is required';
+        } else if (!/^\+?[\d\s-]{10,}$/.test(formData.emergencyContactNumber.replace(/[()]/g, ''))) {
+            // specific regex can be adjusted
+            newErrors.emergencyContactNumber = 'Invalid phone number';
+        }
+
+        // Password validation
+        if (!formData.password) {
+            newErrors.password = 'Password is required';
+        } else if (formData.password.length < 6) {
+            newErrors.password = 'Password must be at least 6 characters';
+        }
+
+        // Confirm Password validation
+        if (formData.password !== formData.confirmPassword) {
+            newErrors.confirmPassword = 'Passwords do not match';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validate()) {
+            console.log('Form validated successfully', formData);
+            // Handle submission here
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -35,7 +117,7 @@ const AssessmentInformation = () => {
                 <h3 className="font-bold text-md">Assessment Information</h3>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="w-full">
                     <label className="block text-xs font-bold text-[#514CF1] mb-2">
                         Child's Full Name <span className="text-red-500">*</span>
@@ -46,23 +128,25 @@ const AssessmentInformation = () => {
                         placeholder="e.g. Emma Trasporia"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                        className={`w-full p-3 rounded-md border ${errors.fullName ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
                     />
+                    {errors.fullName && <p className="text-red-500 text-[10px] mt-1">{errors.fullName}</p>}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-xs font-bold text-[#514CF1] mb-2">
-                            Student ID <span className="text-red-500">*</span>
+                            Child Email <span className="text-red-500">*</span>
                         </label>
                         <input
-                            type="text"
-                            name="studentId"
-                            placeholder="e.g. ST-2024-8892"
-                            value={formData.studentId}
+                            type="email"
+                            name="studentEmail"
+                            placeholder="e.g. student@school.com"
+                            value={formData.studentEmail}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                            className={`w-full p-3 rounded-md border ${errors.studentEmail ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
                         />
+                        {errors.studentEmail && <p className="text-red-500 text-[10px] mt-1">{errors.studentEmail}</p>}
                     </div>
                     <div>
                         <label className="block text-xs font-bold text-[#514CF1] mb-2">
@@ -72,13 +156,27 @@ const AssessmentInformation = () => {
                             <input
                                 type="text"
                                 name="enrolmentDate"
-                                placeholder="DD/MM/YYYY"
+                                placeholder="YYYY-MM-DD"
                                 value={formData.enrolmentDate}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                                readOnly
+                                onClick={() => setActiveCalendar(activeCalendar === 'enrolmentDate' ? null : 'enrolmentDate')}
+                                className={`w-full p-3 rounded-md border ${errors.enrolmentDate ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold cursor-pointer`}
                             />
-                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-[#514CF1] pointer-events-none" size={18} />
+                            <CalendarIcon className="absolute right-3 top-1/2 -translate-y-1/2 text-[#514CF1] pointer-events-none" size={18} />
+
+                            {activeCalendar === 'enrolmentDate' && (
+                                <div className="absolute top-full left-0 z-50 mt-2 shadow-xl">
+                                    <div className="fixed inset-0" onClick={() => setActiveCalendar(null)}></div>
+                                    <div className="relative z-10">
+                                        <Calendar
+                                            initialDate={formData.enrolmentDate ? new Date(formData.enrolmentDate) : new Date()}
+                                            onDateSelect={(date) => handleDateSelect(date, 'enrolmentDate')}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
+                        {errors.enrolmentDate && <p className="text-red-500 text-[10px] mt-1">{errors.enrolmentDate}</p>}
                     </div>
                 </div>
 
@@ -91,13 +189,27 @@ const AssessmentInformation = () => {
                             <input
                                 type="text"
                                 name="dateOfBirth"
-                                placeholder="DD/MM/YYYY"
+                                placeholder="YYYY-MM-DD"
                                 value={formData.dateOfBirth}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                                readOnly
+                                onClick={() => setActiveCalendar(activeCalendar === 'dateOfBirth' ? null : 'dateOfBirth')}
+                                className={`w-full p-3 rounded-md border ${errors.dateOfBirth ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold cursor-pointer`}
                             />
-                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-[#514CF1] pointer-events-none" size={18} />
+                            <CalendarIcon className="absolute right-3 top-1/2 -translate-y-1/2 text-[#514CF1] pointer-events-none" size={18} />
+
+                            {activeCalendar === 'dateOfBirth' && (
+                                <div className="absolute top-full left-0 z-50 mt-2 shadow-xl">
+                                    <div className="fixed inset-0" onClick={() => setActiveCalendar(null)}></div>
+                                    <div className="relative z-10">
+                                        <Calendar
+                                            initialDate={formData.dateOfBirth ? new Date(formData.dateOfBirth) : new Date()}
+                                            onDateSelect={(date) => handleDateSelect(date, 'dateOfBirth')}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
+                        {errors.dateOfBirth && <p className="text-red-500 text-[10px] mt-1">{errors.dateOfBirth}</p>}
                     </div>
                     <div>
                         <label className="block text-xs font-bold text-[#514CF1] mb-2">
@@ -108,7 +220,7 @@ const AssessmentInformation = () => {
                                 name="gender"
                                 value={formData.gender}
                                 onChange={handleChange}
-                                className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold appearance-none cursor-pointer"
+                                className={`w-full p-3 rounded-md border ${errors.gender ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold appearance-none cursor-pointer`}
                                 style={{ color: formData.gender ? '#374151' : '#BCC1D8' }}
                             >
                                 <option value="" disabled>Select Gender</option>
@@ -122,6 +234,7 @@ const AssessmentInformation = () => {
                                 </svg>
                             </div>
                         </div>
+                        {errors.gender && <p className="text-red-500 text-[10px] mt-1">{errors.gender}</p>}
                     </div>
                 </div>
 
@@ -135,7 +248,7 @@ const AssessmentInformation = () => {
                                 name="classGrade"
                                 value={formData.classGrade}
                                 onChange={handleChange}
-                                className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold appearance-none cursor-pointer"
+                                className={`w-full p-3 rounded-md border ${errors.classGrade ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold appearance-none cursor-pointer`}
                                 style={{ color: formData.classGrade ? '#374151' : '#BCC1D8' }}
                             >
                                 <option value="" disabled>Select Class</option>
@@ -148,6 +261,7 @@ const AssessmentInformation = () => {
                                 </svg>
                             </div>
                         </div>
+                        {errors.classGrade && <p className="text-red-500 text-[10px] mt-1">{errors.classGrade}</p>}
                     </div>
                     <div>
                         <label className="block text-xs font-bold text-[#514CF1] mb-2">
@@ -199,8 +313,9 @@ const AssessmentInformation = () => {
                             placeholder="Full Name"
                             value={formData.emergencyContactName}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                            className={`w-full p-3 rounded-md border ${errors.emergencyContactName ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
                         />
+                        {errors.emergencyContactName && <p className="text-red-500 text-[10px] mt-1">{errors.emergencyContactName}</p>}
                     </div>
                     <div>
                         <label className="block text-xs font-bold text-[#514CF1] mb-2">
@@ -212,8 +327,40 @@ const AssessmentInformation = () => {
                             placeholder="(555) 000-0000"
                             value={formData.emergencyContactNumber}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-md border border-[#514CF11A] bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold"
+                            className={`w-full p-3 rounded-md border ${errors.emergencyContactNumber ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
                         />
+                        {errors.emergencyContactNumber && <p className="text-red-500 text-[10px] mt-1">{errors.emergencyContactNumber}</p>}
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block text-xs font-bold text-[#514CF1] mb-2">
+                            Password <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter password"
+                            value={formData.password || ''}
+                            onChange={handleChange}
+                            className={`w-full p-3 rounded-md border ${errors.password ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
+                        />
+                        {errors.password && <p className="text-red-500 text-[10px] mt-1">{errors.password}</p>}
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold text-[#514CF1] mb-2">
+                            Confirm Password <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm password"
+                            value={formData.confirmPassword || ''}
+                            onChange={handleChange}
+                            className={`w-full p-3 rounded-md border ${errors.confirmPassword ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
+                        />
+                        {errors.confirmPassword && <p className="text-red-500 text-[10px] mt-1">{errors.confirmPassword}</p>}
                     </div>
                 </div>
 

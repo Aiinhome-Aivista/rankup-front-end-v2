@@ -1,6 +1,8 @@
 export interface ChildFormData {
     fullName: string;
-    studentId: string;
+    studentEmail: string;
+    password?: string;
+    confirmPassword?: string;
     enrolmentDate: string;
     dateOfBirth: string;
     gender: string;
