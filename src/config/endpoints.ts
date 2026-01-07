@@ -13,7 +13,7 @@ export const API_ENDPOINTS = {
   INSTITUTE: {
     REGISTER: `${BASE_URL}/institute/register`,
   },
-  STUDENT: {
+  PARENT: {
     ADD_CHILD: `${BASE_URL}/child/add`,
   },
   SUBJECTS: {

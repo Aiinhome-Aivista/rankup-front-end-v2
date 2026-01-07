@@ -38,7 +38,7 @@ const ParentDashboard = lazy(
 );
 
 const AddChild = lazy(
-  () => import("@/features/addchild/pages/AddChild")
+  () => import("@/features/children/pages/AddChild")
 );
 
 
