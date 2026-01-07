@@ -12,7 +12,7 @@ import TeacherContactInfo from "../components/TeacherContactInfo";
 import { useTheme } from "@rankup/shared-ui";
 
 const ParentDashboard = () => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   return (
     <div className="flex h-screen flex-col">
       {/* Header logic is handled by parent (AppLayout) */}
@@ -42,7 +42,7 @@ const ParentDashboard = () => {
           {/* 3. Main Design Section */}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-            {/* Left Column: My Children (Spans 2 rows) */}
+            {/* Left Column: My Children */}
             <div className="xl:col-span-1 xl:row-span-2 h-full">
               <ManageChildren />
             </div>

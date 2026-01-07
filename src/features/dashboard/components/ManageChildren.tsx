@@ -49,13 +49,13 @@ const ManageChildren = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="flex flex-col gap-6 h-full">
-      <div className="flex justify-between items-center">
+    <div className="h-full flex flex-col rounded-3xl p-6">
+      <div className="flex justify-between items-center mb-6">
         <h3 className="text-sm font-bold" style={{ color: theme.colors.text.default }}>
           My Children
         </h3>
       </div>
-      <div className="flex flex-col gap-6 max-h-200 overflow-y-auto pr-2 scrollbar-hide">
+      <div className="flex flex-col gap-6 flex-1 overflow-y-auto pr-2 scrollbar-hide min-h-0">
         {childrenData.map((child: Child) => (
           <div
             key={child.id}

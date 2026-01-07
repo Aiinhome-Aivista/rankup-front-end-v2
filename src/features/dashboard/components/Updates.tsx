@@ -37,14 +37,14 @@ const Updates = () => {
     const { theme } = useTheme();
 
     return (
-        <div className="h-full flex flex-col">
+        <div
+            className="h-full flex flex-col rounded-3xl p-6"
+            style={{ backgroundColor: theme.colors.bg.card }}
+        >
             <h3 className="mb-4 text-sm font-bold" style={{ color: theme.colors.text.default }}>
                 Updates
             </h3>
-            <div
-                className="rounded-3xl p-6 flex-1 flex flex-col gap-6"
-                style={{ backgroundColor: theme.colors.bg.card }}
-            >
+            <div className="flex-1 flex flex-col gap-6">
                 {updatesData.map((item: UpdateItem) => (
                     <div key={item.id} className="flex gap-4">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${item.iconBg}`}>

@@ -25,10 +25,10 @@ const data: PerformanceData[] = [
 const ClassPerformance = () => {
   const { theme } = useTheme();
   return (
-    <div className="flex h-[280px] flex-col rounded-3xl p-4"
-    style={{ backgroundColor: theme.colors.bg.card }}>
+    <div className="flex h-full flex-col rounded-3xl p-6"
+      style={{ backgroundColor: theme.colors.bg.card }}>
       <h3 className="mb-2 text-sm font-bold"
-       style={{ color: theme.colors.text.default }}>
+        style={{ color: theme.colors.text.default }}>
         Class Performance
       </h3>
 
@@ -40,7 +40,7 @@ const ClassPerformance = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#A0AEC0", fontSize: 10 }}
-             padding={{ left: 10 }}
+              padding={{ left: 10 }}
             />
             {/* Domain fixed to 0-100 for percentage-like visuals */}
             <YAxis
@@ -50,7 +50,7 @@ const ClassPerformance = () => {
               tickLine={{ stroke: "#514CF1", width: 3 }}
               tick={{ fill: "#A1AEF2", fontSize: 10 }}
               width={25}
-             
+
             />
 
             <Tooltip

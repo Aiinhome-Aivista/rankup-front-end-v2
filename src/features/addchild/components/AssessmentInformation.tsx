@@ -35,7 +35,7 @@ const AssessmentInformation = () => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
+        const formattedDate = `${day}-${month}-${year}`;
 
         setFormData(prev => ({
             ...prev,
@@ -100,6 +100,17 @@ const AssessmentInformation = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
+
+        if (name === 'emergencyContactNumber') {
+            const numericValue = value.replace(/\D/g, '');
+            if (numericValue.length > 10) return;
+            setFormData(prev => ({
+                ...prev,
+                [name]: numericValue
+            }));
+            return;
+        }
+
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -156,7 +167,7 @@ const AssessmentInformation = () => {
                             <input
                                 type="text"
                                 name="enrolmentDate"
-                                placeholder="YYYY-MM-DD"
+                                placeholder="DD-MM-YYYY"
                                 value={formData.enrolmentDate}
                                 readOnly
                                 onClick={() => setActiveCalendar(activeCalendar === 'enrolmentDate' ? null : 'enrolmentDate')}
@@ -189,7 +200,7 @@ const AssessmentInformation = () => {
                             <input
                                 type="text"
                                 name="dateOfBirth"
-                                placeholder="YYYY-MM-DD"
+                                placeholder="DD-MM-YYYY"
                                 value={formData.dateOfBirth}
                                 readOnly
                                 onClick={() => setActiveCalendar(activeCalendar === 'dateOfBirth' ? null : 'dateOfBirth')}
@@ -254,6 +265,14 @@ const AssessmentInformation = () => {
                                 <option value="" disabled>Select Class</option>
                                 <option value="1" className="text-black">Class 1</option>
                                 <option value="2" className="text-black">Class 2</option>
+                                <option value="3" className="text-black">Class 3</option>
+                                <option value="4" className="text-black">Class 4</option>
+                                <option value="5" className="text-black">Class 5</option>
+                                <option value="6" className="text-black">Class 6</option>
+                                <option value="7" className="text-black">Class 7</option>
+                                <option value="8" className="text-black">Class 8</option>
+                                <option value="9" className="text-black">Class 9</option>
+                                <option value="10" className="text-black">Class 10</option>
                             </select>
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -276,8 +295,10 @@ const AssessmentInformation = () => {
                                 style={{ color: formData.preferredLanguage ? '#374151' : '#BCC1D8' }}
                             >
                                 <option value="" disabled>Select Language</option>
+                                <option value="bengali" className="text-black">Bengali</option>
                                 <option value="english" className="text-black">English</option>
                                 <option value="spanish" className="text-black">Spanish</option>
+
                             </select>
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -327,6 +348,7 @@ const AssessmentInformation = () => {
                             placeholder="(555) 000-0000"
                             value={formData.emergencyContactNumber}
                             onChange={handleChange}
+                            maxLength={10}
                             className={`w-full p-3 rounded-md border ${errors.emergencyContactNumber ? 'border-red-500' : 'border-[#514CF11A]'} bg-white focus:outline-none focus:border-[#514CF1] focus:ring-1 focus:ring-[#514CF1] transition-colors placeholder-[#514CF180]! text-xs text-[#514CF1] font-bold`}
                         />
                         {errors.emergencyContactNumber && <p className="text-red-500 text-[10px] mt-1">{errors.emergencyContactNumber}</p>}
