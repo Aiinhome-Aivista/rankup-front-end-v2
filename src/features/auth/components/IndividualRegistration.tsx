@@ -38,9 +38,9 @@ const IndividualRegistration = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const roles: Option[] = [
-    { label: "Student", value: "Student" },
-    { label: "Teacher", value: "Teacher" },
-    { label: "Parent", value: "Parent" },
+    { label: "Student", value: "student" },
+    { label: "Teacher", value: "teacher" },
+    { label: "Parent", value: "parent" },
   ];
 
   const genders: Option[] = [
@@ -112,7 +112,7 @@ const IndividualRegistration = () => {
           email: formData.email,
           phone_number: formData.phone,
           password: formData.password,
-          role: selectedRole!,
+          role: selectedRole!.toLowerCase(),
           gender: selectedGender!,
         };
 
@@ -209,14 +209,14 @@ const IndividualRegistration = () => {
           }}
           options={roles}
           optionLabel="label"
+          optionValue="value"
           placeholder="Select your role"
           className={`w-full text-left ${
             errors.role ? "rounded-xl border border-red-500" : ""
           }`}
           pt={{
             root: {
-              className:
-                "!bg-white/5 !border !border-white/20 !rounded-xl",
+              className: "!bg-white/5 !border !border-white/20 !rounded-xl",
             },
             input: {
               className: "!text-white  !placeholder-gray-200 font-sans",
@@ -250,14 +250,14 @@ const IndividualRegistration = () => {
           }}
           options={genders}
           optionLabel="label"
+          optionValue="value"
           placeholder="Select your gender"
           className={`w-full text-left ${
             errors.gender ? "rounded-xl border border-red-500" : ""
           }`}
           pt={{
             root: {
-              className:
-                "!bg-white/5 !border !border-white/20 !rounded-xl",
+              className: "!bg-white/5 !border !border-white/20 !rounded-xl",
             },
             input: {
               className: "!text-white p-3 !placeholder-gray-200 font-sans",

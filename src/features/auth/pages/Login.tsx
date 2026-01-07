@@ -81,10 +81,8 @@ const Login = () => {
         const user = res?.data?.user;
 
         if (token) {
-          localStorage.setItem("token", token);
           if (setToken) setToken(token);
         }
-        if (user) localStorage.setItem("user", JSON.stringify(user));
 
         const role = (user?.role || "").toLowerCase();
 

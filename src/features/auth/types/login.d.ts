@@ -21,6 +21,7 @@ export interface User {
     full_name: string;
 }
 
+
 export interface VerifyLoginResponse {
     isSuccess: boolean;
     statusCode: number;
@@ -29,6 +30,29 @@ export interface VerifyLoginResponse {
         user: User;
         token: string;
     };
+}
+
+export interface UserPermission {
+    feature: string;
+    access_type: string;
+}
+
+export interface DecryptTokenUser {
+    user_id: number;
+    full_name: string;
+    email: string;
+    role: string;
+    subscription_plan: string;
+    permissions: UserPermission[];
+    iat: number;
+    exp: number;
+}
+
+export interface DecryptTokenResponse {
+    isSuccess: boolean;
+    statusCode: number;
+    message: string;
+    data: DecryptTokenUser;
 }
 
 
