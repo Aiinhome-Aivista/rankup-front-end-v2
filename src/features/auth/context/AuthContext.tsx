@@ -1,66 +1,88 @@
-import { createContext, useState } from "react";
-// FIX: Import types separately or using the 'type' keyword
+import { createContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import { decryptToken } from "../api/authService";
 
-import type { UserRole } from "@/config/roles";
-
-// 1. Define the User Shape
-export interface User {
-  id?: string;
-  name: string;
-  email: string;
-  role: UserRole;
+export interface UserPermission {
+    feature: string;
+    access_type: string;
 }
 
-// 2. Define the Context Shape
+export interface User {
+  user_id: number;
+  full_name: string;
+  email: string;
+  role: string;
+  subscription_plan: string;
+  permissions: UserPermission[];
+  iat: number;
+  exp: number;
+}
+
 interface AuthContextType {
   isLoggedIn: boolean;
   token: string | null;
   user: User | null;
-  login: (token: string, user: User) => void;
+  isLoading: boolean;
+  login: (token: string) => void;
   logout: () => void;
-  setToken: (token: string) => void; // Added to match your legacy code requirement if needed
+  setToken: (token: string) => void;
 }
 
-// 3. Create Context
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 4. Create the Provider
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // Initialize from LocalStorage immediately (No useEffect needed)
   const [token, setTokenState] = useState<string | null>(() => 
     localStorage.getItem("token")
   );
   
-  const [user, setUser] = useState<User | null>(() => {
-    const savedUser = localStorage.getItem("user");
-    try {
-      return savedUser ? JSON.parse(savedUser) : null;
-    } catch {
-      return null;
-    }
-  });
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(!!token); // Initial loading if token exists
 
   const isLoggedIn = !!token;
 
-  // Wrapper to sync State + LocalStorage
-  const login = (newToken: string, newUser: User) => {
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (token) {
+        setIsLoading(true);
+        try {
+          const response = await decryptToken();
+          if (response && response.isSuccess && response.data) {
+            setUser(response.data);
+          } else {
+            console.error("Token decryption failed or invalid response", response);
+            logout(); 
+          }
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+          logout();
+        } finally {
+            setIsLoading(false);
+        }
+      } else {
+        setUser(null);
+        setIsLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [token]);
+
+  const login = (newToken: string) => {
+    setIsLoading(true); // Prevent UI flash before effect runs
     localStorage.setItem("token", newToken);
-    localStorage.setItem("user", JSON.stringify(newUser));
     setTokenState(newToken);
-    setUser(newUser);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
     setTokenState(null);
     setUser(null);
+    setIsLoading(false);
   };
 
-  // Compatibility wrapper if you have old code calling setToken directly
   const setToken = (newToken: string) => {
     if (newToken) {
+      setIsLoading(true); // Prevent UI flash before effect runs
       localStorage.setItem("token", newToken);
       setTokenState(newToken);
     } else {
@@ -74,6 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoggedIn,
         token,
         user,
+        isLoading,
         login,
         logout,
         setToken,

@@ -8,9 +8,10 @@ import type {
   VerifyLoginResponse,
 } from "../types/login";
 import type {RegisterInstitutePayload,
-  RegisterInstituteResponse} from "../types/instituteRegistration";
+  RegisterInstituteResponse} from "../types/InstituteRegistration";
 import type {  RegisterIndividualPayload,
-  RegisterIndividualResponse} from "../types/individualRegistration";
+  RegisterIndividualResponse} from "../types/IndividualRegistration";
+import type { DecryptTokenResponse } from "../types/login";
 
 
 
@@ -66,3 +67,16 @@ export const registerInstitute = async (data: RegisterInstitutePayload): Promise
 
   return response;
 };
+
+export const decryptToken = async (): Promise<DecryptTokenResponse> => {
+    const response = await axiosApi<DecryptTokenResponse>(API_ENDPOINTS.AUTH.DECRYPT_TOKEN, {
+      method: "POST", 
+      data: { token: localStorage.getItem("token") }
+    });
+  
+    if (!response) {
+      throw new Error("No response received from decrypt token.");
+    }
+  
+    return response;
+  };

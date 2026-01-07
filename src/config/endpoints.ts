@@ -8,6 +8,7 @@ export const API_ENDPOINTS = {
     INITIATE_LOGIN: `${BASE_URL}/auth/login/initiate`,
     VERIFY_LOGIN: `${BASE_URL}/auth/login/verify`,
     REGISTER_INDIVIDUAL: `${BASE_URL}/auth/register`,
+    DECRYPT_TOKEN: `${BASE_URL}/auth/decrypt_token`,
   },
   INSTITUTE: {
     REGISTER: `${BASE_URL}/institute/register`,

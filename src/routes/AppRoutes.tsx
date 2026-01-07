@@ -45,14 +45,22 @@ const AddChild = lazy(
 
 //ROUTE GUARDS
 const PrivateRoute = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return <PageLoader />;
+  }
+  
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 const PublicRoute = () => {
-  const { isLoggedIn } = useAuth();
-  // Safe access to localStorage with a fallback
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { isLoggedIn, user, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return <PageLoader />;
+  }
+
   const role = (user?.role || "teacher").toLowerCase();
 
   return !isLoggedIn ? (
