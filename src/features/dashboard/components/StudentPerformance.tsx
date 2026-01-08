@@ -14,7 +14,7 @@ const StudentPerformance = () => {
   const { theme } = useTheme();
   return (
     <div className="flex flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}>
+      style={{ backgroundColor: theme.colors.bg.default }}>
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="flex">

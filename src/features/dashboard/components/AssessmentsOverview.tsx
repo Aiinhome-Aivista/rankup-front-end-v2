@@ -39,7 +39,7 @@ const AssessmentsOverview = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-1 flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}>
+      style={{ backgroundColor: theme.colors.bg.default }}>
       <h3 className="mb-6 text-sm font-bold"
         style={{ color: theme.colors.text.default }}>
         Assessments Overview

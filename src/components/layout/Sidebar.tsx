@@ -11,8 +11,8 @@ interface SidebarProps {
 
 // --- COMPONENT ---
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
-  const navigate = useNavigate;
-  const { logout } = useAuth;
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [activeItem, setActiveItem] = useState("dashboard");
 
   const toggleSidebar = () => {
@@ -127,10 +127,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <div className="p-4 mt-auto border-t border-white">
               <button
                 onClick={handleLogout}
-                className="w-12 h-12 flex items-center justify-center rounded-2xl text-white hover:bg-[#D9D9D9] border border-[#514CF1] transition-colors shadow-sm cursor-pointer bg-[#514CF133]"
+                className="group w-12 hover:w-32 h-12 flex items-center justify-center rounded-2xl text-white hover:bg-[#D9D9D9] hover:text-[#514CF1] border border-[#514CF1] transition-all duration-300 shadow-sm cursor-pointer bg-[#514CF133] overflow-hidden"
               >
                 <span className="material-symbols-outlined text-[24px]">
                   logout
+                </span>
+                <span className="max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 ml-0 group-hover:ml-2 font-semibold whitespace-nowrap">
+                  Logout
                 </span>
               </button>
             </div>

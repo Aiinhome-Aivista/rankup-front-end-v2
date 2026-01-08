@@ -28,7 +28,7 @@ function AddChild() {
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-6 items-start">
           <AssessmentInformation />
-          <div className="w-full lg:w-[480px] shrink-0">
+          <div className="w-full lg:w-120 shrink-0">
             <ImportantInstructions />
           </div>
         </div>

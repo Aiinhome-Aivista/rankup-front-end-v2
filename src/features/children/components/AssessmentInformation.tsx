@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Calendar as CalendarIcon, Info } from 'lucide-react';
 import type { ChildFormData } from '../types/assessmentInformation';
 import { Calendar } from '@rankup/shared-ui';
+import { addChild } from '../api/childrenService';
+import type { AddChildPayload } from '../types/addChild';
+import { useToast } from '@/shared/context/ToastContext';
 
 const AssessmentInformation = () => {
     // Get current date in YYYY-MM-DD format
@@ -30,6 +33,8 @@ const AssessmentInformation = () => {
 
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [activeCalendar, setActiveCalendar] = useState<'enrolmentDate' | 'dateOfBirth' | null>(null);
+    const [loading, setLoading] = useState(false);
+    const { showToast } = useToast();
 
     const handleDateSelect = (date: Date, field: 'enrolmentDate' | 'dateOfBirth') => {
         const year = date.getFullYear();
@@ -90,11 +95,61 @@ const AssessmentInformation = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const convertDateToPayloadFormat = (dateString: string) => {
+        // Input: DD-MM-YYYY, Output: YYYY-MM-DD
+        const [day, month, year] = dateString.split('-');
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
         if (validate()) {
-            console.log('Form validated successfully', formData);
-            // Handle submission here
+            setLoading(true);
+            try {
+                // Map frontend data to backend payload
+                const payload: AddChildPayload = {
+                    childName: formData.fullName,
+                    childEmail: formData.studentEmail,
+                    childPassword: formData.password,
+                    grade: parseInt(formData.classGrade),
+                    school: formData.schoolName || 'Default School',
+                    dob: convertDateToPayloadFormat(formData.dateOfBirth),
+                    enrollment_date: convertDateToPayloadFormat(formData.enrolmentDate),
+                    gender: formData.gender.charAt(0).toUpperCase() + formData.gender.slice(1),
+                    preferred_language: formData.preferredLanguage.charAt(0).toUpperCase() + formData.preferredLanguage.slice(1),
+                    emergency_contact_name: formData.emergencyContactName,
+                    emergency_contact_number: formData.emergencyContactNumber
+                };
+
+                const response = await addChild(payload);
+                if (response.isSuccess) {
+                    showToast('success', 'Success', response.message);
+                    console.log('Child added successfully:', response);
+                    setFormData({
+                        fullName: '',
+                        studentEmail: '',
+                        password: '',
+                        confirmPassword: '',
+                        enrolmentDate: checkCurrentDate(),
+                        dateOfBirth: '',
+                        gender: '',
+                        classGrade: '',
+                        preferredLanguage: '',
+                        schoolName: '',
+                        emergencyContactName: '',
+                        emergencyContactNumber: ''
+                    });
+                } else {
+                    showToast('error', 'Error', response.message || 'Failed to add child');
+                }
+
+            } catch (error: any) {
+                console.error("Error adding child:", error);
+                showToast('error', 'Error', error.message || 'An error occurred');
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
@@ -127,6 +182,8 @@ const AssessmentInformation = () => {
                 </svg>
                 <h3 className="font-bold text-md">Assessment Information</h3>
             </div>
+
+
 
             <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="w-full">
@@ -399,11 +456,15 @@ const AssessmentInformation = () => {
                     <button type="button" className="w-full py-3 rounded-lg text-[#514CF180] font-bold border border-[#514CF11A] hover:bg-gray-50 transition-colors text-sm cursor-pointer">
                         Cancel
                     </button>
-                    <button type="submit" className="w-full ml-4 py-3 rounded-lg bg-[#514CF1] text-white font-bold hover:bg-[#4a47d6] transition-colors flex items-center justify-center gap-2 text-sm cursor-pointer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C12.79 4 11 5.79 11 8C11 10.21 12.79 12 15 12ZM6 10V7H4V10H1V12H4V15H6V12H9V10H6ZM15 14C12.33 14 7 15.34 7 18V20H23V18C23 15.34 17.67 14 15 14Z" fill="currentColor" />
-                        </svg>
-                        Add Child
+                    <button type="submit" disabled={loading} className={`w-full ml-4 py-3 rounded-lg bg-[#514CF1] text-white font-bold hover:bg-[#4a47d6] transition-colors flex items-center justify-center gap-2 text-sm cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}>
+                        {loading ? 'Adding...' : (
+                            <>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C12.79 4 11 5.79 11 8C11 10.21 12.79 12 15 12ZM6 10V7H4V10H1V12H4V15H6V12H9V10H6ZM15 14C12.33 14 7 15.34 7 18V20H23V18C23 15.34 17.67 14 15 14Z" fill="currentColor" />
+                                </svg>
+                                Add Child
+                            </>
+                        )}
                     </button>
                 </div>
             </form>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Bell, ChevronRight, User, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,15 +13,18 @@ interface HeaderProps {
   setSidebarOpen: (arg: boolean) => void;
 }
 
+
 const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   const navigate = useNavigate();
-  const { logout } = useAuth(); // Use the hook instead of raw Context
+  const { user } = useAuth();
   const [isNotificationsExpanded, setIsNotificationsExpanded] = useState(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
 
-  // Get user role from storage
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
   const role = (user?.role || "").toLowerCase();
+
+
+
 
   const getButtonConfig = () => {
     switch (role) {
@@ -52,10 +55,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
   const buttonConfig = getButtonConfig();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+
 
   return (
     <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-white px-4 py-3 md:px-8">
@@ -151,14 +151,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-0 top-12 z-50 w-32 overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-lg"
+                className="absolute right-0 top-12 z-50 w-32 overflow-hidden rounded-xl"
               >
-                <div
-                  className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-red-500 transition-colors hover:bg-gray-50"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </div>
+
               </motion.div>
             )}
           </AnimatePresence>

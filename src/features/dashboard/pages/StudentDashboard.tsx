@@ -62,7 +62,7 @@ const StudentDashboard = () => {
               {/* Blank Middle Section (Spacer) */}
               <div
                 className="xl:col-span-3 xl:block min-h-25 rounded-3xl"
-                style={{ backgroundColor: theme.colors.bg.card }}
+                style={{ backgroundColor: theme.colors.bg.default }}
               ></div>
 
               <div className="rounded-3xl p-6 md:col-span-2 xl:col-span-6">

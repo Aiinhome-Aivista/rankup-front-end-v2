@@ -99,7 +99,7 @@ const AnnouncementSection = () => {
   return (
     <div
       className="h-full flex flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}
+      style={{ backgroundColor: theme.colors.bg.default }}
     >
       <h3 className="mb-6 text-sm font-bold"
         style={{ color: theme.colors.text.default }}>
