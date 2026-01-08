@@ -8,6 +8,7 @@ import {
 } from "recharts";
 
 import type { AverageData } from "../types/weeklyClassAverage";
+import { useTheme } from "@rankup/shared-ui";
 
 // --- Data ---
 const data: AverageData[] = [
@@ -20,8 +21,10 @@ const data: AverageData[] = [
 ];
 
 const WeeklyClassAverage = () => {
+  const { theme } = useTheme();
   return (
-    <div className="flex h-36 flex-col justify-between rounded-3xl bg-[#514CF105] p-4 text-[#514BF2] md:h-40 lg:h-44">
+    <div className="flex h-36 flex-col justify-between rounded-2xl p-4  md:h-40 lg:h-44"
+      style={{ backgroundColor: theme.colors.bg.card, color: theme.colors.text.default}}>
       <h3 className="text-sm font-bold">Weekly Class Average</h3>
 
       <div className="h-full w-full flex-1">

@@ -43,7 +43,7 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
 
   return (
     <div
-      className="group relative flex min-w-80 max-w-80 flex-col overflow-hidden rounded-3xl p-4 bg-linear-to-b from-[#F5F4FF] via-[#F8F7FF] to-[#EBE9FE]"
+      className="group relative flex min-w-80 max-w-80 flex-col overflow-hidden rounded-2xl p-4 bg-linear-to-b from-[#F5F4FF] via-[#F8F7FF] to-[#EBE9FE]"
     >
       {/* Top Right Wave Decoration */}
       <div className="absolute top-0 right-0 w-53 h-53 pointer-events-none">
@@ -98,8 +98,8 @@ const AnnouncementSection = () => {
   const { theme } = useTheme();
   return (
     <div
-      className="h-full flex flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.default }}
+      className="h-full flex flex-col rounded-2xl p-6"
+      style={{ backgroundColor: theme.colors.bg.card }}
     >
       <h3 className="mb-6 text-sm font-bold"
         style={{ color: theme.colors.text.default }}>

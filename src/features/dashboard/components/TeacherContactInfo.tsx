@@ -34,7 +34,7 @@ const TeacherContactInfo = () => {
                 {teachers.map((teacher: TeacherContact, idx) => (
                     <div
                         key={idx}
-                        className="min-w-75 flex-1 rounded-3xl p-4 flex items-center gap-4 relative"
+                        className="min-w-75 flex-1 rounded-2xl p-4 flex items-center gap-4 relative"
                         style={{ backgroundColor: theme.colors.bg.card }}
                     >
                         <img src={teacher.avatar} alt={teacher.name} className="w-12 h-12 rounded-full object-cover" />
