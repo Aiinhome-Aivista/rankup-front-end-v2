@@ -71,7 +71,7 @@ const GreetingSection = () => {
         {/* Text Area */}
         <div className="-translate-x-2 flex flex-col gap-1 text-start">
           <h2 className="text-lg font-bold text-[#A1AEF2B2]">
-            Hi, {user?.name || "Dr. Anna"}
+            Hi, {user?.full_name || "Dr. Anna"}
           </h2>
           <h1 className="text-5xl font-bold tracking-tight text-[#A1AEF2B2]">
             {getGreeting()}
