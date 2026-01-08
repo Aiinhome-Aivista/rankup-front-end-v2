@@ -18,7 +18,7 @@ const TeacherDashboard = () => {
       {/* Header logic is handled by parent (AppLayout), keeping this clean */}
 
       <div className="flex-1 overflow-y-auto pl-14 pr-8">
-        <div className="mx-auto flex max-w-400 flex-col gap-2">
+        <div className="mx-auto flex w-full flex-col gap-2">
 
           {/* 1. Greeting & Welcome */}
           <GreetingSection />
