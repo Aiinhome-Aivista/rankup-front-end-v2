@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/features/auth/hooks/useAuth"; // To get the real user name
 
 import type { GreetingStats } from "../types/greeting";
+import { useTheme } from "@rankup/shared-ui";
 
 // Asset Imports (Ensure these exist in src/assets)
 import yogaBg from "@/assets/yoga-bg.svg";
 import yoga from "@/assets/yoga.svg";
 
 const GreetingSection = () => {
+  const { theme } = useTheme();
   const { user } = useAuth(); // Get dynamic user data
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -69,11 +71,14 @@ const GreetingSection = () => {
         </div>
 
         {/* Text Area */}
-        <div className="-translate-x-2 flex flex-col gap-1 text-start">
-          <h2 className="text-lg font-bold text-[#A1AEF2B2]">
+        <div className="-translate-x-2 flex flex-col gap-1 text-start"
+         style={{ color: theme.colors.text.inverse }}>
+          <h2 className="text-lg font-bold"
+           style={{ color: theme.colors.text.inverse }}>
             Hi, {user?.full_name || "Dr. Anna"}
           </h2>
-          <h1 className="text-5xl font-bold tracking-tight text-[#A1AEF2B2]">
+          <h1 className="text-5xl font-bold tracking-tight"
+           style={{ color: theme.colors.text.inverse }}>
             {getGreeting()}
           </h1>
         </div>
@@ -82,24 +87,28 @@ const GreetingSection = () => {
       {/* --- Right: Date & Time & Stats --- */}
       <div className="flex items-center gap-2">
         {/* Time Widget */}
-        <div className="rounded-2xl bg-[#514CF105] px-2 py-1 text-start">
-          <p className="mb-0 text-lg font-medium text-[#A2AEF2]">
+        <div className="px-2 py-1 text-start">
+          <p className="mb-0 text-lg font-medium"
+          style={{ color: theme.colors.text.inverse }}>
             {formatDate(currentTime)}
           </p>
-          <p className="text-5xl font-bold leading-none text-[#A2AEF2]">
+          <p className="text-5xl font-bold leading-none"
+          style={{ color: theme.colors.text.inverse }}>
             {formatTime(currentTime)}
           </p>
         </div>
 
         {/* Mini Stats (Classes/Review) */}
         <div className="flex gap-8">
-          <div className="items-between flex flex-col gap-1 rounded-2xl bg-[#514CF105] px-4 py-1 text-center">
-            <p className="text-4xl font-bold text-[#514BF2]">{stats.classes.toString().padStart(2, '0')}</p>
-            <p className="text-sm font-medium text-[#514BF2]">Classes</p>
+          <div className="items-between flex flex-col gap-1 rounded-2xl px-4 py-1 text-center"
+          style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
+            <p className="text-4xl font-bold">{stats.classes.toString().padStart(2, '0')}</p>
+            <p className="text-sm font-medium">Classes</p>
           </div>
-          <div className="items-between flex flex-col gap-1 rounded-2xl bg-[#514CF105] px-4 py-1 text-center">
-            <p className="text-4xl font-bold text-[#514BF2]">{stats.reviews.toString().padStart(2, '0')}</p>
-            <p className="text-sm font-medium text-[#514BF2]">Review</p>
+          <div className="items-between flex flex-col gap-1 rounded-2xl px-4 py-1 text-center"
+          style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
+            <p className="text-4xl font-bold">{stats.reviews.toString().padStart(2, '0')}</p>
+            <p className="text-sm font-medium">Review</p>
           </div>
         </div>
       </div>

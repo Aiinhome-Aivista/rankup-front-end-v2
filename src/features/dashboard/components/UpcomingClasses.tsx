@@ -36,7 +36,7 @@ const UpcomingClasses = () => {
   };
 
   return (
-    <div className="relative flex h-36 w-full flex-col justify-between overflow-hidden rounded-3xl bg-[#514CF1] p-4 text-white md:h-40 lg:h-44">
+    <div className="relative flex h-36 w-full flex-col justify-between overflow-hidden rounded-2xl bg-[#514CF1] p-4 text-white md:h-40 lg:h-44">
       {/* Header */}
       <div className="z-10 flex items-center justify-between">
         <h3 className="text-sm font-bold">Upcoming Classes | Today</h3>

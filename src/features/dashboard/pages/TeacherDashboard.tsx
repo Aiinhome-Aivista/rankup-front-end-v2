@@ -14,7 +14,8 @@ import { useTheme } from "@rankup/shared-ui";
 const TeacherDashboard = () => {
   const { theme } = useTheme();
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col"
+ >
       {/* Header logic is handled by parent (AppLayout), keeping this clean */}
 
       <div className="flex-1 overflow-y-auto pl-14 pr-8">
@@ -43,8 +44,7 @@ const TeacherDashboard = () => {
             </div>
 
             {/* Bottom Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12">
-
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6">
               {/* Row 1: Student Performance, Assessments, Class Performance */}
               <div className="md:col-span-1 xl:col-span-3">
                 <StudentPerformance />
@@ -58,19 +58,27 @@ const TeacherDashboard = () => {
                 <ClassPerformance />
               </div>
 
-              {/* Row 2: Calendar, Blank, Announcement */}
-              <div className="flex-1 rounded-3xl p-1 md:col-span-1 xl:col-span-3">
+              {/* Row 2: Calendar (Spans 2 Rows for height), Rest of right side */}
+              <div className="md:col-span-1 xl:col-span-3 xl:row-span-2 flex h-full flex-col rounded-2xl"
+              >
                 <CalendarSection />
               </div>
 
-              {/* Blank Middle Section (Spacer) */}
-              <div className="xl:col-span-3 xl:block min-h-25 rounded-3xl"
-                style={{ backgroundColor: theme.colors.bg.card }}></div>
+              {/* Blank Card 1 (Vertical - Middle Gap) */}
+              <div
+                className="md:col-span-1 xl:col-span-4 h-full min-h-25 rounded-2xl"
+                style={{ backgroundColor: theme.colors.bg.card }}
+              ></div>
 
-              <div className="rounded-3xl p-6 md:col-span-2 xl:col-span-6">
+              <div className="md:col-span-1 xl:col-span-5 h-full">
                 <AnnouncementSection />
               </div>
 
+              {/* Blank Card 2 (Horizontal - Bottom Bar) */}
+              <div
+                className="md:col-span-2 xl:col-start-4 xl:col-span-9 h-full min-h-25 rounded-2xl"
+                style={{ backgroundColor: theme.colors.bg.card }}
+              ></div>
             </div>
           </div>
         </div>

@@ -38,7 +38,7 @@ const Updates = () => {
 
     return (
         <div
-            className="h-full flex flex-col rounded-3xl p-6"
+            className="h-full flex flex-col rounded-2xl p-6"
             style={{ backgroundColor: theme.colors.bg.card }}
         >
             <h3 className="mb-4 text-sm font-bold" style={{ color: theme.colors.text.default }}>

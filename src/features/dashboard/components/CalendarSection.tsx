@@ -2,7 +2,7 @@ import { Calendar } from "@rankup/shared-ui";
 
 const CalendarSection = () => {
   return (
-    <div className="flex h-full flex-col justify-center items-center">
+    <div className="flex h-full flex-col rounded-2xl">
       <Calendar />
     </div>
   );

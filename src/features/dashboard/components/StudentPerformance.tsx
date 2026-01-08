@@ -1,5 +1,5 @@
 import type { StudentPerformanceStats } from "../types/studentPerformance";
-import { Face, useTheme} from "@rankup/shared-ui";
+import { Face, useTheme } from "@rankup/shared-ui";
 
 
 
@@ -13,19 +13,19 @@ const stats: StudentPerformanceStats = {
 const StudentPerformance = () => {
   const { theme } = useTheme();
   return (
-    <div className="flex flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.default }}>
+    <div className="flex flex-col h-full rounded-2xl p-6"
+      style={{ backgroundColor: theme.colors.bg.card }}>
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="flex">
           <Face
             width={23}
             height={23}
-            
+
           />
         </div>
         <h3 className="text-sm font-bold"
-        style={{ color: theme.colors.text.default }}>
+          style={{ color: theme.colors.text.default }}>
           Student Performance
         </h3>
       </div>
@@ -39,7 +39,7 @@ const StudentPerformance = () => {
 
       {/* Details List */}
       <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-x-8 gap-y-6"
-      style={{ color: theme.colors.text.default }}>
+        style={{ color: theme.colors.text.default }}>
         <span className="text-sm font-bold">
           Strength
         </span>

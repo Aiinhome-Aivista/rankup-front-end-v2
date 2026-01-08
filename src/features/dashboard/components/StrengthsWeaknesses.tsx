@@ -1,6 +1,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 import type { RadialProgressProps, ChartData } from "../types/strengthsWeaknesses";
+import { useTheme } from "@rankup/shared-ui";
 
 // --- Helper Component ---
 const RadialProgress = ({
@@ -42,8 +43,10 @@ const RadialProgress = ({
 
 // --- Main Component ---
 const StrengthsWeaknesses = () => {
+  const { theme } = useTheme();
   return (
-    <div className="flex h-36 flex-col justify-between rounded-3xl bg-[#514CF105] p-4 text-[#514BF2] md:h-40 lg:h-44">
+    <div className="flex h-36 flex-col justify-between rounded-2xl p-4 md:h-40 lg:h-44"
+      style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
       <h3 className="text-sm font-bold">Strengths & Weaknesses Heatmap</h3>
 
       <div className="flex items-center justify-between px-6">
