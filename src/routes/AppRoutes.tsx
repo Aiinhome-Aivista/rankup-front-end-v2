@@ -37,6 +37,11 @@ const ParentDashboard = lazy(
   () => import("@/features/dashboard/pages/ParentDashboard")
 );
 
+// institute pages
+const InstituteDashboard = lazy(
+  () => import("@/features/dashboard/pages/InstituteDashboard")
+);
+
 const AddChild = lazy(
   () => import("@/features/children/pages/AddChild")
 );
@@ -104,6 +109,7 @@ const AppRoutes = () => {
             {/* Student Feature Routes */}
             <Route path="student">
               <Route path="dashboard" element={<StudentDashboard />} />
+              <Route path="institute-dashboard" element={<InstituteDashboard />} />
               <Route path="self-assessment" element={<SelfAssessment />} />
             </Route>
 
