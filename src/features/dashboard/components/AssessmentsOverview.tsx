@@ -1,5 +1,4 @@
 import { Eye, Edit2, Share2 } from "lucide-react";
-
 import type { Assessment, AssessmentStatus } from "../types/assessments";
 import { useTheme } from "@rankup/shared-ui";
 import { useNavigate } from "react-router-dom";
@@ -38,8 +37,8 @@ const AssessmentsOverview = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   return (
-    <div className="flex flex-1 flex-col rounded-3xl p-6"
-      style={{ backgroundColor: theme.colors.bg.default }}>
+    <div className="flex h-full flex-col rounded-2xl p-6"
+      style={{ backgroundColor: theme.colors.bg.card }}>
       <h3 className="mb-6 text-sm font-bold"
         style={{ color: theme.colors.text.default }}>
         Assessments Overview
@@ -57,7 +56,7 @@ const AssessmentsOverview = () => {
               <th className="pb-4 text-right font-medium">Action</th>
             </tr>
           </thead>
-          <tbody className="text-sm font-medium"
+          <tbody className="text-sm font-medium rounded-2xl"
             style={{ color: theme.colors.text.default }}>
             {assessments.map((item, index) => (
               <tr

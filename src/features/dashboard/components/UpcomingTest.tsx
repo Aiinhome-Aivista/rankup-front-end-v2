@@ -1,8 +1,11 @@
 import { ArrowRight } from "lucide-react";
+import { useTheme } from "@rankup/shared-ui";
 
 const UpcomingTest = () => {
+  const { theme } = useTheme();
   return (
-    <div className="flex h-36 flex-col justify-between rounded-2xl bg-[#514CF105] p-4 text-[#514BF2] md:h-40 lg:h-44">
+    <div className="flex h-36 flex-col justify-between rounded-2xl p-4 md:h-40 lg:h-44"
+      style={{ color: theme.colors.text.default, backgroundColor: theme.colors.bg.card}}>
       {/* Main Count */}
       <div className="flex flex-1 flex-col items-center justify-center">
         <span className="mb-2 text-4xl font-bold">03</span>

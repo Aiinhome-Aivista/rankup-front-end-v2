@@ -49,17 +49,17 @@ const ManageChildren = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="h-full flex flex-col rounded-3xl p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div className="h-full flex flex-col rounded-2xl">
+      <div className="flex justify-between items-center mb-4 px-6">
         <h3 className="text-sm font-bold" style={{ color: theme.colors.text.default }}>
           My Children
         </h3>
       </div>
-      <div className="flex flex-col gap-6 flex-1 overflow-y-auto pr-2 scrollbar-hide min-h-0">
+      <div className="flex flex-col gap-6 flex-1 overflow-y-auto scrollbar-hide min-h-0">
         {childrenData.map((child: Child) => (
           <div
             key={child.id}
-            className="rounded-3xl p-6 relative overflow-hidden shrink-0"
+            className="rounded-2xl p-6 relative overflow-hidden shrink-0"
             style={{
               backgroundColor: theme.colors.bg.card,
               boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.02)"

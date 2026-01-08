@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, Bell, ChevronRight, User, Menu } from "lucide-react";
+import { Plus, Bell, ChevronRight, User, Menu, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import IconButton from "@/components/ui/IconButton";
+import { useTheme } from "@rankup/shared-ui";
 
 // Define the props required by AppLayout
 interface HeaderProps {
@@ -15,11 +16,19 @@ interface HeaderProps {
 
 
 const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
+  const { theme, mode, setMode } = useTheme();
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isNotificationsExpanded, setIsNotificationsExpanded] = useState(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
 
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("theme-mode");
+    if (savedMode && savedMode !== mode) {
+      setMode(savedMode as "light" | "dark");
+    }
+  }, []);
 
   const role = (user?.role || "").toLowerCase();
 
@@ -55,10 +64,15 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
   const buttonConfig = getButtonConfig();
 
-
+  const toggleTheme = () => {
+    const newMode = mode === "light" ? "dark" : "light";
+    setMode(newMode);
+    localStorage.setItem("theme-mode", newMode);
+  };
 
   return (
-    <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-white px-4 py-3 md:px-8">
+    <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between px-4 py-3 md:px-8"
+      style={{ backgroundColor: theme.colors.bg.default }}>
       {/* --- LEFT SECTION: Hamburger (Mobile) + Logo --- */}
       <div className="flex items-center gap-4">
         {/* Hamburger Menu (Visible on Mobile Only) */}
@@ -95,6 +109,21 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
           </Button>
         )}
 
+        {/* Theme Toggle Button */}
+        <div
+          onClick={toggleTheme}
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full 
+          bg-[#D9D9D9] transition-colors hover:bg-gray-200"
+          title={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
+        >
+          {mode === "light" ? (
+            <Sun size={20} className="text-red-500" />
+          ) : (
+            <Moon size={20} className="text-slate-950" fill="currentColor" />
+
+          )}
+        </div>
+
         {/* Notifications */}
         <div
           className="flex h-12 cursor-pointer items-center gap-3 rounded-full bg-[#D9D9D9] px-4 py-3 transition-colors hover:bg-gray-300"
@@ -128,9 +157,8 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
 
           <ChevronRight
             size={18}
-            className={`text-gray-500 transition-transform duration-300 ${
-              isNotificationsExpanded ? "rotate-180" : ""
-            }`}
+            className={`text-gray-500 transition-transform duration-300 ${isNotificationsExpanded ? "rotate-180" : ""
+              }`}
           />
         </div>
 
