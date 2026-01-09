@@ -197,7 +197,7 @@ const InstituteDashboard = () => {
       <InstituteStats />
 
       {/* Charts Section - Two Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 mb-6">
         <StudentPerformanceChart />
         <ClassPerformanceChart />
       </div>
