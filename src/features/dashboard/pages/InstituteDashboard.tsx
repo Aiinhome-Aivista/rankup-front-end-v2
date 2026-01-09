@@ -13,6 +13,7 @@ import { Dropdown } from "primereact/dropdown";
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import restartIcon from "@/assets/icons/restart_alt.svg";
+import TeacherInfo from "../components/TeacherInfo";
 
 const InstituteDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -206,12 +207,15 @@ const InstituteDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <ClassroomUtilization />
 
-        <div className="space-y-6">
+        <div className="space-y-4 flex flex-col">
           <ParentEngagement />
           <FinancialSummary />
         </div>
 
-        <SchoolCalendarEvents />
+        <div className="space-y-6 flex flex-col">
+          <SchoolCalendarEvents />
+          <TeacherInfo />
+        </div>
       </div>
     </div>
   );
