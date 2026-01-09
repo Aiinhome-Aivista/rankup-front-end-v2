@@ -20,10 +20,8 @@ export const API_ENDPOINTS = {
   SUBJECTS: {
     GET_ALL: `${BASE_URL}/get_subjects/subjects`,
   },
-  CREATEASSESMENT: {
+  ASSESMENT: {
     CREATE_ASSESSMENT: `${BASE_URL}/assessment/create`,
   },
-  STUDENT: {
-    GET_BY_SUBJECT_AND_CLASS: `${BASE_URL}/get_students_by_class_sub/get_students_by_class_sub`,
-  }
+
 } as const;

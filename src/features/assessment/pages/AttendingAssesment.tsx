@@ -70,7 +70,7 @@ const AttendingAssesment = () => {
       <main className="flex-1 p-1 lg:p-1 pb-[100px] lg:pb-[80px]">
         <div className="flex flex-col lg:flex-row gap-3 h-full items-stretch px-8">
           {/* LEFT SIDEBAR: Topics & Materials */}
-          <aside className="w-full lg:w-[300px] bg-white rounded-[20px] px-6 py-3 shadow-sm border border-gray-100 lg:max-h-[527px] flex flex-col z-0">
+          <aside className="w-full lg:w-[300px] bg-white rounded-[20px] px-6 py-3 shadow-sm border border-gray-100 lg:min-h-[527px] flex flex-col z-0">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-8 bg-[#514CF11A] rounded-full flex items-center justify-center">
                 <span className="material-symbols-outlined text-[#514CF1] text-lg">
