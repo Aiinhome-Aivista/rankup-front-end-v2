@@ -14,7 +14,7 @@ const StudentPerformance = () => {
   const { theme } = useTheme();
   return (
     <div className="flex flex-col h-full rounded-2xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}>
+      style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="flex">
@@ -25,13 +25,13 @@ const StudentPerformance = () => {
           />
         </div>
         <h3 className="text-sm font-bold"
-          style={{ color: theme.colors.text.default }}>
+          style={{color: theme.colors.text.primary}}>
           Student Performance
         </h3>
       </div>
 
       {/* Big Score Stats */}
-      <div style={{ color: theme.colors.text.default }}>
+      <div style={{color: theme.colors.text.primary}}>
         <div className="text-xl font-light mt-3">{stats.averageScore}</div>
         <div className="text-sm font-bold">Average Score</div>
         <div className="text-xs">{stats.period}</div>
@@ -39,7 +39,7 @@ const StudentPerformance = () => {
 
       {/* Details List */}
       <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-x-8 gap-y-6"
-        style={{ color: theme.colors.text.default }}>
+        style={{color: theme.colors.text.primary}}>
         <span className="text-sm font-bold">
           Strength
         </span>

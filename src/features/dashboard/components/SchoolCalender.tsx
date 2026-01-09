@@ -29,9 +29,9 @@ const SchoolCalender = () => {
     return (
         <div
             className="h-full flex flex-col rounded-2xl p-6"
-            style={{ backgroundColor: theme.colors.bg.card }}
+            style={{ backgroundColor: theme.colors.bg.surface.primary }}
         >
-            <h3 className="mb-4 text-sm font-bold" style={{ color: theme.colors.text.default }}>
+            <h3 className="mb-4 text-sm font-bold" style={{color: theme.colors.text.primary}}>
                 School Calender
             </h3>
             <div className="flex-1 flex flex-col gap-6">
@@ -42,7 +42,7 @@ const SchoolCalender = () => {
                             <span className="text-xs font-normal text-[#514BF2] leading-none">{event.month}</span>
                         </div>
                         <div>
-                            <h4 className="text-sm font-medium" style={{ color: theme.colors.text.default }}>{event.title}</h4>
+                            <h4 className="text-sm font-medium" style={{color: theme.colors.text.primary}}>{event.title}</h4>
                             <p className="text-xs font-normal" style={{ color: theme.colors.text.sidebaricontext }}>{event.desc}</p>
                         </div>
                     </div>

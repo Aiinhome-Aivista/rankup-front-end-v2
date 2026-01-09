@@ -16,12 +16,12 @@ const ReviewHeader: React.FC<ReviewHeaderProps> = ({ className, onSearch, onFilt
                     className="p-1 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
                     aria-label="Go back"
                 >
-                    <ArrowLeft className="w-6 h-6" style={{ color: theme.colors.text.default }} />
+                    <ArrowLeft className="w-6 h-6" style={{color: theme.colors.text.primary}} />
                 </button>
 
                 <div>
                     <h1 className="text-xl font-bold"
-                        style={{ color: theme.colors.text.default }}>Review Submissions</h1>
+                        style={{color: theme.colors.text.primary}}>Review Submissions</h1>
                     <p className="text-sm font-normal"
                         style={{ color: theme.colors.text.primary }}>Due Oct 12 | 24 Students</p>
                 </div>

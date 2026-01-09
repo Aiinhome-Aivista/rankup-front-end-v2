@@ -67,7 +67,7 @@ const TeacherDashboard = () => {
               {/* Blank Card 1 (Vertical - Middle Gap) */}
               <div
                 className="md:col-span-1 xl:col-span-4 h-full min-h-25 rounded-2xl"
-                style={{ backgroundColor: theme.colors.bg.card }}
+                style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
 
               <div className="md:col-span-1 xl:col-span-5 h-full">
@@ -77,7 +77,7 @@ const TeacherDashboard = () => {
               {/* Blank Card 2 (Horizontal - Bottom Bar) */}
               <div
                 className="md:col-span-2 xl:col-start-4 xl:col-span-9 h-full min-h-25 rounded-2xl"
-                style={{ backgroundColor: theme.colors.bg.card }}
+                style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
             </div>
           </div>

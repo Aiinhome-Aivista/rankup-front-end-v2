@@ -27,7 +27,7 @@ const TeacherContactInfo = () => {
     const { theme } = useTheme();
     return (
         <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold" style={{ color: theme.colors.text.default }}>
+            <h3 className="text-sm font-bold" style={{color: theme.colors.text.primary}}>
                 Teacher Contact Information
             </h3>
             <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
@@ -35,11 +35,11 @@ const TeacherContactInfo = () => {
                     <div
                         key={idx}
                         className="min-w-75 flex-1 rounded-2xl p-4 flex items-center gap-4 relative"
-                        style={{ backgroundColor: theme.colors.bg.card }}
+                        style={{ backgroundColor: theme.colors.bg.surface.primary }}
                     >
                         <img src={teacher.avatar} alt={teacher.name} className="w-12 h-12 rounded-full object-cover" />
                         <div>
-                            <h4 className="text-base font-bold" style={{ color: theme.colors.text.default }}>{teacher.name}</h4>
+                            <h4 className="text-base font-bold" style={{color: theme.colors.text.primary}}>{teacher.name}</h4>
                             <p className="text-sm text-[#514BF2] mb-1 font-medium">{teacher.role}</p>
                             <div className="w-6 h-6 rounded bg-[#514BF2] flex items-center justify-center cursor-pointer hover:opacity-90">
                                 <Mail size={12} className="text-white" />

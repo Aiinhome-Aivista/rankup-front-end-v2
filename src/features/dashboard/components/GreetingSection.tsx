@@ -101,12 +101,12 @@ const GreetingSection = () => {
         {/* Mini Stats (Classes/Review) */}
         <div className="flex gap-8">
           <div className="items-between flex flex-col gap-1 rounded-2xl px-4 py-1 text-center"
-          style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
+          style={{ backgroundColor: theme.colors.bg.surface.primary , color: theme.colors.text.primary}}>
             <p className="text-4xl font-bold">{stats.classes.toString().padStart(2, '0')}</p>
             <p className="text-sm font-medium">Classes</p>
           </div>
           <div className="items-between flex flex-col gap-1 rounded-2xl px-4 py-1 text-center"
-          style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
+          style={{ backgroundColor: theme.colors.bg.surface.primary , color: theme.colors.text.primary}}>
             <p className="text-4xl font-bold">{stats.reviews.toString().padStart(2, '0')}</p>
             <p className="text-sm font-medium">Review</p>
           </div>

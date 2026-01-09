@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import {
   TabView,
@@ -8,6 +8,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
+import { getAllSubjects } from "../api/subjectService";
+import { assignAssessment } from "../api/assesmentService";
+import { getStudentsByClassAndSubject } from "../api/studentService";
+import { format } from "date-fns";
+import type { AssignAssessmentRequest } from "../types/AssessmentServiceTypes";
+import type { Student } from "../types/StudentTypes";
+
 // --- Child Components ---
 // Ensure these exist in features/assessment/components/ui/
 import AssessmentInformation from "../components/AssessmentInformation";
@@ -15,6 +22,7 @@ import QuestionWorkspace from "../components/QuestionWorkspace";
 import ScheduleDuration from "../components/ScheduleDuration";
 import TestSettings from "../components/TestSettings";
 import NeedInspiration from "../components/NeedInspiration";
+import { useToast } from '@/shared/context/ToastContext';
 
 import type {
   ClassOption,
@@ -23,6 +31,8 @@ import type {
 
 const CreateAssesment = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
 
@@ -32,7 +42,7 @@ const CreateAssesment = () => {
   const [selectedSubject, setSelectedSubject] = useState<SubjectOption | null>(
     null
   );
-  const [instructions, setInstructions] = useState<string>("");
+  const [instructions, setInstructions] = useState("");
 
   // --- Date/Time State ---
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -45,6 +55,11 @@ const CreateAssesment = () => {
   const [randomize, setRandomize] = useState<boolean>(true);
   const [antiCheat, setAntiCheat] = useState<boolean>(true);
   const [attempts, setAttempts] = useState<number>(1);
+  const [assignType, setAssignType] = useState<'all' | 'specific'>('specific');
+  const [studentIds, setStudentIds] = useState<number[]>([]);
+  const [studentList, setStudentList] = useState<Student[]>([]);
+
+
 
   // --- AI / Question State ---
   const [aiTopic, setAiTopic] = useState<string>("");
@@ -53,13 +68,145 @@ const CreateAssesment = () => {
 
   // --- Mock Data ---
   const classes: ClassOption[] = [
-    { name: "Class 10 A", code: "10A" },
-    { name: "Class 10 B", code: "10B" },
+    { name: "Class 1" },
+    { name: "Class 2" },
+    { name: "Class 3" },
+    { name: "Class 4" },
+    { name: "Class 5" },
+    { name: "Class 6" },
+    { name: "Class 7" },
+    { name: "Class 8" },
+    { name: "Class 9" },
+    { name: "Class 10" },
   ];
-  const subjects: SubjectOption[] = [
-    { name: "Physics", code: "PHY" },
-    { name: "Maths", code: "MAT" },
-  ];
+  const [subjects, setSubjects] = useState<SubjectOption[]>([]);
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const data = await getAllSubjects();
+        setSubjects(data);
+      } catch (error) {
+        // Error is logged in the service
+      }
+    };
+    fetchSubjects();
+  }, []);
+
+  // Fetch Students when Class or Subject changes
+  useEffect(() => {
+    const fetchStudents = async () => {
+      setStudentIds([]); // Reset selection on change
+      if (selectedClass && selectedSubject) {
+        // Parse Class Grade
+        const classGradeStr = selectedClass.name.replace(/\D/g, "");
+        const classGrade = classGradeStr ? parseInt(classGradeStr, 10) : 0;
+
+        if (classGrade > 0 && selectedSubject.id) {
+          const students = await getStudentsByClassAndSubject(selectedSubject.id, classGrade);
+          setStudentList(students);
+        }
+      } else {
+        setStudentList([]);
+      }
+    };
+    fetchStudents();
+  }, [selectedClass, selectedSubject]);
+
+  const handlePublish = async () => {
+    if (!selectedClass || !selectedSubject || !startDate || !endDate) {
+      showToast('warn', 'Missing Fields', 'Please fill in all required fields (Class, Subject, Start/End Date).');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // 1. Parse Class Grade
+      // Assuming class name format "Class 5" -> 5. Fallback to 0 if parsing fails.
+      const classGradeStr = selectedClass.name.replace(/\D/g, "");
+      const classGrade = classGradeStr ? parseInt(classGradeStr, 10) : 0;
+
+      // 2. Format Dates
+      // Combine Date and Time if needed, or just use the date object if it has time.
+      // The current state splits date and time. We should merge them.
+      const startDateTime = new Date(startDate);
+      if (startTime) {
+        startDateTime.setHours(startTime.getHours());
+        startDateTime.setMinutes(startTime.getMinutes());
+      }
+      const formattedStartDate = format(startDateTime, "yyyy-MM-dd HH:mm:ss");
+
+      const endDateTime = new Date(endDate);
+      if (endTime) {
+        endDateTime.setHours(endTime.getHours());
+        endDateTime.setMinutes(endTime.getMinutes());
+      }
+      const formattedEndDate = format(endDateTime, "yyyy-MM-dd HH:mm:ss");
+
+      // 3. Map Difficulty
+      let difficultyStr: 'easy' | 'medium' | 'hard' = 'medium';
+      if (difficulty <= 30) difficultyStr = 'easy';
+      if (difficulty >= 70) difficultyStr = 'hard';
+
+      // 4. Determine Topic ID (Default to "all" if not selected)
+      const topicId = "all";
+
+      const payload: AssignAssessmentRequest = {
+        subjectId: selectedSubject.id,
+        classGrade: classGrade,
+        testTitle: title,
+        instructions: instructions,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        durationLimit: duration,
+        randomizeQuestions: randomize ? 1 : 0,
+        antiCheatMode: antiCheat ? 1 : 0,
+        allowedAttempts: attempts,
+        difficulty: difficultyStr,
+        questionCount: numQuestions,
+        status: "published",
+        assignType: assignType,
+        studentIds: assignType === 'specific' ? studentIds : [],
+        topicId: topicId
+      };
+
+      const response = await assignAssessment(payload);
+
+      if (response.isSuccess) {
+        showToast('success', 'Success', response.message);
+
+        // Reset Form
+        setTitle("");
+        setSelectedClass(null);
+        setSelectedSubject(null);
+        setInstructions("");
+        setStartDate(null);
+        setStartTime(null);
+        setEndDate(null);
+        setEndTime(null);
+        setDuration(60);
+        setRandomize(true);
+        setAntiCheat(true);
+        setAttempts(1);
+        setAssignType('specific');
+        setStudentIds([]);
+        setAiTopic("");
+        setDifficulty(50);
+        setNumQuestions(5);
+        setActiveIndex(0);
+
+      } else {
+        showToast('error', 'Error', "Failed to publish assessment: " + response.message);
+      }
+
+    } catch (error: any) {
+      console.error("Publish error:", error);
+      showToast('error', 'Error', "An error occurred while publishing.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const header = (
     <div className="mb-8 flex items-center justify-between">
@@ -70,14 +217,14 @@ const CreateAssesment = () => {
         >
           <ArrowLeft className="h-6 w-6 text-[#514CF1] cursor-pointer" />
         </button>
-     <div>
-         <h1 className="text-xl font-bold text-[#514CF1]">
-          Create New Assessment
-        </h1>
-        <p className="text-sm text-[#A1AEF2]">
-          Configure details, build questions, and publish your test.
-        </p>
-     </div>
+        <div>
+          <h1 className="text-xl font-bold text-[#514CF1]">
+            Create New Assessment
+          </h1>
+          <p className="text-sm text-[#A1AEF2]">
+            Configure details, build questions, and publish your test.
+          </p>
+        </div>
       </div>
       <div className="flex gap-3">
         <Button
@@ -90,6 +237,8 @@ const CreateAssesment = () => {
           label="Publish"
           className="border-none bg-[#514CF1] hover:bg-[#403BC0]"
           rounded
+          loading={isLoading}
+          onClick={handlePublish}
         />
       </div>
     </div>
@@ -97,7 +246,7 @@ const CreateAssesment = () => {
 
   return (
     <div className="flex h-screen flex-col bg-[#F8F9FA]">
-      <div className="flex-1 overflow-y-auto bg-white p-8 font-sans">
+      <div className="flex-1 overflow-y-auto bg-white pl-14 pr-8">
         {header}
 
         <div className="card">
@@ -135,6 +284,12 @@ const CreateAssesment = () => {
                     setInstructions={setInstructions}
                     classes={classes}
                     subjects={subjects}
+
+                    assignType={assignType}
+                    setAssignType={setAssignType}
+                    studentList={studentList}
+                    studentIds={studentIds}
+                    setStudentIds={setStudentIds}
                   />
 
                   <QuestionWorkspace

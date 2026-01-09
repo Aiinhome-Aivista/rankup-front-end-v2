@@ -38,9 +38,9 @@ const AssessmentsOverview = () => {
   const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col rounded-2xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}>
+      style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       <h3 className="mb-6 text-sm font-bold"
-        style={{ color: theme.colors.text.default }}>
+        style={{color: theme.colors.text.primary}}>
         Assessments Overview
       </h3>
 
@@ -48,7 +48,7 @@ const AssessmentsOverview = () => {
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="text-sm font-medium uppercase tracking-wider"
-              style={{ color: theme.colors.text.default }}>
+              style={{color: theme.colors.text.primary}}>
               <th className="pb-4 font-medium">Aessesment title</th>
               <th className="pb-4 font-medium">Class</th>
               <th className="pb-4 font-medium">Status</th>
@@ -57,7 +57,7 @@ const AssessmentsOverview = () => {
             </tr>
           </thead>
           <tbody className="text-sm font-medium rounded-2xl"
-            style={{ color: theme.colors.text.default }}>
+            style={{color: theme.colors.text.primary}}>
             {assessments.map((item, index) => (
               <tr
                 key={index}
