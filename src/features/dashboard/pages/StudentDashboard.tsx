@@ -4,7 +4,7 @@ import WeeklyClassAverage from "../components/WeeklyClassAverage";
 import StrengthsWeaknesses from "../components/StrengthsWeaknesses";
 import UpcomingTest from "../components/UpcomingTest";
 import StudentPerformance from "../components/StudentPerformance";
-import AssessmentsOverview from "../components/AssessmentsOverview";
+import AssessmentsOverview_Student from "../components/AssessmentsOverview_Student";
 import ClassPerformance from "../components/ClassPerformance";
 import CalendarSection from "../components/CalendarSection";
 import AnnouncementSection from "../components/AnnouncementSection";
@@ -47,7 +47,7 @@ const StudentDashboard = () => {
               </div>
 
               <div className="md:col-span-2 xl:col-span-6">
-                <AssessmentsOverview />
+                <AssessmentsOverview_Student />
               </div>
 
               <div className="md:col-span-1 xl:col-span-3">
