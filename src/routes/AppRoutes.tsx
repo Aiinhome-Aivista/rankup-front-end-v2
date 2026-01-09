@@ -4,7 +4,6 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 import AppLayout from "@/components/layout/AppLayout";
 import PageLoader from "@/components/feedback/PageLoader";
 
-
 // Common Pages
 const Homepage = lazy(() => import("@/features/common/pages/Homepage"));
 const Login = lazy(() => import("@/features/auth/pages/Login"));
@@ -42,26 +41,22 @@ const InstituteDashboard = lazy(
   () => import("@/features/dashboard/pages/InstituteDashboard")
 );
 
-const AddChild = lazy(
-  () => import("@/features/children/pages/AddChild")
-);
-
-
+const AddChild = lazy(() => import("@/features/children/pages/AddChild"));
 
 //ROUTE GUARDS
 const PrivateRoute = () => {
   const { isLoggedIn, isLoading } = useAuth();
-  
+
   if (isLoading) {
     return <PageLoader />;
   }
-  
+
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 const PublicRoute = () => {
   const { isLoggedIn, user, isLoading } = useAuth();
-  
+
   if (isLoading) {
     return <PageLoader />;
   }
@@ -109,7 +104,6 @@ const AppRoutes = () => {
             {/* Student Feature Routes */}
             <Route path="student">
               <Route path="dashboard" element={<StudentDashboard />} />
-              <Route path="institute-dashboard" element={<InstituteDashboard />} />
               <Route path="self-assessment" element={<SelfAssessment />} />
             </Route>
 
@@ -119,6 +113,10 @@ const AppRoutes = () => {
               <Route path="dashboard/add-child" element={<AddChild />} />
             </Route>
 
+            {/* Institute Feature Routes */}
+            <Route path="Admin">
+              <Route path="dashboard" element={<InstituteDashboard />} />
+            </Route>
 
             {/* Dynamic Route Placeholder (Phase 3 Requirement) */}
             {/* <Route path="course/:courseId" element={<CourseDetail />} /> */}
@@ -130,7 +128,6 @@ const AppRoutes = () => {
             element={<AttendingAssesment />}
           />
         </Route>
-
 
         {/* --- 404 CATCH-ALL --- */}
         <Route path="*" element={<Navigate to="/" replace />} />
