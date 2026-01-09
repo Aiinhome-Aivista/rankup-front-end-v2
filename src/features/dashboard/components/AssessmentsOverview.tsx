@@ -37,7 +37,7 @@ const AssessmentsOverview = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   return (
-    <div className="flex h-full flex-col rounded-2xl p-6"
+    <div className="flex w-[600px] h-auto flex-col rounded-2xl p-4 md:h-58"
       style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       <h3 className="mb-6 text-sm font-bold"
         style={{color: theme.colors.text.primary}}>
@@ -49,11 +49,11 @@ const AssessmentsOverview = () => {
           <thead>
             <tr className="text-sm font-medium uppercase tracking-wider"
               style={{color: theme.colors.text.primary}}>
-              <th className="pb-4 font-medium">Aessesment title</th>
-              <th className="pb-4 font-medium">Class</th>
-              <th className="pb-4 font-medium">Status</th>
-              <th className="pb-4 text-center font-medium">Attempts</th>
-              <th className="pb-4 text-right font-medium">Action</th>
+              <th className="pb-2 font-medium">Assessment title</th>
+              <th className="pb-2 font-medium">Class</th>
+              <th className="pb-2 font-medium">Status</th>
+              <th className="pb-2 text-center font-medium">Attempts</th>
+              <th className="pb-2 text-right font-medium">Action</th>
             </tr>
           </thead>
           <tbody className="text-sm font-medium rounded-2xl"
@@ -71,10 +71,10 @@ const AssessmentsOverview = () => {
                   {item.status}
 
                 </td>
-                <td className="py-4 text-center">
+                <td className="text-center">
                   {item.attempts}
                 </td>
-                <td className="flex justify-end py-4">
+                <td className="flex justify-end py-2">
                   <button className="rounded-lg p-1.5 transition-colors hover:bg-[#F3F4FF] cursor-pointer"
                   >
                     {item.action === "view" && <Eye size={16} onClick={() => navigate("/teacher/dashboard/review-assessment")} />}

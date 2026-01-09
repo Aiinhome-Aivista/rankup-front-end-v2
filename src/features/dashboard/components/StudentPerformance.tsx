@@ -13,7 +13,7 @@ const stats: StudentPerformanceStats = {
 const StudentPerformance = () => {
   const { theme } = useTheme();
   return (
-    <div className="flex flex-col h-full rounded-2xl p-6"
+    <div className="flex flex-col rounded-2xl w-full h-auto md:h-58 p-4"
       style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       {/* Header */}
       <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ const StudentPerformance = () => {
       </div>
 
       {/* Details List */}
-      <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-x-8 gap-y-6"
+      <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-4"
         style={{color: theme.colors.text.primary}}>
         <span className="text-sm font-bold">
           Strength

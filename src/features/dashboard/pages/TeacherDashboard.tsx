@@ -15,10 +15,10 @@ const TeacherDashboard = () => {
   const { theme } = useTheme();
   return (
     <div className="flex h-screen flex-col"
- >
+    >
       {/* Header logic is handled by parent (AppLayout), keeping this clean */}
 
-      <div className="flex-1 overflow-y-auto pl-14 pr-8">
+      <div className="flex-1 overflow-y-auto pl-8">
         <div className="mx-auto flex w-full flex-col gap-2">
 
           {/* 1. Greeting & Welcome */}
@@ -50,11 +50,11 @@ const TeacherDashboard = () => {
                 <StudentPerformance />
               </div>
 
-              <div className="md:col-span-2 xl:col-span-6">
+              <div className="md:col-span-2 xl:col-span-5">
                 <AssessmentsOverview />
               </div>
 
-              <div className="md:col-span-1 xl:col-span-3">
+              <div className="md:col-span-1 xl:col-span-4">
                 <ClassPerformance />
               </div>
 
@@ -66,11 +66,11 @@ const TeacherDashboard = () => {
 
               {/* Blank Card 1 (Vertical - Middle Gap) */}
               <div
-                className="md:col-span-1 xl:col-span-4 h-full min-h-25 rounded-2xl"
+                className="md:col-span-1 xl:col-span-5 h-full min-h-25 rounded-2xl"
                 style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
 
-              <div className="md:col-span-1 xl:col-span-5 h-full">
+              <div className="md:col-span-1 xl:col-span-4 h-full">
                 <AnnouncementSection />
               </div>
 

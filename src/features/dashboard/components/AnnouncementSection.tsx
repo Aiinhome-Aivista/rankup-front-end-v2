@@ -98,7 +98,7 @@ const AnnouncementSection = () => {
   const { theme } = useTheme();
   return (
     <div
-      className="h-full flex flex-col rounded-2xl p-6"
+      className="h-full flex flex-col rounded-2xl p-4"
       style={{ backgroundColor: theme.colors.bg.surface.primary }}
     >
       <h3 className="mb-6 text-sm font-bold"

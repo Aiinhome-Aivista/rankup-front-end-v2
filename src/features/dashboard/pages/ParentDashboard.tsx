@@ -18,7 +18,7 @@ const ParentDashboard = () => {
      >
       {/* Header logic is handled by parent (AppLayout) */}
 
-      <div className="flex-1 overflow-y-auto pl-14 pr-8">
+      <div className="flex-1 overflow-y-auto pl-8">
         <div className="mx-auto flex w-full flex-col gap-2">
 
           {/* 1. Greeting & Welcome */}
