@@ -46,7 +46,7 @@ const StrengthsWeaknesses = () => {
   const { theme } = useTheme();
   return (
     <div className="flex h-36 flex-col justify-between rounded-2xl p-4 md:h-40 lg:h-44"
-      style={{ backgroundColor: theme.colors.bg.card , color: theme.colors.text.default}}>
+      style={{ backgroundColor: theme.colors.bg.surface.primary , color: theme.colors.text.primary}}>
       <h3 className="text-sm font-bold">Strengths & Weaknesses Heatmap</h3>
 
       <div className="flex items-center justify-between px-6">

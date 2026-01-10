@@ -39,9 +39,9 @@ const Updates = () => {
     return (
         <div
             className="h-full flex flex-col rounded-2xl p-6"
-            style={{ backgroundColor: theme.colors.bg.card }}
+            style={{ backgroundColor: theme.colors.bg.surface.primary }}
         >
-            <h3 className="mb-4 text-sm font-bold" style={{ color: theme.colors.text.default }}>
+            <h3 className="mb-4 text-sm font-bold" style={{color: theme.colors.text.primary}}>
                 Updates
             </h3>
             <div className="flex-1 flex flex-col gap-6">
@@ -51,8 +51,8 @@ const Updates = () => {
                             {item.icon}
                         </div>
                         <div>
-                            <h4 className="text-sm font-bold leading-none" style={{ color: theme.colors.text.default }}>{item.title}</h4>
-                            <p className="text-xs line-clamp-2 font-medium" style={{ color: theme.colors.text.default }}>{item.desc}</p>
+                            <h4 className="text-sm font-bold leading-none" style={{color: theme.colors.text.primary}}>{item.title}</h4>
+                            <p className="text-xs line-clamp-2 font-medium" style={{color: theme.colors.text.primary}}>{item.desc}</p>
                             <span className="text-sm font-medium text-[#514CF199]">{item.time}</span>
                         </div>
                     </div>

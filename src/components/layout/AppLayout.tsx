@@ -21,7 +21,7 @@ const AppLayout = () => {
   if (!isLoggedIn) {
     return (
       <div className="flex min-h-screen flex-col"
-      style={{backgroundColor:theme.colors.bg.default}}>
+      style={{backgroundColor:theme.colors.bg.primary}}>
         {/* Public Navigation */}
         <Navbar />
         
@@ -39,7 +39,7 @@ const AppLayout = () => {
   // ------------------------------------------------------------------
   return (
     <div className="flex h-screen overflow-hidden"
-      style={{backgroundColor:theme.colors.bg.default}}>
+      style={{backgroundColor:theme.colors.bg.primary}}>
       {/* Sidebar - Controlled by state for mobile responsiveness */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 

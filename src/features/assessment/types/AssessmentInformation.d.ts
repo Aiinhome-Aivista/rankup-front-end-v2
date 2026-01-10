@@ -1,9 +1,14 @@
 export interface ClassOption {
     name: string;
-    code: string;
 }
 
 export interface SubjectOption {
+    id: number;
+    name: string;
+    code: string;
+}
+
+export interface TopicOption {
     name: string;
     code: string;
 }
@@ -19,4 +24,10 @@ export interface AssessmentInformationProps {
     setInstructions: (value: string) => void;
     classes: ClassOption[];
     subjects: SubjectOption[];
+    assignType: 'all' | 'specific';
+    setAssignType: (value: 'all' | 'specific') => void;
+    studentList?: { student_id: number; full_name: string }[];
+    studentIds?: number[];
+    studentIds?: number[];
+    setStudentIds?: (value: number[]) => void;
 }

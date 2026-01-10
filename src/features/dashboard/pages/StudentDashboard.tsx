@@ -4,7 +4,7 @@ import WeeklyClassAverage from "../components/WeeklyClassAverage";
 import StrengthsWeaknesses from "../components/StrengthsWeaknesses";
 import UpcomingTest from "../components/UpcomingTest";
 import StudentPerformance from "../components/StudentPerformance";
-import AssessmentsOverview from "../components/AssessmentsOverview";
+import AssessmentsOverview_Student from "../components/AssessmentsOverview_Student";
 import ClassPerformance from "../components/ClassPerformance";
 import CalendarSection from "../components/CalendarSection";
 import AnnouncementSection from "../components/AnnouncementSection";
@@ -17,7 +17,7 @@ const StudentDashboard = () => {
     >
       {/* Header logic is handled by parent (AppLayout), keeping this clean */}
 
-      <div className="flex-1 overflow-y-auto pl-14 pr-8">
+      <div className="flex-1 overflow-y-auto pl-8">
         <div className="mx-auto flex w-full flex-col gap-2">
           {/* 1. Greeting & Welcome */}
           <GreetingSection />
@@ -47,11 +47,11 @@ const StudentDashboard = () => {
                 <StudentPerformance />
               </div>
 
-              <div className="md:col-span-2 xl:col-span-6">
-                <AssessmentsOverview />
+              <div className="md:col-span-2 xl:col-span-5">
+                <AssessmentsOverview_Student />
               </div>
 
-              <div className="md:col-span-1 xl:col-span-3">
+              <div className="md:col-span-1 xl:col-span-4">
                 <ClassPerformance />
               </div>
 
@@ -63,18 +63,18 @@ const StudentDashboard = () => {
 
               {/* Blank Card 1 (Vertical - Middle Gap) */}
               <div
-                className="md:col-span-1 xl:col-span-4 h-full min-h-25 rounded-2xl"
-                style={{ backgroundColor: theme.colors.bg.card }}
+                className="md:col-span-1 xl:col-span-5 h-full min-h-25 rounded-2xl"
+                style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
 
-              <div className="md:col-span-1 xl:col-span-5 h-full">
+              <div className="md:col-span-1 xl:col-span-4 h-full">
                 <AnnouncementSection />
               </div>
 
               {/* Blank Card 2 (Horizontal - Bottom Bar) */}
               <div
                 className="md:col-span-2 xl:col-start-4 xl:col-span-9 h-full min-h-25 rounded-2xl"
-                style={{ backgroundColor: theme.colors.bg.card }}
+                style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
             </div>
           </div>

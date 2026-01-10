@@ -51,7 +51,7 @@ const ManageChildren = () => {
   return (
     <div className="h-full flex flex-col rounded-2xl">
       <div className="flex justify-between items-center mb-4 px-6">
-        <h3 className="text-sm font-bold" style={{ color: theme.colors.text.default }}>
+        <h3 className="text-sm font-bold" style={{color: theme.colors.text.primary}}>
           My Children
         </h3>
       </div>
@@ -70,8 +70,8 @@ const ManageChildren = () => {
               <div className="flex gap-4 items-center">
                 <img src={child.avatar} alt={child.name} className="w-12 h-12 rounded-full object-cover" />
                 <div>
-                  <h4 className="font-bold text-base" style={{ color: theme.colors.text.default }}>{child.name}</h4>
-                  <p className="text-xs" style={{ color: theme.colors.text.default }}>{child.grade} | {child.room}</p>
+                  <h4 className="font-bold text-base" style={{color: theme.colors.text.primary}}>{child.name}</h4>
+                  <p className="text-xs" style={{color: theme.colors.text.primary}}>{child.grade} | {child.room}</p>
                 </div>
               </div>
               <button className="text-[#514BF2]">

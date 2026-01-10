@@ -25,10 +25,10 @@ const data: PerformanceData[] = [
 const ClassPerformance = () => {
   const { theme } = useTheme();
   return (
-    <div className="flex h-full flex-col rounded-2xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}>
+    <div className="flex flex-col rounded-2xl h-auto md:h-58 p-4"
+      style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       <h3 className="mb-6 text-sm font-bold"
-        style={{ color: theme.colors.text.default }}>
+        style={{color: theme.colors.text.primary}}>
         Class Performance
       </h3>
 

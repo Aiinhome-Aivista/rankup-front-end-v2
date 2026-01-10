@@ -73,7 +73,7 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
       {/* Content */}
       <div className="relative z-10 mb-6 flex-1">
         <h4 className="mb-2 text-lg font-medium"
-          style={{ color: theme.colors.text.default }}>
+          style={{color: theme.colors.text.primary}}>
           {item.title}
         </h4>
         <p className="line-clamp-3 text-xs font-normal"
@@ -85,7 +85,7 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
       {/* Footer / CTA */}
       <div className="relative z-10 mt-auto">
         <button className="flex items-center gap-2 text-xs font-bold transition-transform group-hover:translate-x-1 cursor-pointer"
-          style={{ color: theme.colors.text.default }}>
+          style={{color: theme.colors.text.primary}}>
           {item.ctaText || "View Details"}
           <ArrowRight size={14} />
         </button>
@@ -98,11 +98,11 @@ const AnnouncementSection = () => {
   const { theme } = useTheme();
   return (
     <div
-      className="h-full flex flex-col rounded-2xl p-6"
-      style={{ backgroundColor: theme.colors.bg.card }}
+      className="h-full flex flex-col rounded-2xl p-4"
+      style={{ backgroundColor: theme.colors.bg.surface.primary }}
     >
       <h3 className="mb-6 text-sm font-bold"
-        style={{ color: theme.colors.text.default }}>
+        style={{color: theme.colors.text.primary}}>
         Announcement
       </h3>
 
