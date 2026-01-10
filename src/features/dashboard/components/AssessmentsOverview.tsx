@@ -37,7 +37,7 @@ const AssessmentsOverview = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   return (
-    <div className="flex w-[600px] h-auto flex-col rounded-2xl p-4 md:h-58"
+    <div className="flex w-full h-auto flex-col rounded-2xl p-4 md:h-58"
       style={{ backgroundColor: theme.colors.bg.surface.primary }}>
       <h3 className="mb-6 text-sm font-bold"
         style={{color: theme.colors.text.primary}}>

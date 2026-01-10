@@ -59,7 +59,7 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
 
 
       {/* Header / Icon Area */}
-      <div className="relative z-10 mb-4 -top-5">
+      <div className="relative z-10 -top-5">
         <div className="flex">
           <div className="absolute">
             <img src={AnnouncementSectionIcon} alt="" className="w-15 h-15" />
@@ -71,8 +71,8 @@ const AnnouncementCard = ({ item }: AnnouncementCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mb-6 flex-1">
-        <h4 className="mb-2 text-lg font-medium"
+      <div className="relative z-10 flex-1 mb-1">
+        <h4 className="mb-1 text-lg font-medium"
           style={{color: theme.colors.text.primary}}>
           {item.title}
         </h4>
@@ -98,7 +98,7 @@ const AnnouncementSection = () => {
   const { theme } = useTheme();
   return (
     <div
-      className="h-full flex flex-col rounded-2xl p-4"
+      className="h-full flex flex-col rounded-2xl pl-4 pt-4 pr-4"
       style={{ backgroundColor: theme.colors.bg.surface.primary }}
     >
       <h3 className="mb-6 text-sm font-bold"

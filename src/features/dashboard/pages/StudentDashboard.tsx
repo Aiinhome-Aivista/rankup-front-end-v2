@@ -8,6 +8,7 @@ import AssessmentsOverview_Student from "../components/AssessmentsOverview_Stude
 import ClassPerformance from "../components/ClassPerformance";
 import CalendarSection from "../components/CalendarSection";
 import AnnouncementSection from "../components/AnnouncementSection";
+import AssessmentsOverview from "../components/AssessmentsOverview";
 import { useTheme } from "@rankup/shared-ui";
 
 const StudentDashboard = () => {
@@ -48,7 +49,7 @@ const StudentDashboard = () => {
               </div>
 
               <div className="md:col-span-2 xl:col-span-5">
-                <AssessmentsOverview_Student />
+                <AssessmentsOverview />
               </div>
 
               <div className="md:col-span-1 xl:col-span-4">
@@ -63,17 +64,17 @@ const StudentDashboard = () => {
 
               {/* Blank Card 1 (Vertical - Middle Gap) */}
               <div
-                className="md:col-span-1 xl:col-span-5 h-full min-h-25 rounded-2xl"
+                className="md:col-span-1 xl:col-span-4 h-58 min-h-25 rounded-2xl"
                 style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
 
-              <div className="md:col-span-1 xl:col-span-4 h-full">
+              <div className="md:col-span-1 xl:col-span-3 h-58 w-145">
                 <AnnouncementSection />
               </div>
 
               {/* Blank Card 2 (Horizontal - Bottom Bar) */}
               <div
-                className="md:col-span-2 xl:col-start-4 xl:col-span-9 h-full min-h-25 rounded-2xl"
+                className="md:col-span-2 xl:col-start-4 xl:col-span-9 min-h-15 rounded-2xl -mt-8"
                 style={{ backgroundColor: theme.colors.bg.surface.primary }}
               ></div>
             </div>
