@@ -3,7 +3,6 @@ import GreetingSection from "../components/GreetingSection";
 import InstituteStats from "../components/InstituteStats";
 import StudentPerformanceChart from "../components/StudentPerformanceChart";
 import ClassPerformanceChart from "../components/ClassPerformanceChart";
-import ClassroomUtilization from "../components/ClassroomUtilization";
 import ParentEngagement from "../components/ParentEngagement";
 import FinancialSummary from "../components/FinancialSummary";
 import SchoolCalendarEvents from "../components/SchoolCalendarEvents";
@@ -14,6 +13,7 @@ import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import restartIcon from "@/assets/icons/restart_alt.svg";
 import TeacherInfo from "../components/TeacherInfo";
+import ClassroomUtilization from "../components/ClassroomUtilization";
 
 const InstituteDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -205,7 +205,7 @@ const InstituteDashboard = () => {
 
       {/* Bottom Section - Three Columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ClassroomUtilization />
+        <ClassroomUtilization occupied={50} vacant={25} maintenance={25} />
 
         <div className="space-y-4 flex flex-col">
           <ParentEngagement />
