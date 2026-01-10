@@ -31,7 +31,7 @@ const InstituteStats = () => {
         {/* Stats Cards */}
         <div className="flex items-center h-full gap-10">
           {/* Teachers Card */}
-          <div className="flex-1 bg-[#F5F5FF] rounded-2xl p-6 text-center flex flex-col items-center justify-center gap-2">
+          <div className="flex-1 border border-[#514CF10D] bg-[#514CF105] rounded-2xl p-6 text-center flex flex-col items-center justify-center gap-2">
             <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
               <img src={PersonIcon} alt="" />
             </div>
@@ -45,7 +45,7 @@ const InstituteStats = () => {
           </div>
 
           {/* Students Card */}
-          <div className="flex-1 bg-[#F5F5FF] rounded-2xl p-6 text-center flex flex-col items-center justify-center gap-2">
+          <div className="flex-1 border border-[#514CF10D] bg-[#514CF105] rounded-2xl p-6 text-center flex flex-col items-center justify-center gap-2">
             <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
               <img src={GroupsnewIcon} alt="" />
             </div>
@@ -57,7 +57,17 @@ const InstituteStats = () => {
               96% Present
             </p>
           </div>
-          <div className="h-full border-2 border-[#A1AEF2] border-dashed ml-3"></div>
+          <svg className="h-full ml-3" width="2" style={{ minHeight: "100%" }}>
+            <line
+              x1="1"
+              y1="0"
+              x2="1"
+              y2="100%"
+              stroke="#A1AEF2"
+              strokeWidth="1"
+              strokeDasharray="5,5"
+            />
+          </svg>
         </div>
       </div>
 
@@ -74,7 +84,7 @@ const InstituteStats = () => {
 
         <div className="flex h-full items-start justify-between gap-8">
           {/* Current Classes */}
-          <div className="h-full flex-1 flex flex-col justify-between items-start bg-[#F5F5FF] rounded-2xl p-3">
+          <div className="h-full flex-1 flex flex-col justify-between items-start border border-[#514CF10D] bg-[#514CF105] rounded-2xl p-3">
             <div className="flex justify-between w-full items-start mb-2">
               <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
                 <img src={UpdateIcon} alt="" />
@@ -109,7 +119,7 @@ const InstituteStats = () => {
           </div>
 
           {/* Previous Classes */}
-          <div className="h-full flex-1 flex flex-col justify-between bg-[#F5F5FF] rounded-2xl p-3">
+          <div className="h-full flex-1 flex flex-col justify-between border border-[#514CF10D] bg-[#514CF105] rounded-2xl p-3">
             <div className="flex justify-between items-center mb-2">
               <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
                 <img src={PlayArrowIcon} alt="" />
@@ -129,7 +139,7 @@ const InstituteStats = () => {
           </div>
 
           {/* Scheduled */}
-          <div className="h-full flex-1 flex flex-col justify-between bg-[#F5F5FF] rounded-2xl p-3">
+          <div className="h-full flex-1 flex flex-col justify-between border border-[#514CF10D] bg-[#514CF105] rounded-2xl p-3">
             <div className="flex justify-between items-center mb-2">
               <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
                 <img src={EventIcon} alt="" />

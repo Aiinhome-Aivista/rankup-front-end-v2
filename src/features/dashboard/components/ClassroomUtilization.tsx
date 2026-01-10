@@ -17,7 +17,7 @@ export default function ClassroomUtilization({
   const maintenanceOffset = ((occupied + vacant) / total) * CIRCUMFERENCE;
 
   return (
-    <div className="p-6 rounded-3xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex flex-col items-center">
+    <div className="p-6 rounded-3xl bg-[#514CF105] border border-[#514CF10D] shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex flex-col items-center">
       <div className="text-left w-full mb-4">
         <h3 className="text-lg font-semibold text-indigo-600 m-0">
           Classroom Utilization

@@ -20,11 +20,11 @@ const TeacherInfo = () => {
   ];
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+      <div className="grid grid-cols-2 gap-4">
         {teachers.map((teacher) => (
           <div
             key={teacher.id}
-            className="flex  items-center p-3 bg-gray-50 rounded-xl gap-6"
+            className="flex  items-center p-3 bg-[#514CF105] rounded-xl gap-6"
           >
             <div className=" flex items-center justify-center mb-2">
               <img src={teacher.avatar} alt="" className="w-12 h-12" />

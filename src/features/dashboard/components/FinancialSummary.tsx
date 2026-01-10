@@ -3,7 +3,7 @@ const FinancialSummary = () => {
   const outstandingAmount = "$12.k";
 
   return (
-    <div className="bg-white rounded-3xl p-6 border border-gray-100">
+    <div className="bg-[#514CF105] rounded-3xl p-6 border border-[#514CF10D] shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
       <h3 className="text-base font-semibold text-[#514BF2] mb-4">
         Financial Summary
       </h3>

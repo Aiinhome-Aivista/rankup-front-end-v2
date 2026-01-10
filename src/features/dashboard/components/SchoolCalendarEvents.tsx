@@ -39,7 +39,7 @@ const events: CalendarEvent[] = [
 const SchoolCalendarEvents = () => {
   return (
     <>
-      <div className="bg-white rounded-3xl p-4 border border-gray-100">
+      <div className="bg-[#514CF105] rounded-3xl p-4 border border-[#514CF10D]">
         <h3 className="text-base font-semibold text-[#514BF2] mb-4">
           School Calender
         </h3>
@@ -48,7 +48,7 @@ const SchoolCalendarEvents = () => {
         <div className="space-y-3">
           {events.map((event) => (
             <div key={event.id} className="flex gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[#E8E7FD] flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#f3f2fe] flex items-center justify-center shrink-0">
                 <span className="text-[#514BF2]">{event.icon}</span>
               </div>
               <div className="flex-1">
